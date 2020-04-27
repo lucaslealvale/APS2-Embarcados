@@ -11,13 +11,13 @@
 /************************************************************************/
 /* prototypes                                                           */
 /************************************************************************/
-void but1_callback(void);
+void callback(void);
 
 
 /************************************************************************/
 /* LCD + TOUCH                                                          */
 /************************************************************************/
-#define MAX_ENTRIES        3
+#define MAX_ENTRIES        10
 
 struct ili9488_opt_t g_ili9488_display_opt;
 const uint32_t BUTTON_W = 120;
@@ -37,7 +37,7 @@ const uint32_t BUTTON_Y = ILI9488_LCD_HEIGHT/2;
 #define TASK_MXT_STACK_SIZE            (2*1024/sizeof(portSTACK_TYPE))
 #define TASK_MXT_STACK_PRIORITY        (tskIDLE_PRIORITY)
 
-#define TASK_LCD_STACK_SIZE            (2*1024/sizeof(portSTACK_TYPE))
+#define TASK_LCD_STACK_SIZE            (4*1024/sizeof(portSTACK_TYPE))
 #define TASK_LCD_STACK_PRIORITY        (tskIDLE_PRIORITY)
 
 typedef struct {
@@ -45,12 +45,27 @@ typedef struct {
   uint y;
 } touchData;
 
+typedef struct {
+	uint32_t width;     // largura (px)
+	uint32_t height;    // altura  (px)
+	uint32_t colorOn;   // cor do bot�o acionado
+	uint32_t colorOff;  // cor do bot�o desligado
+	uint32_t x;         // posicao x
+	uint32_t y;         // posicao y
+	uint8_t status;
+	void (*func)(void);
+	
+} t_but;
+
 QueueHandle_t xQueueTouch;
 
 /************************************************************************/
 /* handler/callbacks                                                    */
 /************************************************************************/
 
+void callback(void){
+  printf("CLICK!\n");
+}
 
 /************************************************************************/
 /* RTOS hooks                                                           */
@@ -115,6 +130,37 @@ static void configure_lcd(void){
 /************************************************************************/
 /* funcoes                                                              */
 /************************************************************************/
+
+int process_touch(t_but botoes[], touchData touch, uint32_t n){
+
+  for (int i = 0; i < n; i++){
+
+    int x_limit_up   = botoes[i].x + botoes[i].width/2;
+    int x_limit_down = botoes[i].x - botoes[i].width/2;
+    
+    int y_limit_up   = botoes[i].y + botoes[i].height/2;
+    int y_limit_down = botoes[i].y - botoes[i].height/2;
+  
+    if (touch.x < x_limit_up && touch.x > x_limit_down && touch.y < y_limit_up && touch.y > y_limit_down){
+      return i;
+    }
+  
+  }
+  
+  return -1;
+}
+
+void draw_button_new(t_but but){
+	uint32_t color;
+	if(but.status)
+	color = but.colorOn;
+	else
+	color = but.colorOff;
+
+	ili9488_set_foreground_color(COLOR_CONVERT(color));
+	ili9488_draw_filled_rectangle(but.x-but.width/2, but.y-but.height/2,
+	but.x+but.width/2, but.y+but.height/2);
+}
 
 void draw_screen(void) {
   ili9488_set_foreground_color(COLOR_CONVERT(COLOR_WHITE));
@@ -225,30 +271,61 @@ void task_mxt(void){
     if (mxt_is_message_pending(&device)) {
       mxt_handler(&device, &touch.x, &touch.y);
       xQueueSend( xQueueTouch, &touch, 0);           /* send mesage to queue */
+      vTaskDelay(200);
+      
+      // limpa touch
+      while (mxt_is_message_pending(&device)){
+        mxt_handler(&device, NULL, NULL);
+        vTaskDelay(50);
+      }
     }
-    vTaskDelay(100);
+    
+    vTaskDelay(300);
   }
 }
 
 void task_lcd(void){
-  xQueueTouch = xQueueCreate( 10, sizeof( touchData ) );
-  configure_lcd();
-  
-  draw_screen();
-  draw_button(0);
-  
-  // Escreve HH:MM no LCD
-  font_draw_text(&digital52, "DEMO - BUT", 0, 0, 1);
-  
-  // strut local para armazenar msg enviada pela task do mxt
-  touchData touch;
-  
-  while (true) {
-    if (xQueueReceive( xQueueTouch, &(touch), ( TickType_t )  500 / portTICK_PERIOD_MS)) {
-      update_screen(touch.x, touch.y);
-      printf("x:%d y:%d\n", touch.x, touch.y);
-    }
-  }
+	xQueueTouch = xQueueCreate( 10, sizeof( touchData ) );
+	configure_lcd();
+	draw_screen();
+	font_draw_text(&digital52, "DEMO - BUT", 0, 0, 1);
+
+	t_but but0 = {.width = 120, .height = 75,
+		.colorOn = COLOR_TOMATO, .colorOff = COLOR_BLACK,
+	.x = ILI9488_LCD_WIDTH/2, .y = 150, .status = 1, .func = &callback};
+	
+	t_but but1 = {.width = 120, .height = 75,
+		.colorOn = COLOR_GREEN, .colorOff = COLOR_BLACK,
+	.x = ILI9488_LCD_WIDTH/2, .y = 250, .status = 1, .func = &callback};
+	
+	t_but but2 = {.width = 120, .height = 75,
+		.colorOn = COLOR_SKYBLUE, .colorOff = COLOR_BLACK,
+	.x = ILI9488_LCD_WIDTH/2, .y = 350, .status = 1, .func = &callback};
+	
+	draw_button_new(but0);
+	draw_button_new(but1);
+	draw_button_new(but2);
+	
+	 t_but botoes[] = {but0, but1, but2};
+
+	// struct local para armazenar msg enviada pela task do mxt
+	touchData touch;
+
+	while (true) {
+		if (xQueueReceive( xQueueTouch, &(touch), ( TickType_t )  500 / portTICK_PERIOD_MS)) {
+			int b = process_touch(botoes, touch, 3);
+			if(b >= 0){
+
+        botoes[b].func();
+
+				botoes[b].status = !botoes[b].status;
+				draw_button_new(botoes[b]);
+			}
+
+			printf("x:%d y:%d\n", touch.x, touch.y);
+			printf("b:%d\n", b);
+		}
+	}
 }
 
 /************************************************************************/
