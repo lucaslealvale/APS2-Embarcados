@@ -40,6 +40,12 @@ const uint32_t BUTTON_Y = ILI9488_LCD_HEIGHT/2;
 #define TASK_LCD_STACK_SIZE            (4*1024/sizeof(portSTACK_TYPE))
 #define TASK_LCD_STACK_PRIORITY        (tskIDLE_PRIORITY)
 
+// LED
+#define LED_PIO       PIOC
+#define LED_PIO_ID    ID_PIOC
+#define LED_IDX       8
+#define LED_IDX_MASK  (1 << LED_IDX)
+
 typedef struct {
   uint x;
   uint y;
@@ -58,13 +64,18 @@ typedef struct {
 } t_but;
 
 QueueHandle_t xQueueTouch;
+SemaphoreHandle_t xSemaphore = NULL;
 
 /************************************************************************/
 /* handler/callbacks                                                    */
 /************************************************************************/
 
+
 void callback(void){
   printf("CLICK!\n");
+
+  BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+  xSemaphoreGiveFromISR(xSemaphore, &xHigherPriorityTaskWoken);
 }
 
 /************************************************************************/
@@ -255,6 +266,18 @@ void mxt_handler(struct mxt_device *device, uint *x, uint *y)
   } while ((mxt_is_message_pending(device)) & (i < MAX_ENTRIES));
 }
 
+void init(void){
+	// Initialize the board clock
+	sysclk_init();
+
+	// Disativa WatchDog Timer
+	WDT->WDT_MR = WDT_MR_WDDIS;
+
+	pmc_enable_periph_clk(LED_PIO_ID);
+	pio_configure(LED_PIO, PIO_OUTPUT_0, LED_IDX_MASK, PIO_DEFAULT);
+
+}
+
 /************************************************************************/
 /* tasks                                                                */
 /************************************************************************/
@@ -286,6 +309,8 @@ void task_mxt(void){
 
 void task_lcd(void){
 	xQueueTouch = xQueueCreate( 10, sizeof( touchData ) );
+  xSemaphore = xSemaphoreCreateBinary();
+
 	configure_lcd();
 	draw_screen();
 	font_draw_text(&digital52, "DEMO - BUT", 0, 0, 1);
@@ -311,8 +336,10 @@ void task_lcd(void){
 	// struct local para armazenar msg enviada pela task do mxt
 	touchData touch;
 
+  char flag_led = 0;
+  
 	while (true) {
-		if (xQueueReceive( xQueueTouch, &(touch), ( TickType_t )  500 / portTICK_PERIOD_MS)) {
+		if (xQueueReceive( xQueueTouch, &(touch), ( TickType_t )  500 / portTICK_PERIOD_MS)) { //500 ms
 			int b = process_touch(botoes, touch, 3);
 			if(b >= 0){
 
@@ -325,6 +352,23 @@ void task_lcd(void){
 			printf("x:%d y:%d\n", touch.x, touch.y);
 			printf("b:%d\n", b);
 		}
+
+
+    if( xSemaphoreTake(xSemaphore, 0) == pdTRUE ){   
+      flag_led = ! flag_led;
+    }
+
+    if(flag_led){
+      pio_clear(PIOC, LED_IDX_MASK);  
+    }
+    else{
+      pio_set(PIOC, LED_IDX_MASK);                        //// <====
+    }
+
+
+
+   /// acender o LED -> APAGAR O LED
+
 	}
 }
 
@@ -344,6 +388,7 @@ int main(void)
 
   sysclk_init(); /* Initialize system clocks */
   board_init();  /* Initialize board */
+  init();
   
   /* Initialize stdio on USART */
   stdio_serial_init(USART_SERIAL_EXAMPLE, &usart_serial_options);
