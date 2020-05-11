@@ -77,6 +77,8 @@ typedef struct {
 
 QueueHandle_t xQueueTouch;
 SemaphoreHandle_t xSemaphore = NULL;
+SemaphoreHandle_t xSemaphore_playpause = NULL;
+SemaphoreHandle_t xSemaphore_seta = NULL;
 
 /************************************************************************/
 /* handler/callbacks                                                    */
@@ -88,6 +90,20 @@ void callback(void){
 
   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
   xSemaphoreGiveFromISR(xSemaphore, &xHigherPriorityTaskWoken);
+}
+
+void callback_playpause(void){
+  printf("CLICK 2!\n");
+
+  BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+  xSemaphoreGiveFromISR(xSemaphore_playpause, &xHigherPriorityTaskWoken);
+}
+
+void callback_seta(void){
+  printf("CLICK 3!\n");
+
+  BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+  xSemaphoreGiveFromISR(xSemaphore_seta, &xHigherPriorityTaskWoken);
 }
 
 /************************************************************************/
@@ -309,7 +325,10 @@ void task_mxt(void){
 
 void task_lcd(void){
 	xQueueTouch = xQueueCreate( 10, sizeof( touchData ) );
+  
   xSemaphore = xSemaphoreCreateBinary();
+  xSemaphore_playpause = xSemaphoreCreateBinary();
+  xSemaphore_seta = xSemaphoreCreateBinary();
 
 	configure_lcd();
 	draw_screen();
@@ -322,12 +341,21 @@ void task_lcd(void){
 	
   t_but play_but = {.width = play.width, .height = play.height,
 	  .x = 5, .y = ILI9488_LCD_HEIGHT-125, .data = play.data, 
-    .status = 1, .func = &callback
+    .status = 1, .func = &callback_playpause
+  };
+
+  t_but pause_but = {.width = pause.width, .height = pause.height,
+	  .x = 5, .y = ILI9488_LCD_HEIGHT-125, .data = pause.data, 
+    .status = 1, .func = &callback_playpause
   };
 
 	t_but down_arrow_but = {.width = down_arrow.width, .height = down_arrow.height,
     .x = ILI9488_LCD_WIDTH - 80, .y =  ILI9488_LCD_HEIGHT/2 - 160, .data = down_arrow.data,
-    .status = 1, .func = &callback
+    .status = 1, .func = &callback_seta
+  };
+		t_but up_arrow_but = {.width = up_arrow.width, .height = up_arrow.height,
+    .x = ILI9488_LCD_WIDTH - 80, .y =  ILI9488_LCD_HEIGHT/2 - 160, .data = up_arrow.data,
+    .status = 1, .func = &callback_seta
   };
 	
 	t_but bike_but = {.width = bike.width, .height = bike.height,	
@@ -348,29 +376,24 @@ void task_lcd(void){
 
 	// desenha imagem background na posicao X=80 e Y=150
 
-	
   ili9488_draw_pixmap(bike_but.x, bike_but.y, bike.width, bike.height, bike.data);
   ili9488_draw_pixmap(cronometro_but.x, cronometro_but.y, cronon.width, cronon.height, cronon.data);
-  
-	ili9488_draw_pixmap(down_arrow_but.x, down_arrow_but.y, down_arrow.width, down_arrow.height, down_arrow.data);
-	// ili9488_draw_pixmap(ILI9488_LCD_HEIGHT/2 - 80, ILI9488_LCD_WIDTH2/2 - 80, up_arrow.width, up_arrow.height, up_arrow.data);
-	
-  // ili9488_draw_pixmap(ILI9488_LCD_HEIGHT-120, 0, pause.width, pause.height, pause.data);
-	ili9488_draw_pixmap(play_but.x,play_but.y, play.width, play.height, play.data);
 	
   ili9488_draw_pixmap(reset_but.x, reset_but.y, reset_but.width, reset_but.height, reset_but.data);
-
 	
-	t_but botoes[] = {reset_but, play_but, down_arrow_but, bike_but, cronometro_but};
+	t_but botoes[] = {reset_but, play_but, pause_but, down_arrow_but,up_arrow_but, bike_but, cronometro_but};
+
 
 	// struct local para armazenar msg enviada pela task do mxt
 	touchData touch;
 
   char flag_led = 0;
+  char flag_playpause = 0;
+  char flag_seta = 0;
   
 	while (true) {
 		if (xQueueReceive( xQueueTouch, &(touch), ( TickType_t )  500 / portTICK_PERIOD_MS)) { //500 ms
-			int b = process_touch(botoes, touch, 5);
+			int b = process_touch(botoes, touch, 7);
 			if(b >= 0){
 
         botoes[b].func();
@@ -382,21 +405,40 @@ void task_lcd(void){
 			printf("b:%d\n", b);
 		}
 
+    if (flag_playpause){
+      ili9488_draw_pixmap(pause_but.x, pause_but.y, pause_but.width, pause_but.height, pause_but.data); 
+    }
+    else{
+      ili9488_draw_pixmap(play_but.x,play_but.y, play.width, play.height, play.data);
+    }
+
+    if (flag_seta){
+	    ili9488_draw_pixmap(down_arrow_but.x, down_arrow_but.y, down_arrow.width, down_arrow.height, down_arrow.data);
+    }
+    else{
+      ili9488_draw_pixmap(up_arrow_but.x, up_arrow_but.y, up_arrow.width, up_arrow.height, up_arrow.data);
+    }
 
     if( xSemaphoreTake(xSemaphore, 0) == pdTRUE ){   
       flag_led = ! flag_led;
+    }
+    
+    if( xSemaphoreTake(xSemaphore_playpause, 0) == pdTRUE ){   
+      flag_playpause = ! flag_playpause;
+    }
+
+    if( xSemaphoreTake(xSemaphore_seta, 0) == pdTRUE ){   
+      flag_seta = ! flag_seta;
     }
 
     if(flag_led){
       pio_clear(PIOC, LED_IDX_MASK);  
     }
     else{
-      pio_set(PIOC, LED_IDX_MASK);                        //// <====
+      pio_set(PIOC, LED_IDX_MASK);                 
     }
 
 
-
-   /// acender o LED -> APAGAR O LED
 
 	}
 }
