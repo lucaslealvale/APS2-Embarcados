@@ -111,7 +111,8 @@ SUBDIRS :=  \
 ../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/ \
 ../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/MemMang/ \
 ../src/config/ \
-../src/maxTouch
+../src/maxTouch \
+../src/icones
 
 
 # Add inputs and outputs from these tool invocations to the build variables 

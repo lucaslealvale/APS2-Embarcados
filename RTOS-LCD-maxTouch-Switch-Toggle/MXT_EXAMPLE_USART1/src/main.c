@@ -9,6 +9,13 @@
 #include "digital521.h"
 
 /************************************************************************/
+/* IMAGENS                                                              */
+/************************************************************************/
+
+#include "icones/background.h"
+
+
+/************************************************************************/
 /* prototypes                                                           */
 /************************************************************************/
 void callback(void);
@@ -331,7 +338,12 @@ void task_lcd(void){
 	draw_button_new(but1);
 	draw_button_new(but2);
 	
-	 t_but botoes[] = {but0, but1, but2};
+	ili9488_set_foreground_color(COLOR_CONVERT(COLOR_BLACK));
+
+	// desenha imagem background na posicao X=80 e Y=150
+	ili9488_draw_pixmap(0, 0, background.width, background.height, background.data);
+	
+	t_but botoes[] = {but0, but1, but2};
 
 	// struct local para armazenar msg enviada pela task do mxt
 	touchData touch;
@@ -402,6 +414,7 @@ int main(void)
   if (xTaskCreate(task_lcd, "lcd", TASK_LCD_STACK_SIZE, NULL, TASK_LCD_STACK_PRIORITY, NULL) != pdPASS) {
     printf("Failed to create test led task\r\n");
   }
+  
   
   /* Start the scheduler. */
   vTaskStartScheduler();
