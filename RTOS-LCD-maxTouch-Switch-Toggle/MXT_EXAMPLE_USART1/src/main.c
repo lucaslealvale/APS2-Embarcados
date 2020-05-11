@@ -158,13 +158,13 @@ int process_touch(t_but botoes[], touchData touch, uint32_t n){
 
   for (int i = 0; i < n; i++){
 
-    int x_limit_up   = botoes[i].x + botoes[i].width/2;
-    int x_limit_down = botoes[i].x - botoes[i].width/2;
+    int x_limit_up   = botoes[i].x;
+    int x_limit_down = botoes[i].x + botoes[i].width;
     
-    int y_limit_up   = botoes[i].y + botoes[i].height/2;
-    int y_limit_down = botoes[i].y - botoes[i].height/2;
+    int y_limit_up   = botoes[i].y;
+    int y_limit_down = botoes[i].y + botoes[i].height;
   
-    if (touch.x < x_limit_up && touch.x > x_limit_down && touch.y < y_limit_up && touch.y > y_limit_down){
+    if (touch.x > x_limit_up && touch.x < x_limit_down && touch.y > y_limit_up && touch.y < y_limit_down){
       return i;
     }
   
@@ -331,12 +331,12 @@ void task_lcd(void){
   };
 	
 	t_but bike_but = {.width = bike.width, .height = bike.height,	
-    .x = 5, .y =  ILI9488_LCD_HEIGHT/2 - 60, .data = bike.data,
+    .x = 5, .y = ILI9488_LCD_HEIGHT/2 - 60, .data = bike.data,
     .status = 1, .func = &callback
   };
 
 	t_but cronometro_but = {.width = cronon.width, .height = cronon.height,		
-    .x = 5, .y =  ILI9488_LCD_HEIGHT/2 + 20, .data = cronon.data,
+    .x = 5, .y = ILI9488_LCD_HEIGHT/2 + 20, .data = cronon.data,
     .status = 1, .func = &callback
   };
 
@@ -369,31 +369,30 @@ void task_lcd(void){
   char flag_led = 0;
   
 	while (true) {
-		// if (xQueueReceive( xQueueTouch, &(touch), ( TickType_t )  500 / portTICK_PERIOD_MS)) { //500 ms
-		// 	int b = process_touch(botoes, touch, 3);
-		// 	if(b >= 0){
+		if (xQueueReceive( xQueueTouch, &(touch), ( TickType_t )  500 / portTICK_PERIOD_MS)) { //500 ms
+			int b = process_touch(botoes, touch, 5);
+			if(b >= 0){
 
-    //     botoes[b].func();
+        botoes[b].func();
 
-		// 		botoes[b].status = !botoes[b].status;
-		// 		draw_button_new(botoes[b]);
-		// 	}
+				botoes[b].status = !botoes[b].status;
+			}
 
-		// 	printf("x:%d y:%d\n", touch.x, touch.y);
-		// 	printf("b:%d\n", b);
-		// }
+			printf("x:%d y:%d\n", touch.x, touch.y);
+			printf("b:%d\n", b);
+		}
 
 
-    // if( xSemaphoreTake(xSemaphore, 0) == pdTRUE ){   
-    //   flag_led = ! flag_led;
-    // }
+    if( xSemaphoreTake(xSemaphore, 0) == pdTRUE ){   
+      flag_led = ! flag_led;
+    }
 
-    // if(flag_led){
-    //   pio_clear(PIOC, LED_IDX_MASK);  
-    // }
-    // else{
-    //   pio_set(PIOC, LED_IDX_MASK);                        //// <====
-    // }
+    if(flag_led){
+      pio_clear(PIOC, LED_IDX_MASK);  
+    }
+    else{
+      pio_set(PIOC, LED_IDX_MASK);                        //// <====
+    }
 
 
 
