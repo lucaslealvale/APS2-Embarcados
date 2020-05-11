@@ -12,7 +12,13 @@
 /* IMAGENS                                                              */
 /************************************************************************/
 
-#include "icones/background.h"
+#include "icones/bike.h"
+// #include "icones/down_arrow.h"
+// #include "icones/km.h"
+#include "icones/pause.h"
+// #include "icones/play.h"
+// #include "icones/reset.h"
+// #include "icones/up_arrow.h"
 
 
 /************************************************************************/
@@ -320,7 +326,7 @@ void task_lcd(void){
 
 	configure_lcd();
 	draw_screen();
-	font_draw_text(&digital52, "DEMO - BUT", 0, 0, 1);
+	// font_draw_text(&digital52, "DEMO - BUT", 0, 0, 1);
 
 	t_but but0 = {.width = 120, .height = 75,
 		.colorOn = COLOR_TOMATO, .colorOff = COLOR_BLACK,
@@ -334,14 +340,28 @@ void task_lcd(void){
 		.colorOn = COLOR_SKYBLUE, .colorOff = COLOR_BLACK,
 	.x = ILI9488_LCD_WIDTH/2, .y = 350, .status = 1, .func = &callback};
 	
-	draw_button_new(but0);
-	draw_button_new(but1);
-	draw_button_new(but2);
+	// draw_button_new(but0);
+	// draw_button_new(but1);
+	// draw_button_new(but2);
 	
 	ili9488_set_foreground_color(COLOR_CONVERT(COLOR_BLACK));
 
+  // ILI9488_LCD_WIDTH
+  // ILI9488_LCD_HEIGHT
+
 	// desenha imagem background na posicao X=80 e Y=150
-	ili9488_draw_pixmap(0, 0, background.width, background.height, background.data);
+
+	
+  ili9488_draw_pixmap(0, 0, bike.width, bike.height, bike.data);
+	// ili9488_draw_pixmap(100, 100, down_arrow.width, down_arrow.height, down_arrow.data);
+	// ili9488_draw_pixmap(ILI9488_LCD_HEIGHT-200, ILI9488_LCD_WIDTH-200, km.width, km.height, km.data);
+	ili9488_draw_pixmap(10, 10, pause.width, pause.height, pause.data);
+	// ili9488_draw_pixmap(ILI9488_LCD_HEIGHT-100, ILI9488_LCD_WIDTH-100, play.width, play.height, play.data);
+	// ili9488_draw_pixmap(ILI9488_LCD_HEIGHT-50, ILI9488_LCD_WIDTH-50, reset.width, reset.height, reset.data);
+	// ili9488_draw_pixmap(ILI9488_LCD_HEIGHT-30, ILI9488_LCD_WIDTH-30, up_arrow.width, up_arrow.height, up_arrow.data);
+
+
+
 	
 	t_but botoes[] = {but0, but1, but2};
 
