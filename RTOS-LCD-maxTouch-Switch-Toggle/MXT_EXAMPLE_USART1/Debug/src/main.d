@@ -211,7 +211,7 @@ src/main.d src/main.o: ../src/main.c ../src/asf.h \
  d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\string.h \
  ../src/config/conf_board.h ../src/maxTouch/maxTouch.h \
  ../src/config/conf_example.h ../src/tfont.h ../src/digital521.h \
- ../src/icones/background.h
+ ../src/icones/bike.h ../src/icones/pause.h
 
 ../src/asf.h:
 
@@ -661,4 +661,6 @@ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\incl
 
 ../src/digital521.h:
 
-../src/icones/background.h:
+../src/icones/bike.h:
+
+../src/icones/pause.h:
