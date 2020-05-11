@@ -13,12 +13,12 @@
 /************************************************************************/
 
 #include "icones/bike.h"
-// #include "icones/down_arrow.h"
-// #include "icones/km.h"
+#include "icones/cronon.h"
+#include "icones/down_arrow.h"
 #include "icones/pause.h"
-// #include "icones/play.h"
-// #include "icones/reset.h"
-// #include "icones/up_arrow.h"
+#include "icones/play.h"
+#include "icones/reset.h"
+#include "icones/up_arrow.h"
 
 
 /************************************************************************/
@@ -352,13 +352,16 @@ void task_lcd(void){
 	// desenha imagem background na posicao X=80 e Y=150
 
 	
-  ili9488_draw_pixmap(0, 0, bike.width, bike.height, bike.data);
-	// ili9488_draw_pixmap(100, 100, down_arrow.width, down_arrow.height, down_arrow.data);
-	// ili9488_draw_pixmap(ILI9488_LCD_HEIGHT-200, ILI9488_LCD_WIDTH-200, km.width, km.height, km.data);
-	ili9488_draw_pixmap(10, 10, pause.width, pause.height, pause.data);
-	// ili9488_draw_pixmap(ILI9488_LCD_HEIGHT-100, ILI9488_LCD_WIDTH-100, play.width, play.height, play.data);
-	// ili9488_draw_pixmap(ILI9488_LCD_HEIGHT-50, ILI9488_LCD_WIDTH-50, reset.width, reset.height, reset.data);
-	// ili9488_draw_pixmap(ILI9488_LCD_HEIGHT-30, ILI9488_LCD_WIDTH-30, up_arrow.width, up_arrow.height, up_arrow.data);
+  ili9488_draw_pixmap(5, ILI9488_LCD_HEIGHT/2 - 60, bike.width, bike.height, bike.data);
+  ili9488_draw_pixmap(5, ILI9488_LCD_HEIGHT/2 + 20, cronon.width, cronon.height, cronon.data);
+  
+	ili9488_draw_pixmap(ILI9488_LCD_WIDTH - 80, ILI9488_LCD_HEIGHT/2 - 160, down_arrow.width, down_arrow.height, down_arrow.data);
+	// ili9488_draw_pixmap(ILI9488_LCD_HEIGHT/2 - 80, ILI9488_LCD_WIDTH2/2 - 80, up_arrow.width, up_arrow.height, up_arrow.data);
+	
+  // ili9488_draw_pixmap(ILI9488_LCD_HEIGHT-120, 0, pause.width, pause.height, pause.data);
+	ili9488_draw_pixmap(5,ILI9488_LCD_HEIGHT-125, play.width, play.height, play.data);
+	
+  ili9488_draw_pixmap(ILI9488_LCD_WIDTH-125,ILI9488_LCD_HEIGHT-125 , reset.width, reset.height, reset.data);
 
 
 
