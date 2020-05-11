@@ -67,10 +67,9 @@ typedef struct {
 typedef struct {
 	uint32_t width;     // largura (px)
 	uint32_t height;    // altura  (px)
-	uint32_t colorOn;   // cor do bot�o acionado
-	uint32_t colorOff;  // cor do bot�o desligado
 	uint32_t x;         // posicao x
 	uint32_t y;         // posicao y
+  uint8_t *data;
 	uint8_t status;
 	void (*func)(void);
 	
@@ -172,18 +171,6 @@ int process_touch(t_but botoes[], touchData touch, uint32_t n){
   }
   
   return -1;
-}
-
-void draw_button_new(t_but but){
-	uint32_t color;
-	if(but.status)
-	color = but.colorOn;
-	else
-	color = but.colorOff;
-
-	ili9488_set_foreground_color(COLOR_CONVERT(color));
-	ili9488_draw_filled_rectangle(but.x-but.width/2, but.y-but.height/2,
-	but.x+but.width/2, but.y+but.height/2);
 }
 
 void draw_screen(void) {
@@ -328,21 +315,31 @@ void task_lcd(void){
 	draw_screen();
 	// font_draw_text(&digital52, "DEMO - BUT", 0, 0, 1);
 
-	t_but but0 = {.width = 120, .height = 75,
-		.colorOn = COLOR_TOMATO, .colorOff = COLOR_BLACK,
-	.x = ILI9488_LCD_WIDTH/2, .y = 150, .status = 1, .func = &callback};
+	t_but reset_but = {.width = reset.width, .height = reset.height,
+	  .x = ILI9488_LCD_WIDTH-125, .y = ILI9488_LCD_HEIGHT-125, .data = reset.data, 
+    .status = 1, .func = &callback
+  };
 	
-	t_but but1 = {.width = 120, .height = 75,
-		.colorOn = COLOR_GREEN, .colorOff = COLOR_BLACK,
-	.x = ILI9488_LCD_WIDTH/2, .y = 250, .status = 1, .func = &callback};
+  t_but play_but = {.width = play.width, .height = play.height,
+	  .x = 5, .y = ILI9488_LCD_HEIGHT-125, .data = play.data, 
+    .status = 1, .func = &callback
+  };
+
+	t_but down_arrow_but = {.width = down_arrow.width, .height = down_arrow.height,
+    .x = ILI9488_LCD_WIDTH - 80, .y =  ILI9488_LCD_HEIGHT/2 - 160, .data = down_arrow.data,
+    .status = 1, .func = &callback
+  };
 	
-	t_but but2 = {.width = 120, .height = 75,
-		.colorOn = COLOR_SKYBLUE, .colorOff = COLOR_BLACK,
-	.x = ILI9488_LCD_WIDTH/2, .y = 350, .status = 1, .func = &callback};
-	
-	// draw_button_new(but0);
-	// draw_button_new(but1);
-	// draw_button_new(but2);
+	t_but bike_but = {.width = bike.width, .height = bike.height,	
+    .x = 5, .y =  ILI9488_LCD_HEIGHT/2 - 60, .data = bike.data,
+    .status = 1, .func = &callback
+  };
+
+	t_but cronometro_but = {.width = cronon.width, .height = cronon.height,		
+    .x = 5, .y =  ILI9488_LCD_HEIGHT/2 + 20, .data = cronon.data,
+    .status = 1, .func = &callback
+  };
+
 	
 	ili9488_set_foreground_color(COLOR_CONVERT(COLOR_BLACK));
 
@@ -352,21 +349,19 @@ void task_lcd(void){
 	// desenha imagem background na posicao X=80 e Y=150
 
 	
-  ili9488_draw_pixmap(5, ILI9488_LCD_HEIGHT/2 - 60, bike.width, bike.height, bike.data);
-  ili9488_draw_pixmap(5, ILI9488_LCD_HEIGHT/2 + 20, cronon.width, cronon.height, cronon.data);
+  ili9488_draw_pixmap(bike_but.x, bike_but.y, bike.width, bike.height, bike.data);
+  ili9488_draw_pixmap(cronometro_but.x, cronometro_but.y, cronon.width, cronon.height, cronon.data);
   
-	ili9488_draw_pixmap(ILI9488_LCD_WIDTH - 80, ILI9488_LCD_HEIGHT/2 - 160, down_arrow.width, down_arrow.height, down_arrow.data);
+	ili9488_draw_pixmap(down_arrow_but.x, down_arrow_but.y, down_arrow.width, down_arrow.height, down_arrow.data);
 	// ili9488_draw_pixmap(ILI9488_LCD_HEIGHT/2 - 80, ILI9488_LCD_WIDTH2/2 - 80, up_arrow.width, up_arrow.height, up_arrow.data);
 	
   // ili9488_draw_pixmap(ILI9488_LCD_HEIGHT-120, 0, pause.width, pause.height, pause.data);
-	ili9488_draw_pixmap(5,ILI9488_LCD_HEIGHT-125, play.width, play.height, play.data);
+	ili9488_draw_pixmap(play_but.x,play_but.y, play.width, play.height, play.data);
 	
-  ili9488_draw_pixmap(ILI9488_LCD_WIDTH-125,ILI9488_LCD_HEIGHT-125 , reset.width, reset.height, reset.data);
-
-
+  ili9488_draw_pixmap(reset_but.x, reset_but.y, reset_but.width, reset_but.height, reset_but.data);
 
 	
-	t_but botoes[] = {but0, but1, but2};
+	t_but botoes[] = {reset_but, play_but, down_arrow_but, bike_but, cronometro_but};
 
 	// struct local para armazenar msg enviada pela task do mxt
 	touchData touch;
@@ -374,31 +369,31 @@ void task_lcd(void){
   char flag_led = 0;
   
 	while (true) {
-		if (xQueueReceive( xQueueTouch, &(touch), ( TickType_t )  500 / portTICK_PERIOD_MS)) { //500 ms
-			int b = process_touch(botoes, touch, 3);
-			if(b >= 0){
+		// if (xQueueReceive( xQueueTouch, &(touch), ( TickType_t )  500 / portTICK_PERIOD_MS)) { //500 ms
+		// 	int b = process_touch(botoes, touch, 3);
+		// 	if(b >= 0){
 
-        botoes[b].func();
+    //     botoes[b].func();
 
-				botoes[b].status = !botoes[b].status;
-				draw_button_new(botoes[b]);
-			}
+		// 		botoes[b].status = !botoes[b].status;
+		// 		draw_button_new(botoes[b]);
+		// 	}
 
-			printf("x:%d y:%d\n", touch.x, touch.y);
-			printf("b:%d\n", b);
-		}
+		// 	printf("x:%d y:%d\n", touch.x, touch.y);
+		// 	printf("b:%d\n", b);
+		// }
 
 
-    if( xSemaphoreTake(xSemaphore, 0) == pdTRUE ){   
-      flag_led = ! flag_led;
-    }
+    // if( xSemaphoreTake(xSemaphore, 0) == pdTRUE ){   
+    //   flag_led = ! flag_led;
+    // }
 
-    if(flag_led){
-      pio_clear(PIOC, LED_IDX_MASK);  
-    }
-    else{
-      pio_set(PIOC, LED_IDX_MASK);                        //// <====
-    }
+    // if(flag_led){
+    //   pio_clear(PIOC, LED_IDX_MASK);  
+    // }
+    // else{
+    //   pio_set(PIOC, LED_IDX_MASK);                        //// <====
+    // }
 
 
 
