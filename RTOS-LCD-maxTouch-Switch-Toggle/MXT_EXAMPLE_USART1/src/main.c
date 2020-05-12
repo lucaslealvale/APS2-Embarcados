@@ -30,7 +30,7 @@
 /* prototypes                                                           */
 /************************************************************************/
 void callback(void);
-
+static void RTT_init(uint16_t pllPreScale, uint32_t IrqNPulses);
 /************************************************************************/
 /* LCD + TOUCH                                                          */
 /************************************************************************/
@@ -94,9 +94,11 @@ typedef struct
 /* FLAGS                                                                */
 /************************************************************************/
 volatile char flag_rtc = 0;
+volatile Bool f_rtt_alarme = false;
 char flag_led = 0;
 char flag_playpause = 0;
 char flag_seta = 0;
+char flag_rtt = 0;
 
 /************************************************************************/
 /* CRONOMETRO                                                           */
@@ -196,6 +198,48 @@ void RTC_init(Rtc *rtc, uint32_t id_rtc, calendar t, uint32_t irq_type)
 	NVIC_SetPriority(id_rtc, 0);
 	NVIC_EnableIRQ(id_rtc);
 	rtc_enable_interrupt(rtc, irq_type);
+}
+
+void RTT_Handler(void)
+{
+  uint32_t ul_status;
+
+  /* Get RTT status - ACK */
+  ul_status = rtt_get_status(RTT);
+
+  /* IRQ due to Time has changed */
+  if ((ul_status & RTT_SR_RTTINC) == RTT_SR_RTTINC) {
+    //f_rtt_alarme = false;  
+     pin_toggle(LED_PIO, LED_IDX_MASK);    // BLINK Led
+  
+    }
+
+  /* IRQ due to Alarm */
+  if ((ul_status & RTT_SR_ALMS) == RTT_SR_ALMS) {
+     // pin_toggle(LED_PIO, LED_IDX_MASK);    // BLINK Led
+      f_rtt_alarme = true;                  // flag RTT alarme
+   }  
+}
+
+static void RTT_init(uint16_t pllPreScale, uint32_t IrqNPulses)
+{
+  uint32_t ul_previous_time;
+
+  /* Configure RTT for a 1 second tick interrupt */
+  rtt_sel_source(RTT, false);
+  rtt_init(RTT, pllPreScale);
+  
+  ul_previous_time = rtt_read_timer_value(RTT);
+  while (ul_previous_time == rtt_read_timer_value(RTT));
+  
+  rtt_write_alarm_time(RTT, IrqNPulses+ul_previous_time);
+
+  /* Enable RTT interrupt */
+  NVIC_DisableIRQ(RTT_IRQn);
+  NVIC_ClearPendingIRQ(RTT_IRQn);
+  NVIC_SetPriority(RTT_IRQn, 4);
+  NVIC_EnableIRQ(RTT_IRQn);
+  rtt_enable_interrupt(RTT, RTT_MR_ALMIEN | RTT_MR_RTTINCIEN);
 }
 
 static void configure_lcd(void){
@@ -544,14 +588,29 @@ void task_lcd(void){
     // RELOGIO + CRONOMETRO
     show_clock(rtc_initial);
     show_cronon(h, m, s);
+    
+    if (f_rtt_alarme){
+  
+      //  IRQ apos 4s -> 8*0.5
+      uint16_t pllPreScale = (int) (((float) 32768) / 4.0);
+      uint32_t irqRTTvalue = 8;
+      
+      // reinicia RTT para gerar um novo IRQ
+      RTT_init(pllPreScale, irqRTTvalue);         
+      
+      f_rtt_alarme = false;
+      flag_rtt = 1;
+    }
+    // calcular a velocidade com o rtt aqui: todas as vezes que apertar o botao salvar->calcular->printar
+    if(flag_rtt){
 
-
+    }
     if (flag_playpause){
       ili9488_draw_pixmap(pause_but.x, pause_but.y, pause_but.width, pause_but.height, pause_but.data); 
 
 	    ili9488_set_foreground_color(COLOR_CONVERT(COLOR_TOMATO));
 	    ili9488_draw_filled_circle(cronometro_but.x + 245, cronometro_but.y + 40, 8);
-
+      f_rtt_alarme = true;
     }
     else{
       ili9488_draw_pixmap(play_but.x,play_but.y, play.width, play.height, play.data);
