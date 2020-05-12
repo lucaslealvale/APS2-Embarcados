@@ -330,41 +330,41 @@ void show_cronon(int h, int m, int s){
 
   if (s < 10 && m < 10 && h < 10){
     sprintf(c, "0%d:0%d:0%d", h, m, s);
-    font_draw_text(&calibri_36, c, 90, ILI9488_LCD_HEIGHT/2 + 45, 1);
+    font_draw_text(&calibri_36, c, 100, ILI9488_LCD_HEIGHT/2 + 45, 1);
   }
 
   else if (s < 10 && m < 10){
     sprintf(c, "%d:0%d:0%d", h, m, s);
-    font_draw_text(&calibri_36, c, 90, ILI9488_LCD_HEIGHT/2 + 45, 1);
+    font_draw_text(&calibri_36, c, 100, ILI9488_LCD_HEIGHT/2 + 45, 1);
   }
 
   else if (s < 10 && h < 10){
     sprintf(c, "0%d:%d:0%d", h, m, s);
-    font_draw_text(&calibri_36, c, 90, ILI9488_LCD_HEIGHT/2 + 45, 1);
+    font_draw_text(&calibri_36, c, 100, ILI9488_LCD_HEIGHT/2 + 45, 1);
   }
 
   else if (m < 10 && h < 10){
     sprintf(c, "0%d:0%d:%d", h, m, s);
-    font_draw_text(&calibri_36, c, 90, ILI9488_LCD_HEIGHT/2 + 45, 1);
+    font_draw_text(&calibri_36, c, 100, ILI9488_LCD_HEIGHT/2 + 45, 1);
   }
   else if (s < 10){
     sprintf(c, "%d:%d:0%d", h, m, s);
-    font_draw_text(&calibri_36, c, 90, ILI9488_LCD_HEIGHT/2 + 45, 1);
+    font_draw_text(&calibri_36, c, 100, ILI9488_LCD_HEIGHT/2 + 45, 1);
   }
 
   else if (m < 10){
     sprintf(c, "%d:0%d:%d", h, m, s);
-    font_draw_text(&calibri_36, c, 90, ILI9488_LCD_HEIGHT/2 + 45, 1);
+    font_draw_text(&calibri_36, c, 100, ILI9488_LCD_HEIGHT/2 + 45, 1);
   }
 
   else if (h < 10){
     sprintf(c, "0%d:%d:%d", h, m, s);
-    font_draw_text(&calibri_36, c, 90, ILI9488_LCD_HEIGHT/2 + 45, 1);
+    font_draw_text(&calibri_36, c, 100, ILI9488_LCD_HEIGHT/2 + 45, 1);
   }
 
   else{
     sprintf(c, "%d:%d:%d", h, m, s);
-    font_draw_text(&calibri_36, c, 90, ILI9488_LCD_HEIGHT/2 + 45, 1);
+    font_draw_text(&calibri_36, c, 100, ILI9488_LCD_HEIGHT/2 + 45, 1);
   }
 
 }
@@ -514,7 +514,7 @@ void task_lcd(void){
 
   ili9488_draw_pixmap(bike_but.x, bike_but.y, bike.width, bike.height, bike.data);
   ili9488_draw_pixmap(cronometro_but.x, cronometro_but.y, cronon.width, cronon.height, cronon.data);
-	
+
   ili9488_draw_pixmap(reset_but.x, reset_but.y, reset_but.width, reset_but.height, reset_but.data);
 	
 	t_but botoes[] = {reset_but, play_but, pause_but, down_arrow_but, up_arrow_but, bike_but, cronometro_but};
@@ -548,9 +548,16 @@ void task_lcd(void){
 
     if (flag_playpause){
       ili9488_draw_pixmap(pause_but.x, pause_but.y, pause_but.width, pause_but.height, pause_but.data); 
+
+	    ili9488_set_foreground_color(COLOR_CONVERT(COLOR_TOMATO));
+	    ili9488_draw_filled_circle(cronometro_but.x + 245, cronometro_but.y + 40, 8);
+
     }
     else{
       ili9488_draw_pixmap(play_but.x,play_but.y, play.width, play.height, play.data);
+
+      ili9488_set_foreground_color(COLOR_CONVERT(COLOR_WHITE));
+	    ili9488_draw_filled_circle(cronometro_but.x + 245, cronometro_but.y + 40, 10);
     }
 
     if (flag_seta){
@@ -586,9 +593,8 @@ void task_lcd(void){
       pio_set(PIOC, LED_IDX_MASK);                 
     }
 
-
-
 	}
+  
 }
 
 /************************************************************************/

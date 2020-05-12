@@ -4368,8 +4368,6 @@ Discarded input sections
                 0x00000000       0x54 src/ASF/sam/components/display/ili9488/ili9488.o
  .text.ili9488_draw_circle
                 0x00000000       0xa0 src/ASF/sam/components/display/ili9488/ili9488.o
- .text.ili9488_draw_filled_circle
-                0x00000000       0xa4 src/ASF/sam/components/display/ili9488/ili9488.o
  .text.ili9488_draw_prepare
                 0x00000000       0x2c src/ASF/sam/components/display/ili9488/ili9488.o
  .text.ili9488_draw_string
@@ -12110,7 +12108,7 @@ LOAD d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gc
                 0x2045fffc                __ram_end__ = ((ORIGIN (ram) + LENGTH (ram)) - 0x4)
                 0x00000200                HEAP_SIZE = DEFINED (HEAP_SIZE)?HEAP_SIZE:0x200
 
-.text           0x00400000    0x67f74
+.text           0x00400000    0x68074
                 0x00400000                . = ALIGN (0x4)
                 0x00400000                _sfixed = .
  *(.vectors .vectors.*)
@@ -12230,1348 +12228,1351 @@ LOAD d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gc
  .text.ili9488_draw_filled_rectangle
                 0x004013dc       0xbc src/ASF/sam/components/display/ili9488/ili9488.o
                 0x004013dc                ili9488_draw_filled_rectangle
+ .text.ili9488_draw_filled_circle
+                0x00401498       0xa4 src/ASF/sam/components/display/ili9488/ili9488.o
+                0x00401498                ili9488_draw_filled_circle
  .text.ili9488_draw_pixmap
-                0x00401498       0x78 src/ASF/sam/components/display/ili9488/ili9488.o
-                0x00401498                ili9488_draw_pixmap
- .text.pio_set  0x00401510        0x4 src/ASF/sam/drivers/pio/pio.o
-                0x00401510                pio_set
+                0x0040153c       0x78 src/ASF/sam/components/display/ili9488/ili9488.o
+                0x0040153c                ili9488_draw_pixmap
+ .text.pio_set  0x004015b4        0x4 src/ASF/sam/drivers/pio/pio.o
+                0x004015b4                pio_set
  .text.pio_clear
-                0x00401514        0x4 src/ASF/sam/drivers/pio/pio.o
-                0x00401514                pio_clear
+                0x004015b8        0x4 src/ASF/sam/drivers/pio/pio.o
+                0x004015b8                pio_clear
  .text.pio_set_peripheral
-                0x00401518       0x92 src/ASF/sam/drivers/pio/pio.o
-                0x00401518                pio_set_peripheral
+                0x004015bc       0x92 src/ASF/sam/drivers/pio/pio.o
+                0x004015bc                pio_set_peripheral
  .text.pio_set_input
-                0x004015aa       0x36 src/ASF/sam/drivers/pio/pio.o
-                0x004015aa                pio_set_input
+                0x0040164e       0x36 src/ASF/sam/drivers/pio/pio.o
+                0x0040164e                pio_set_input
  .text.pio_set_output
-                0x004015e0       0x28 src/ASF/sam/drivers/pio/pio.o
-                0x004015e0                pio_set_output
+                0x00401684       0x28 src/ASF/sam/drivers/pio/pio.o
+                0x00401684                pio_set_output
  .text.pio_configure
-                0x00401608       0x90 src/ASF/sam/drivers/pio/pio.o
-                0x00401608                pio_configure
+                0x004016ac       0x90 src/ASF/sam/drivers/pio/pio.o
+                0x004016ac                pio_configure
  .text.pio_get_interrupt_status
-                0x00401698        0x4 src/ASF/sam/drivers/pio/pio.o
-                0x00401698                pio_get_interrupt_status
+                0x0040173c        0x4 src/ASF/sam/drivers/pio/pio.o
+                0x0040173c                pio_get_interrupt_status
  .text.pio_get_interrupt_mask
-                0x0040169c        0x4 src/ASF/sam/drivers/pio/pio.o
-                0x0040169c                pio_get_interrupt_mask
+                0x00401740        0x4 src/ASF/sam/drivers/pio/pio.o
+                0x00401740                pio_get_interrupt_mask
  .text.pio_set_pin_high
-                0x004016a0       0x1c src/ASF/sam/drivers/pio/pio.o
-                0x004016a0                pio_set_pin_high
+                0x00401744       0x1c src/ASF/sam/drivers/pio/pio.o
+                0x00401744                pio_set_pin_high
  .text.pio_set_pin_low
-                0x004016bc       0x1c src/ASF/sam/drivers/pio/pio.o
-                0x004016bc                pio_set_pin_low
+                0x00401760       0x1c src/ASF/sam/drivers/pio/pio.o
+                0x00401760                pio_set_pin_low
  .text.pio_configure_pin
-                0x004016d8      0x130 src/ASF/sam/drivers/pio/pio.o
-                0x004016d8                pio_configure_pin
+                0x0040177c      0x130 src/ASF/sam/drivers/pio/pio.o
+                0x0040177c                pio_configure_pin
  .text.pio_handler_process
-                0x00401808       0x50 src/ASF/sam/drivers/pio/pio_handler.o
-                0x00401808                pio_handler_process
+                0x004018ac       0x50 src/ASF/sam/drivers/pio/pio_handler.o
+                0x004018ac                pio_handler_process
  .text.PIOA_Handler
-                0x00401858       0x14 src/ASF/sam/drivers/pio/pio_handler.o
-                0x00401858                PIOA_Handler
+                0x004018fc       0x14 src/ASF/sam/drivers/pio/pio_handler.o
+                0x004018fc                PIOA_Handler
  .text.PIOB_Handler
-                0x0040186c       0x14 src/ASF/sam/drivers/pio/pio_handler.o
-                0x0040186c                PIOB_Handler
+                0x00401910       0x14 src/ASF/sam/drivers/pio/pio_handler.o
+                0x00401910                PIOB_Handler
  .text.PIOC_Handler
-                0x00401880       0x14 src/ASF/sam/drivers/pio/pio_handler.o
-                0x00401880                PIOC_Handler
+                0x00401924       0x14 src/ASF/sam/drivers/pio/pio_handler.o
+                0x00401924                PIOC_Handler
  .text.PIOD_Handler
-                0x00401894       0x14 src/ASF/sam/drivers/pio/pio_handler.o
-                0x00401894                PIOD_Handler
+                0x00401938       0x14 src/ASF/sam/drivers/pio/pio_handler.o
+                0x00401938                PIOD_Handler
  .text.PIOE_Handler
-                0x004018a8       0x14 src/ASF/sam/drivers/pio/pio_handler.o
-                0x004018a8                PIOE_Handler
+                0x0040194c       0x14 src/ASF/sam/drivers/pio/pio_handler.o
+                0x0040194c                PIOE_Handler
  .text.pmc_mck_set_division
-                0x004018bc       0x38 src/ASF/sam/drivers/pmc/pmc.o
-                0x004018bc                pmc_mck_set_division
+                0x00401960       0x38 src/ASF/sam/drivers/pmc/pmc.o
+                0x00401960                pmc_mck_set_division
  .text.pmc_switch_mck_to_pllack
-                0x004018f4       0x64 src/ASF/sam/drivers/pmc/pmc.o
-                0x004018f4                pmc_switch_mck_to_pllack
+                0x00401998       0x64 src/ASF/sam/drivers/pmc/pmc.o
+                0x00401998                pmc_switch_mck_to_pllack
  .text.pmc_switch_mainck_to_xtal
-                0x00401958       0x54 src/ASF/sam/drivers/pmc/pmc.o
-                0x00401958                pmc_switch_mainck_to_xtal
+                0x004019fc       0x54 src/ASF/sam/drivers/pmc/pmc.o
+                0x004019fc                pmc_switch_mainck_to_xtal
  .text.pmc_osc_is_ready_mainck
-                0x004019ac       0x10 src/ASF/sam/drivers/pmc/pmc.o
-                0x004019ac                pmc_osc_is_ready_mainck
+                0x00401a50       0x10 src/ASF/sam/drivers/pmc/pmc.o
+                0x00401a50                pmc_osc_is_ready_mainck
  .text.pmc_disable_pllack
-                0x004019bc       0x10 src/ASF/sam/drivers/pmc/pmc.o
-                0x004019bc                pmc_disable_pllack
+                0x00401a60       0x10 src/ASF/sam/drivers/pmc/pmc.o
+                0x00401a60                pmc_disable_pllack
  .text.pmc_is_locked_pllack
-                0x004019cc       0x10 src/ASF/sam/drivers/pmc/pmc.o
-                0x004019cc                pmc_is_locked_pllack
+                0x00401a70       0x10 src/ASF/sam/drivers/pmc/pmc.o
+                0x00401a70                pmc_is_locked_pllack
  .text.pmc_enable_periph_clk
-                0x004019dc       0x20 src/ASF/sam/drivers/pmc/pmc.o
-                0x004019dc                pmc_enable_periph_clk
+                0x00401a80       0x20 src/ASF/sam/drivers/pmc/pmc.o
+                0x00401a80                pmc_enable_periph_clk
  .text.spi_enable_clock
-                0x004019fc       0x2c src/ASF/sam/drivers/spi/spi.o
-                0x004019fc                spi_enable_clock
+                0x00401aa0       0x2c src/ASF/sam/drivers/spi/spi.o
+                0x00401aa0                spi_enable_clock
  .text.spi_set_peripheral_chip_select_value
-                0x00401a28       0x16 src/ASF/sam/drivers/spi/spi.o
-                0x00401a28                spi_set_peripheral_chip_select_value
+                0x00401acc       0x16 src/ASF/sam/drivers/spi/spi.o
+                0x00401acc                spi_set_peripheral_chip_select_value
  .text.spi_set_delay_between_chip_select
-                0x00401a3e       0x12 src/ASF/sam/drivers/spi/spi.o
-                0x00401a3e                spi_set_delay_between_chip_select
+                0x00401ae2       0x12 src/ASF/sam/drivers/spi/spi.o
+                0x00401ae2                spi_set_delay_between_chip_select
  .text.spi_write
-                0x00401a50       0x34 src/ASF/sam/drivers/spi/spi.o
-                0x00401a50                spi_write
+                0x00401af4       0x34 src/ASF/sam/drivers/spi/spi.o
+                0x00401af4                spi_write
  .text.spi_set_clock_polarity
-                0x00401a84       0x1e src/ASF/sam/drivers/spi/spi.o
-                0x00401a84                spi_set_clock_polarity
+                0x00401b28       0x1e src/ASF/sam/drivers/spi/spi.o
+                0x00401b28                spi_set_clock_polarity
  .text.spi_set_clock_phase
-                0x00401aa2       0x1e src/ASF/sam/drivers/spi/spi.o
-                0x00401aa2                spi_set_clock_phase
+                0x00401b46       0x1e src/ASF/sam/drivers/spi/spi.o
+                0x00401b46                spi_set_clock_phase
  .text.spi_configure_cs_behavior
-                0x00401ac0       0x46 src/ASF/sam/drivers/spi/spi.o
-                0x00401ac0                spi_configure_cs_behavior
+                0x00401b64       0x46 src/ASF/sam/drivers/spi/spi.o
+                0x00401b64                spi_configure_cs_behavior
  .text.spi_set_bits_per_transfer
-                0x00401b06       0x14 src/ASF/sam/drivers/spi/spi.o
-                0x00401b06                spi_set_bits_per_transfer
+                0x00401baa       0x14 src/ASF/sam/drivers/spi/spi.o
+                0x00401baa                spi_set_bits_per_transfer
  .text.spi_calc_baudrate_div
-                0x00401b1a       0x16 src/ASF/sam/drivers/spi/spi.o
-                0x00401b1a                spi_calc_baudrate_div
+                0x00401bbe       0x16 src/ASF/sam/drivers/spi/spi.o
+                0x00401bbe                spi_calc_baudrate_div
  .text.spi_set_baudrate_div
-                0x00401b30       0x28 src/ASF/sam/drivers/spi/spi.o
-                0x00401b30                spi_set_baudrate_div
+                0x00401bd4       0x28 src/ASF/sam/drivers/spi/spi.o
+                0x00401bd4                spi_set_baudrate_div
  .text.spi_set_transfer_delay
-                0x00401b58       0x1e src/ASF/sam/drivers/spi/spi.o
-                0x00401b58                spi_set_transfer_delay
- *fill*         0x00401b76        0x2 
+                0x00401bfc       0x1e src/ASF/sam/drivers/spi/spi.o
+                0x00401bfc                spi_set_transfer_delay
+ *fill*         0x00401c1a        0x2 
  .text.twihs_set_speed
-                0x00401b78       0xb0 src/ASF/sam/drivers/twihs/twihs.o
-                0x00401b78                twihs_set_speed
+                0x00401c1c       0xb0 src/ASF/sam/drivers/twihs/twihs.o
+                0x00401c1c                twihs_set_speed
  .text.twihs_master_init
-                0x00401c28       0x34 src/ASF/sam/drivers/twihs/twihs.o
-                0x00401c28                twihs_master_init
+                0x00401ccc       0x34 src/ASF/sam/drivers/twihs/twihs.o
+                0x00401ccc                twihs_master_init
  .text.twihs_master_read
-                0x00401c5c       0xac src/ASF/sam/drivers/twihs/twihs.o
-                0x00401c5c                twihs_master_read
+                0x00401d00       0xac src/ASF/sam/drivers/twihs/twihs.o
+                0x00401d00                twihs_master_read
  .text.twihs_master_write
-                0x00401d08       0xa0 src/ASF/sam/drivers/twihs/twihs.o
-                0x00401d08                twihs_master_write
+                0x00401dac       0xa0 src/ASF/sam/drivers/twihs/twihs.o
+                0x00401dac                twihs_master_write
  .text.uart_write
-                0x00401da8       0x12 src/ASF/sam/drivers/uart/uart.o
-                0x00401da8                uart_write
+                0x00401e4c       0x12 src/ASF/sam/drivers/uart/uart.o
+                0x00401e4c                uart_write
  .text.uart_read
-                0x00401dba       0x14 src/ASF/sam/drivers/uart/uart.o
-                0x00401dba                uart_read
+                0x00401e5e       0x14 src/ASF/sam/drivers/uart/uart.o
+                0x00401e5e                uart_read
  .text.usart_set_async_baudrate
-                0x00401dce       0x5a src/ASF/sam/drivers/usart/usart.o
-                0x00401dce                usart_set_async_baudrate
+                0x00401e72       0x5a src/ASF/sam/drivers/usart/usart.o
+                0x00401e72                usart_set_async_baudrate
  .text.usart_reset
-                0x00401e28       0x28 src/ASF/sam/drivers/usart/usart.o
-                0x00401e28                usart_reset
+                0x00401ecc       0x28 src/ASF/sam/drivers/usart/usart.o
+                0x00401ecc                usart_reset
  .text.usart_init_rs232
-                0x00401e50       0x54 src/ASF/sam/drivers/usart/usart.o
-                0x00401e50                usart_init_rs232
+                0x00401ef4       0x54 src/ASF/sam/drivers/usart/usart.o
+                0x00401ef4                usart_init_rs232
  .text.usart_enable_tx
-                0x00401ea4        0x6 src/ASF/sam/drivers/usart/usart.o
-                0x00401ea4                usart_enable_tx
+                0x00401f48        0x6 src/ASF/sam/drivers/usart/usart.o
+                0x00401f48                usart_enable_tx
  .text.usart_enable_rx
-                0x00401eaa        0x6 src/ASF/sam/drivers/usart/usart.o
-                0x00401eaa                usart_enable_rx
+                0x00401f4e        0x6 src/ASF/sam/drivers/usart/usart.o
+                0x00401f4e                usart_enable_rx
  .text.usart_write
-                0x00401eb0       0x16 src/ASF/sam/drivers/usart/usart.o
-                0x00401eb0                usart_write
+                0x00401f54       0x16 src/ASF/sam/drivers/usart/usart.o
+                0x00401f54                usart_write
  .text.usart_read
-                0x00401ec6       0x18 src/ASF/sam/drivers/usart/usart.o
-                0x00401ec6                usart_read
+                0x00401f6a       0x18 src/ASF/sam/drivers/usart/usart.o
+                0x00401f6a                usart_read
  .text.Dummy_Handler
-                0x00401ede        0x2 src/ASF/sam/utils/cmsis/same70/source/templates/gcc/startup_same70.o
-                0x00401ede                DACC_Handler
-                0x00401ede                DebugMon_Handler
-                0x00401ede                UART3_Handler
-                0x00401ede                UART2_Handler
-                0x00401ede                TRNG_Handler
-                0x00401ede                HardFault_Handler
-                0x00401ede                TC2_Handler
-                0x00401ede                NMI_Handler
-                0x00401ede                TC7_Handler
-                0x00401ede                QSPI_Handler
-                0x00401ede                ISI_Handler
-                0x00401ede                MCAN0_INT0_Handler
-                0x00401ede                TC9_Handler
-                0x00401ede                RSWDT_Handler
-                0x00401ede                USART0_Handler
-                0x00401ede                RTT_Handler
-                0x00401ede                USBHS_Handler
-                0x00401ede                IXC_Handler
-                0x00401ede                CCF_Handler
-                0x00401ede                UsageFault_Handler
-                0x00401ede                TC6_Handler
-                0x00401ede                WDT_Handler
-                0x00401ede                MCAN1_INT1_Handler
-                0x00401ede                TC4_Handler
-                0x00401ede                TC1_Handler
-                0x00401ede                HSMCI_Handler
-                0x00401ede                UART1_Handler
-                0x00401ede                TC3_Handler
-                0x00401ede                Dummy_Handler
-                0x00401ede                TWIHS1_Handler
-                0x00401ede                XDMAC_Handler
-                0x00401ede                UART4_Handler
-                0x00401ede                PWM1_Handler
-                0x00401ede                USART1_Handler
-                0x00401ede                PWM0_Handler
-                0x00401ede                CCW_Handler
-                0x00401ede                SSC_Handler
-                0x00401ede                TC11_Handler
-                0x00401ede                ACC_Handler
-                0x00401ede                PMC_Handler
-                0x00401ede                GMAC_Handler
-                0x00401ede                MCAN0_INT1_Handler
-                0x00401ede                GMAC_Q5_Handler
-                0x00401ede                MemManage_Handler
-                0x00401ede                SUPC_Handler
-                0x00401ede                TC8_Handler
-                0x00401ede                MCAN1_INT0_Handler
-                0x00401ede                EFC_Handler
-                0x00401ede                GMAC_Q1_Handler
-                0x00401ede                USART2_Handler
-                0x00401ede                SDRAMC_Handler
-                0x00401ede                GMAC_Q2_Handler
-                0x00401ede                SPI1_Handler
-                0x00401ede                TC10_Handler
-                0x00401ede                GMAC_Q3_Handler
-                0x00401ede                TWIHS2_Handler
-                0x00401ede                I2SC0_Handler
-                0x00401ede                UART0_Handler
-                0x00401ede                I2SC1_Handler
-                0x00401ede                GMAC_Q4_Handler
-                0x00401ede                FPU_Handler
-                0x00401ede                BusFault_Handler
-                0x00401ede                RSTC_Handler
-                0x00401ede                TC0_Handler
-                0x00401ede                TC5_Handler
-                0x00401ede                ICM_Handler
-                0x00401ede                AES_Handler
-                0x00401ede                TWIHS0_Handler
-                0x00401ede                SPI0_Handler
+                0x00401f82        0x2 src/ASF/sam/utils/cmsis/same70/source/templates/gcc/startup_same70.o
+                0x00401f82                DACC_Handler
+                0x00401f82                DebugMon_Handler
+                0x00401f82                UART3_Handler
+                0x00401f82                UART2_Handler
+                0x00401f82                TRNG_Handler
+                0x00401f82                HardFault_Handler
+                0x00401f82                TC2_Handler
+                0x00401f82                NMI_Handler
+                0x00401f82                TC7_Handler
+                0x00401f82                QSPI_Handler
+                0x00401f82                ISI_Handler
+                0x00401f82                MCAN0_INT0_Handler
+                0x00401f82                TC9_Handler
+                0x00401f82                RSWDT_Handler
+                0x00401f82                USART0_Handler
+                0x00401f82                RTT_Handler
+                0x00401f82                USBHS_Handler
+                0x00401f82                IXC_Handler
+                0x00401f82                CCF_Handler
+                0x00401f82                UsageFault_Handler
+                0x00401f82                TC6_Handler
+                0x00401f82                WDT_Handler
+                0x00401f82                MCAN1_INT1_Handler
+                0x00401f82                TC4_Handler
+                0x00401f82                TC1_Handler
+                0x00401f82                HSMCI_Handler
+                0x00401f82                UART1_Handler
+                0x00401f82                TC3_Handler
+                0x00401f82                Dummy_Handler
+                0x00401f82                TWIHS1_Handler
+                0x00401f82                XDMAC_Handler
+                0x00401f82                UART4_Handler
+                0x00401f82                PWM1_Handler
+                0x00401f82                USART1_Handler
+                0x00401f82                PWM0_Handler
+                0x00401f82                CCW_Handler
+                0x00401f82                SSC_Handler
+                0x00401f82                TC11_Handler
+                0x00401f82                ACC_Handler
+                0x00401f82                PMC_Handler
+                0x00401f82                GMAC_Handler
+                0x00401f82                MCAN0_INT1_Handler
+                0x00401f82                GMAC_Q5_Handler
+                0x00401f82                MemManage_Handler
+                0x00401f82                SUPC_Handler
+                0x00401f82                TC8_Handler
+                0x00401f82                MCAN1_INT0_Handler
+                0x00401f82                EFC_Handler
+                0x00401f82                GMAC_Q1_Handler
+                0x00401f82                USART2_Handler
+                0x00401f82                SDRAMC_Handler
+                0x00401f82                GMAC_Q2_Handler
+                0x00401f82                SPI1_Handler
+                0x00401f82                TC10_Handler
+                0x00401f82                GMAC_Q3_Handler
+                0x00401f82                TWIHS2_Handler
+                0x00401f82                I2SC0_Handler
+                0x00401f82                UART0_Handler
+                0x00401f82                I2SC1_Handler
+                0x00401f82                GMAC_Q4_Handler
+                0x00401f82                FPU_Handler
+                0x00401f82                BusFault_Handler
+                0x00401f82                RSTC_Handler
+                0x00401f82                TC0_Handler
+                0x00401f82                TC5_Handler
+                0x00401f82                ICM_Handler
+                0x00401f82                AES_Handler
+                0x00401f82                TWIHS0_Handler
+                0x00401f82                SPI0_Handler
  .text.Reset_Handler
-                0x00401ee0       0xc8 src/ASF/sam/utils/cmsis/same70/source/templates/gcc/startup_same70.o
-                0x00401ee0                Reset_Handler
+                0x00401f84       0xc8 src/ASF/sam/utils/cmsis/same70/source/templates/gcc/startup_same70.o
+                0x00401f84                Reset_Handler
  .text.SystemCoreClockUpdate
-                0x00401fa8      0x10c src/ASF/sam/utils/cmsis/same70/source/templates/system_same70.o
-                0x00401fa8                SystemCoreClockUpdate
+                0x0040204c      0x10c src/ASF/sam/utils/cmsis/same70/source/templates/system_same70.o
+                0x0040204c                SystemCoreClockUpdate
  .text.system_init_flash
-                0x004020b4       0x8c src/ASF/sam/utils/cmsis/same70/source/templates/system_same70.o
-                0x004020b4                system_init_flash
- .text._sbrk    0x00402140       0x38 src/ASF/sam/utils/syscalls/gcc/syscalls.o
-                0x00402140                _sbrk
- .text._close   0x00402178        0x6 src/ASF/sam/utils/syscalls/gcc/syscalls.o
-                0x00402178                _close
- .text._fstat   0x0040217e        0xa src/ASF/sam/utils/syscalls/gcc/syscalls.o
-                0x0040217e                _fstat
- .text._isatty  0x00402188        0x4 src/ASF/sam/utils/syscalls/gcc/syscalls.o
-                0x00402188                _isatty
- .text._lseek   0x0040218c        0x4 src/ASF/sam/utils/syscalls/gcc/syscalls.o
-                0x0040218c                _lseek
+                0x00402158       0x8c src/ASF/sam/utils/cmsis/same70/source/templates/system_same70.o
+                0x00402158                system_init_flash
+ .text._sbrk    0x004021e4       0x38 src/ASF/sam/utils/syscalls/gcc/syscalls.o
+                0x004021e4                _sbrk
+ .text._close   0x0040221c        0x6 src/ASF/sam/utils/syscalls/gcc/syscalls.o
+                0x0040221c                _close
+ .text._fstat   0x00402222        0xa src/ASF/sam/utils/syscalls/gcc/syscalls.o
+                0x00402222                _fstat
+ .text._isatty  0x0040222c        0x4 src/ASF/sam/utils/syscalls/gcc/syscalls.o
+                0x0040222c                _isatty
+ .text._lseek   0x00402230        0x4 src/ASF/sam/utils/syscalls/gcc/syscalls.o
+                0x00402230                _lseek
  .text.vListInitialise
-                0x00402190       0x16 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/list.o
-                0x00402190                vListInitialise
+                0x00402234       0x16 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/list.o
+                0x00402234                vListInitialise
  .text.vListInitialiseItem
-                0x004021a6        0x6 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/list.o
-                0x004021a6                vListInitialiseItem
+                0x0040224a        0x6 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/list.o
+                0x0040224a                vListInitialiseItem
  .text.vListInsertEnd
-                0x004021ac       0x18 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/list.o
-                0x004021ac                vListInsertEnd
+                0x00402250       0x18 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/list.o
+                0x00402250                vListInsertEnd
  .text.vListInsert
-                0x004021c4       0x34 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/list.o
-                0x004021c4                vListInsert
+                0x00402268       0x34 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/list.o
+                0x00402268                vListInsert
  .text.uxListRemove
-                0x004021f8       0x26 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/list.o
-                0x004021f8                uxListRemove
- *fill*         0x0040221e        0x2 
+                0x0040229c       0x26 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/list.o
+                0x0040229c                uxListRemove
+ *fill*         0x004022c2        0x2 
  .text.prvTaskExitError
-                0x00402220       0x3c src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
+                0x004022c4       0x3c src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
  .text.prvPortStartFirstTask
-                0x0040225c       0x20 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
+                0x00402300       0x20 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
  .text.vPortEnableVFP
-                0x0040227c       0x14 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
+                0x00402320       0x14 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
  .text.pxPortInitialiseStack
-                0x00402290       0x28 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
-                0x00402290                pxPortInitialiseStack
+                0x00402334       0x28 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
+                0x00402334                pxPortInitialiseStack
  .text.SVC_Handler
-                0x004022b8       0x24 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
-                0x004022b8                SVC_Handler
+                0x0040235c       0x24 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
+                0x0040235c                SVC_Handler
  .text.vPortEnterCritical
-                0x004022dc       0x4c src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
-                0x004022dc                vPortEnterCritical
+                0x00402380       0x4c src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
+                0x00402380                vPortEnterCritical
  .text.vPortExitCritical
-                0x00402328       0x30 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
-                0x00402328                vPortExitCritical
+                0x004023cc       0x30 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
+                0x004023cc                vPortExitCritical
  .text.PendSV_Handler
-                0x00402358       0x68 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
-                0x00402358                PendSV_Handler
+                0x004023fc       0x68 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
+                0x004023fc                PendSV_Handler
  .text.SysTick_Handler
-                0x004023c0       0x38 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
-                0x004023c0                SysTick_Handler
+                0x00402464       0x38 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
+                0x00402464                SysTick_Handler
  .text.vPortSetupTimerInterrupt
-                0x004023f8       0x18 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
-                0x004023f8                vPortSetupTimerInterrupt
+                0x0040249c       0x18 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
+                0x0040249c                vPortSetupTimerInterrupt
  .text.xPortStartScheduler
-                0x00402410       0xc4 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
-                0x00402410                xPortStartScheduler
+                0x004024b4       0xc4 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
+                0x004024b4                xPortStartScheduler
  .text.vPortValidateInterruptPriority
-                0x004024d4       0x64 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
-                0x004024d4                vPortValidateInterruptPriority
+                0x00402578       0x64 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/port.o
+                0x00402578                vPortValidateInterruptPriority
  .text.pvPortMalloc
-                0x00402538       0x70 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/MemMang/heap_1.o
-                0x00402538                pvPortMalloc
+                0x004025dc       0x70 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/MemMang/heap_1.o
+                0x004025dc                pvPortMalloc
  .text.vPortFree
-                0x004025a8       0x1a src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/MemMang/heap_1.o
-                0x004025a8                vPortFree
- *fill*         0x004025c2        0x2 
+                0x0040264c       0x1a src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/MemMang/heap_1.o
+                0x0040264c                vPortFree
+ *fill*         0x00402666        0x2 
  .text.prvCopyDataToQueue
-                0x004025c4       0x88 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
+                0x00402668       0x88 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
  .text.prvNotifyQueueSetContainer
-                0x0040264c       0x88 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
+                0x004026f0       0x88 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
  .text.prvCopyDataFromQueue
-                0x004026d4       0x28 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
+                0x00402778       0x28 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
  .text.prvUnlockQueue
-                0x004026fc       0xa4 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
+                0x004027a0       0xa4 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
  .text.xQueueGenericReset
-                0x004027a0       0x94 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
-                0x004027a0                xQueueGenericReset
+                0x00402844       0x94 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
+                0x00402844                xQueueGenericReset
  .text.xQueueGenericCreate
-                0x00402834       0x7c src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
-                0x00402834                xQueueGenericCreate
+                0x004028d8       0x7c src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
+                0x004028d8                xQueueGenericCreate
  .text.xQueueGenericSend
-                0x004028b0      0x1e4 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
-                0x004028b0                xQueueGenericSend
+                0x00402954      0x1e4 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
+                0x00402954                xQueueGenericSend
  .text.xQueueGenericSendFromISR
-                0x00402a94      0x100 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
-                0x00402a94                xQueueGenericSendFromISR
+                0x00402b38      0x100 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
+                0x00402b38                xQueueGenericSendFromISR
  .text.xQueueGiveFromISR
-                0x00402b94       0xe0 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
-                0x00402b94                xQueueGiveFromISR
+                0x00402c38       0xe0 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
+                0x00402c38                xQueueGiveFromISR
  .text.xQueueGenericReceive
-                0x00402c74      0x1d0 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
-                0x00402c74                xQueueGenericReceive
+                0x00402d18      0x1d0 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
+                0x00402d18                xQueueGenericReceive
  .text.vQueueAddToRegistry
-                0x00402e44       0x34 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
-                0x00402e44                vQueueAddToRegistry
+                0x00402ee8       0x34 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
+                0x00402ee8                vQueueAddToRegistry
  .text.vQueueWaitForMessageRestricted
-                0x00402e78       0x58 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
-                0x00402e78                vQueueWaitForMessageRestricted
+                0x00402f1c       0x58 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
+                0x00402f1c                vQueueWaitForMessageRestricted
  .text.prvResetNextTaskUnblockTime
-                0x00402ed0       0x2c src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x00402f74       0x2c src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
  .text.prvAddCurrentTaskToDelayedList
-                0x00402efc       0x58 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x00402fa0       0x58 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
  .text.xTaskGenericCreate
-                0x00402f54      0x234 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x00402f54                xTaskGenericCreate
+                0x00402ff8      0x234 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x00402ff8                xTaskGenericCreate
  .text.vTaskStartScheduler
-                0x00403188       0x8c src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x00403188                vTaskStartScheduler
+                0x0040322c       0x8c src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x0040322c                vTaskStartScheduler
  .text.vTaskSuspendAll
-                0x00403214       0x10 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x00403214                vTaskSuspendAll
+                0x004032b8       0x10 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x004032b8                vTaskSuspendAll
  .text.xTaskGetTickCount
-                0x00403224        0xc src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x00403224                xTaskGetTickCount
+                0x004032c8        0xc src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x004032c8                xTaskGetTickCount
  .text.xTaskIncrementTick
-                0x00403230      0x14c src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x00403230                xTaskIncrementTick
+                0x004032d4      0x14c src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x004032d4                xTaskIncrementTick
  .text.xTaskResumeAll
-                0x0040337c      0x120 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x0040337c                xTaskResumeAll
+                0x00403420      0x120 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x00403420                xTaskResumeAll
  .text.vTaskDelay
-                0x0040349c       0x90 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x0040349c                vTaskDelay
+                0x00403540       0x90 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x00403540                vTaskDelay
  .text.prvIdleTask
-                0x0040352c       0x98 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x004035d0       0x98 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
  .text.vTaskSwitchContext
-                0x004035c4       0xd0 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x004035c4                vTaskSwitchContext
+                0x00403668       0xd0 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x00403668                vTaskSwitchContext
  .text.vTaskPlaceOnEventList
-                0x00403694       0x84 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x00403694                vTaskPlaceOnEventList
+                0x00403738       0x84 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x00403738                vTaskPlaceOnEventList
  .text.vTaskPlaceOnEventListRestricted
-                0x00403718       0x80 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x00403718                vTaskPlaceOnEventListRestricted
+                0x004037bc       0x80 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x004037bc                vTaskPlaceOnEventListRestricted
  .text.xTaskRemoveFromEventList
-                0x00403798       0x98 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x00403798                xTaskRemoveFromEventList
+                0x0040383c       0x98 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x0040383c                xTaskRemoveFromEventList
  .text.vTaskSetTimeOutState
-                0x00403830       0x30 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x00403830                vTaskSetTimeOutState
+                0x004038d4       0x30 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x004038d4                vTaskSetTimeOutState
  .text.xTaskCheckForTimeOut
-                0x00403860       0x94 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x00403860                xTaskCheckForTimeOut
+                0x00403904       0x94 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x00403904                xTaskCheckForTimeOut
  .text.vTaskMissedYield
-                0x004038f4        0xc src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x004038f4                vTaskMissedYield
+                0x00403998        0xc src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x00403998                vTaskMissedYield
  .text.xTaskGetSchedulerState
-                0x00403900       0x20 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x00403900                xTaskGetSchedulerState
+                0x004039a4       0x20 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x004039a4                xTaskGetSchedulerState
  .text.vTaskPriorityInherit
-                0x00403920       0xa4 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x00403920                vTaskPriorityInherit
+                0x004039c4       0xa4 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x004039c4                vTaskPriorityInherit
  .text.xTaskPriorityDisinherit
-                0x004039c4       0xbc src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x004039c4                xTaskPriorityDisinherit
+                0x00403a68       0xbc src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x00403a68                xTaskPriorityDisinherit
  .text.pvTaskIncrementMutexHeldCount
-                0x00403a80       0x1c src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
-                0x00403a80                pvTaskIncrementMutexHeldCount
+                0x00403b24       0x1c src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+                0x00403b24                pvTaskIncrementMutexHeldCount
  .text.prvInsertTimerInActiveList
-                0x00403a9c       0x4c src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
+                0x00403b40       0x4c src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
  .text.prvCheckForValidListAndQueue
-                0x00403ae8       0x84 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
+                0x00403b8c       0x84 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
  .text.xTimerCreateTimerTask
-                0x00403b6c       0x58 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
-                0x00403b6c                xTimerCreateTimerTask
+                0x00403c10       0x58 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
+                0x00403c10                xTimerCreateTimerTask
  .text.xTimerGenericCommand
-                0x00403bc4       0x70 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
-                0x00403bc4                xTimerGenericCommand
+                0x00403c68       0x70 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
+                0x00403c68                xTimerGenericCommand
  .text.prvSampleTimeNow
-                0x00403c34       0xb8 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
+                0x00403cd8       0xb8 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
  .text.prvTimerTask
-                0x00403cec      0x210 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
+                0x00403d90      0x210 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
  .text.callback
-                0x00403efc       0x30 src/main.o
-                0x00403efc                callback
+                0x00403fa0       0x30 src/main.o
+                0x00403fa0                callback
  .text.callback_playpause
-                0x00403f2c       0x30 src/main.o
-                0x00403f2c                callback_playpause
+                0x00403fd0       0x30 src/main.o
+                0x00403fd0                callback_playpause
  .text.callback_seta
-                0x00403f5c       0x30 src/main.o
-                0x00403f5c                callback_seta
+                0x00404000       0x30 src/main.o
+                0x00404000                callback_seta
  .text.callback_reset
-                0x00403f8c       0x30 src/main.o
-                0x00403f8c                callback_reset
+                0x00404030       0x30 src/main.o
+                0x00404030                callback_reset
  .text.usart_serial_getchar
-                0x00403fbc       0xdc src/main.o
+                0x00404060       0xdc src/main.o
  .text.usart_serial_putchar
-                0x00404098       0xd4 src/main.o
+                0x0040413c       0xd4 src/main.o
  .text.vApplicationStackOverflowHook
-                0x0040416c       0x18 src/main.o
-                0x0040416c                vApplicationStackOverflowHook
+                0x00404210       0x18 src/main.o
+                0x00404210                vApplicationStackOverflowHook
  .text.vApplicationTickHook
-                0x00404184        0x2 src/main.o
-                0x00404184                vApplicationTickHook
+                0x00404228        0x2 src/main.o
+                0x00404228                vApplicationTickHook
  .text.vApplicationMallocFailedHook
-                0x00404186       0x16 src/main.o
-                0x00404186                vApplicationMallocFailedHook
+                0x0040422a       0x16 src/main.o
+                0x0040422a                vApplicationMallocFailedHook
  .text.RTC_Handler
-                0x0040419c       0x4c src/main.o
-                0x0040419c                RTC_Handler
+                0x00404240       0x4c src/main.o
+                0x00404240                RTC_Handler
  .text.RTC_init
-                0x004041e8       0xa4 src/main.o
-                0x004041e8                RTC_init
+                0x0040428c       0xa4 src/main.o
+                0x0040428c                RTC_init
  .text.process_touch
-                0x0040428c       0x8e src/main.o
-                0x0040428c                process_touch
- *fill*         0x0040431a        0x2 
+                0x00404330       0x8e src/main.o
+                0x00404330                process_touch
+ *fill*         0x004043be        0x2 
  .text.draw_screen
-                0x0040431c       0x28 src/main.o
-                0x0040431c                draw_screen
+                0x004043c0       0x28 src/main.o
+                0x004043c0                draw_screen
  .text.font_draw_text
-                0x00404344       0x60 src/main.o
-                0x00404344                font_draw_text
+                0x004043e8       0x60 src/main.o
+                0x004043e8                font_draw_text
  .text.mxt_handler
-                0x004043a4       0x70 src/main.o
-                0x004043a4                mxt_handler
+                0x00404448       0x70 src/main.o
+                0x00404448                mxt_handler
  .text.task_mxt
-                0x00404414       0x6c src/main.o
-                0x00404414                task_mxt
- .text.init     0x00404480       0x3c src/main.o
-                0x00404480                init
+                0x004044b8       0x6c src/main.o
+                0x004044b8                task_mxt
+ .text.init     0x00404524       0x3c src/main.o
+                0x00404524                init
  .text.show_cronon
-                0x004044bc      0x160 src/main.o
-                0x004044bc                show_cronon
+                0x00404560      0x160 src/main.o
+                0x00404560                show_cronon
  .text.show_clock
-                0x0040461c      0x1ac src/main.o
-                0x0040461c                show_clock
+                0x004046c0      0x1ac src/main.o
+                0x004046c0                show_clock
  .text.task_lcd
-                0x004047c8      0x3a0 src/main.o
-                0x004047c8                task_lcd
- .text.main     0x00404b68      0x110 src/main.o
-                0x00404b68                main
+                0x0040486c      0x3e8 src/main.o
+                0x0040486c                task_lcd
+ .text.main     0x00404c54      0x110 src/main.o
+                0x00404c54                main
  .text.__libc_init_array
-                0x00404c78       0x50 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-init.o)
-                0x00404c78                __libc_init_array
- .text.iprintf  0x00404cc8       0x28 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-iprintf.o)
-                0x00404cc8                iprintf
- .text.malloc   0x00404cf0       0x10 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-malloc.o)
-                0x00404cf0                malloc
+                0x00404d64       0x50 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-init.o)
+                0x00404d64                __libc_init_array
+ .text.iprintf  0x00404db4       0x28 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-iprintf.o)
+                0x00404db4                iprintf
+ .text.malloc   0x00404ddc       0x10 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-malloc.o)
+                0x00404ddc                malloc
  .text._malloc_r
-                0x00404d00      0x560 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mallocr.o)
-                0x00404d00                _malloc_r
- .text          0x00405260      0x134 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-memcpy.o)
-                0x00405260                memcpy
- .text.memset   0x00405394       0x9c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-memset.o)
-                0x00405394                memset
+                0x00404dec      0x560 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mallocr.o)
+                0x00404dec                _malloc_r
+ .text          0x0040534c      0x134 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-memcpy.o)
+                0x0040534c                memcpy
+ .text.memset   0x00405480       0x9c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-memset.o)
+                0x00405480                memset
  .text.__malloc_lock
-                0x00405430        0xc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mlock.o)
-                0x00405430                __malloc_lock
+                0x0040551c        0xc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mlock.o)
+                0x0040551c                __malloc_lock
  .text.__malloc_unlock
-                0x0040543c        0xc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mlock.o)
-                0x0040543c                __malloc_unlock
- .text._sbrk_r  0x00405448       0x24 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-sbrkr.o)
-                0x00405448                _sbrk_r
- .text.setbuf   0x0040546c       0x10 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-setbuf.o)
-                0x0040546c                setbuf
- .text.setvbuf  0x0040547c      0x190 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-setvbuf.o)
-                0x0040547c                setvbuf
- .text.sprintf  0x0040560c       0x4c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-sprintf.o)
-                0x0040560c                sprintf
- *fill*         0x00405658       0x28 
- .text          0x00405680       0xdc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-strlen.o)
-                0x00405680                strlen
+                0x00405528        0xc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mlock.o)
+                0x00405528                __malloc_unlock
+ .text._sbrk_r  0x00405534       0x24 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-sbrkr.o)
+                0x00405534                _sbrk_r
+ .text.setbuf   0x00405558       0x10 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-setbuf.o)
+                0x00405558                setbuf
+ .text.setvbuf  0x00405568      0x190 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-setvbuf.o)
+                0x00405568                setvbuf
+ .text.sprintf  0x004056f8       0x4c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-sprintf.o)
+                0x004056f8                sprintf
+ *fill*         0x00405744       0x3c 
+ .text          0x00405780       0xdc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-strlen.o)
+                0x00405780                strlen
  .text._svfprintf_r
-                0x0040575c     0x145c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-svfprintf.o)
-                0x0040575c                _svfprintf_r
+                0x0040585c     0x145c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-svfprintf.o)
+                0x0040585c                _svfprintf_r
  .text.__sprint_r.part.0
-                0x00406bb8       0x80 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-vfiprintf.o)
+                0x00406cb8       0x80 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-vfiprintf.o)
  .text._vfiprintf_r
-                0x00406c38      0xc90 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-vfiprintf.o)
-                0x00406c38                _vfiprintf_r
+                0x00406d38      0xc90 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-vfiprintf.o)
+                0x00406d38                _vfiprintf_r
  .text.__sbprintf
-                0x004078c8       0x84 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-vfiprintf.o)
+                0x004079c8       0x84 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-vfiprintf.o)
  .text.__swsetup_r
-                0x0040794c       0xc8 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-wsetup.o)
-                0x0040794c                __swsetup_r
+                0x00407a4c       0xc8 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-wsetup.o)
+                0x00407a4c                __swsetup_r
  .text.startup.register_fini
-                0x00407a14       0x14 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-__call_atexit.o)
- .text.atexit   0x00407a28        0xc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-atexit.o)
-                0x00407a28                atexit
- .text.quorem   0x00407a34      0x128 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-dtoa.o)
- *fill*         0x00407b5c        0x4 
- .text._dtoa_r  0x00407b60      0xe54 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-dtoa.o)
-                0x00407b60                _dtoa_r
+                0x00407b14       0x14 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-__call_atexit.o)
+ .text.atexit   0x00407b28        0xc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-atexit.o)
+                0x00407b28                atexit
+ .text.quorem   0x00407b34      0x128 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-dtoa.o)
+ *fill*         0x00407c5c        0x4 
+ .text._dtoa_r  0x00407c60      0xe54 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-dtoa.o)
+                0x00407c60                _dtoa_r
  .text.__sflush_r
-                0x004089b4      0x140 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fflush.o)
-                0x004089b4                __sflush_r
+                0x00408ab4      0x140 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fflush.o)
+                0x00408ab4                __sflush_r
  .text._fflush_r
-                0x00408af4       0x54 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fflush.o)
-                0x00408af4                _fflush_r
+                0x00408bf4       0x54 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fflush.o)
+                0x00408bf4                _fflush_r
  .text._cleanup_r
-                0x00408b48        0xc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-findfp.o)
-                0x00408b48                _cleanup_r
+                0x00408c48        0xc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-findfp.o)
+                0x00408c48                _cleanup_r
  .text.std.isra.0
-                0x00408b54       0x50 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-findfp.o)
- .text.__sinit  0x00408ba4       0x58 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-findfp.o)
-                0x00408ba4                __sinit
+                0x00408c54       0x50 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-findfp.o)
+ .text.__sinit  0x00408ca4       0x58 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-findfp.o)
+                0x00408ca4                __sinit
  .text.__sfp_lock_acquire
-                0x00408bfc        0xc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-findfp.o)
-                0x00408bfc                __sfp_lock_acquire
+                0x00408cfc        0xc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-findfp.o)
+                0x00408cfc                __sfp_lock_acquire
  .text.__sfp_lock_release
-                0x00408c08        0xc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-findfp.o)
-                0x00408c08                __sfp_lock_release
+                0x00408d08        0xc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-findfp.o)
+                0x00408d08                __sfp_lock_release
  .text.__libc_fini_array
-                0x00408c14       0x34 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fini.o)
-                0x00408c14                __libc_fini_array
+                0x00408d14       0x34 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fini.o)
+                0x00408d14                __libc_fini_array
  .text.__fputwc
-                0x00408c48       0xa0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fputwc.o)
-                0x00408c48                __fputwc
+                0x00408d48       0xa0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fputwc.o)
+                0x00408d48                __fputwc
  .text._fputwc_r
-                0x00408ce8       0x68 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fputwc.o)
-                0x00408ce8                _fputwc_r
+                0x00408de8       0x68 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fputwc.o)
+                0x00408de8                _fputwc_r
  .text._malloc_trim_r
-                0x00408d50       0xa0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-freer.o)
-                0x00408d50                _malloc_trim_r
- .text._free_r  0x00408df0      0x1cc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-freer.o)
-                0x00408df0                _free_r
+                0x00408e50       0xa0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-freer.o)
+                0x00408e50                _malloc_trim_r
+ .text._free_r  0x00408ef0      0x1cc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-freer.o)
+                0x00408ef0                _free_r
  .text.__sfvwrite_r
-                0x00408fbc      0x2f0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fvwrite.o)
-                0x00408fbc                __sfvwrite_r
+                0x004090bc      0x2f0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fvwrite.o)
+                0x004090bc                __sfvwrite_r
  .text._fwalk_reent
-                0x004092ac       0x54 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fwalk.o)
-                0x004092ac                _fwalk_reent
+                0x004093ac       0x54 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fwalk.o)
+                0x004093ac                _fwalk_reent
  .text.__locale_mb_cur_max
-                0x00409300       0x1c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-locale.o)
-                0x00409300                __locale_mb_cur_max
+                0x00409400       0x1c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-locale.o)
+                0x00409400                __locale_mb_cur_max
  .text._localeconv_r
-                0x0040931c       0x1c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-localeconv.o)
-                0x0040931c                _localeconv_r
+                0x0040941c       0x1c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-localeconv.o)
+                0x0040941c                _localeconv_r
  .text.__retarget_lock_init_recursive
-                0x00409338        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-lock.o)
-                0x00409338                __retarget_lock_init_recursive
+                0x00409438        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-lock.o)
+                0x00409438                __retarget_lock_init_recursive
  .text.__retarget_lock_close_recursive
-                0x0040933c        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-lock.o)
-                0x0040933c                __retarget_lock_close_recursive
+                0x0040943c        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-lock.o)
+                0x0040943c                __retarget_lock_close_recursive
  .text.__retarget_lock_acquire_recursive
-                0x00409340        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-lock.o)
-                0x00409340                __retarget_lock_acquire_recursive
+                0x00409440        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-lock.o)
+                0x00409440                __retarget_lock_acquire_recursive
  .text.__retarget_lock_release_recursive
-                0x00409344        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-lock.o)
-                0x00409344                __retarget_lock_release_recursive
+                0x00409444        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-lock.o)
+                0x00409444                __retarget_lock_release_recursive
  .text.__swhatbuf_r
-                0x00409348       0x5c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-makebuf.o)
-                0x00409348                __swhatbuf_r
+                0x00409448       0x5c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-makebuf.o)
+                0x00409448                __swhatbuf_r
  .text.__smakebuf_r
-                0x004093a4       0x94 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-makebuf.o)
-                0x004093a4                __smakebuf_r
+                0x004094a4       0x94 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-makebuf.o)
+                0x004094a4                __smakebuf_r
  .text.__ascii_mbtowc
-                0x00409438       0x2c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mbtowc_r.o)
-                0x00409438                __ascii_mbtowc
- *fill*         0x00409464        0xc 
- .text          0x00409470       0xa0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-memchr.o)
-                0x00409470                memchr
- .text.memmove  0x00409510       0xc8 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-memmove.o)
-                0x00409510                memmove
- .text._Balloc  0x004095d8       0x4c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
-                0x004095d8                _Balloc
- .text._Bfree   0x00409624       0x14 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
-                0x00409624                _Bfree
+                0x00409538       0x2c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mbtowc_r.o)
+                0x00409538                __ascii_mbtowc
+ *fill*         0x00409564        0xc 
+ .text          0x00409570       0xa0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-memchr.o)
+                0x00409570                memchr
+ .text.memmove  0x00409610       0xc8 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-memmove.o)
+                0x00409610                memmove
+ .text._Balloc  0x004096d8       0x4c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
+                0x004096d8                _Balloc
+ .text._Bfree   0x00409724       0x14 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
+                0x00409724                _Bfree
  .text.__multadd
-                0x00409638       0x80 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
-                0x00409638                __multadd
+                0x00409738       0x80 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
+                0x00409738                __multadd
  .text.__hi0bits
-                0x004096b8       0x40 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
-                0x004096b8                __hi0bits
+                0x004097b8       0x40 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
+                0x004097b8                __hi0bits
  .text.__lo0bits
-                0x004096f8       0x60 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
-                0x004096f8                __lo0bits
- .text.__i2b    0x00409758       0x14 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
-                0x00409758                __i2b
+                0x004097f8       0x60 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
+                0x004097f8                __lo0bits
+ .text.__i2b    0x00409858       0x14 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
+                0x00409858                __i2b
  .text.__multiply
-                0x0040976c      0x124 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
-                0x0040976c                __multiply
+                0x0040986c      0x124 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
+                0x0040986c                __multiply
  .text.__pow5mult
-                0x00409890       0xa0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
-                0x00409890                __pow5mult
+                0x00409990       0xa0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
+                0x00409990                __pow5mult
  .text.__lshift
-                0x00409930       0xa4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
-                0x00409930                __lshift
- .text.__mcmp   0x004099d4       0x38 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
-                0x004099d4                __mcmp
- .text.__mdiff  0x00409a0c      0x108 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
-                0x00409a0c                __mdiff
- .text.__d2b    0x00409b14       0xb8 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
-                0x00409b14                __d2b
+                0x00409a30       0xa4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
+                0x00409a30                __lshift
+ .text.__mcmp   0x00409ad4       0x38 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
+                0x00409ad4                __mcmp
+ .text.__mdiff  0x00409b0c      0x108 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
+                0x00409b0c                __mdiff
+ .text.__d2b    0x00409c14       0xb8 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
+                0x00409c14                __d2b
  .text._realloc_r
-                0x00409bcc      0x34c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-reallocr.o)
-                0x00409bcc                _realloc_r
- .text.__sread  0x00409f18       0x24 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-stdio.o)
-                0x00409f18                __sread
+                0x00409ccc      0x34c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-reallocr.o)
+                0x00409ccc                _realloc_r
+ .text.__sread  0x0040a018       0x24 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-stdio.o)
+                0x0040a018                __sread
  .text.__swrite
-                0x00409f3c       0x3c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-stdio.o)
-                0x00409f3c                __swrite
- .text.__sseek  0x00409f78       0x20 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-stdio.o)
-                0x00409f78                __sseek
+                0x0040a03c       0x3c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-stdio.o)
+                0x0040a03c                __swrite
+ .text.__sseek  0x0040a078       0x20 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-stdio.o)
+                0x0040a078                __sseek
  .text.__sclose
-                0x00409f98        0x8 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-stdio.o)
-                0x00409f98                __sclose
+                0x0040a098        0x8 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-stdio.o)
+                0x0040a098                __sclose
  .text.__ssprint_r
-                0x00409fa0       0xfc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-svfiprintf.o)
-                0x00409fa0                __ssprint_r
+                0x0040a0a0       0xfc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-svfiprintf.o)
+                0x0040a0a0                __ssprint_r
  .text.__swbuf_r
-                0x0040a09c       0xb0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-wbuf.o)
-                0x0040a09c                __swbuf_r
+                0x0040a19c       0xb0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-wbuf.o)
+                0x0040a19c                __swbuf_r
  .text._wcrtomb_r
-                0x0040a14c       0x54 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-wcrtomb.o)
-                0x0040a14c                _wcrtomb_r
+                0x0040a24c       0x54 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-wcrtomb.o)
+                0x0040a24c                _wcrtomb_r
  .text.__ascii_wctomb
-                0x0040a1a0       0x1c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-wctomb_r.o)
-                0x0040a1a0                __ascii_wctomb
+                0x0040a2a0       0x1c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-wctomb_r.o)
+                0x0040a2a0                __ascii_wctomb
  .text._write_r
-                0x0040a1bc       0x2c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-writer.o)
-                0x0040a1bc                _write_r
+                0x0040a2bc       0x2c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-writer.o)
+                0x0040a2bc                _write_r
  .text.__register_exitproc
-                0x0040a1e8       0xc4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-__atexit.o)
-                0x0040a1e8                __register_exitproc
+                0x0040a2e8       0xc4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-__atexit.o)
+                0x0040a2e8                __register_exitproc
  .text._calloc_r
-                0x0040a2ac       0x60 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-callocr.o)
-                0x0040a2ac                _calloc_r
+                0x0040a3ac       0x60 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-callocr.o)
+                0x0040a3ac                _calloc_r
  .text._close_r
-                0x0040a30c       0x24 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-closer.o)
-                0x0040a30c                _close_r
+                0x0040a40c       0x24 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-closer.o)
+                0x0040a40c                _close_r
  .text._fclose_r
-                0x0040a330       0xc4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fclose.o)
-                0x0040a330                _fclose_r
+                0x0040a430       0xc4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fclose.o)
+                0x0040a430                _fclose_r
  .text._fstat_r
-                0x0040a3f4       0x28 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fstatr.o)
-                0x0040a3f4                _fstat_r
+                0x0040a4f4       0x28 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-fstatr.o)
+                0x0040a4f4                _fstat_r
  .text._isatty_r
-                0x0040a41c       0x24 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-isattyr.o)
-                0x0040a41c                _isatty_r
+                0x0040a51c       0x24 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-isattyr.o)
+                0x0040a51c                _isatty_r
  .text._lseek_r
-                0x0040a440       0x2c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-lseekr.o)
-                0x0040a440                _lseek_r
- .text._read_r  0x0040a46c       0x2c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-readr.o)
-                0x0040a46c                _read_r
- .text          0x0040a498      0x370 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_arm_addsubdf3.o)
-                0x0040a498                __aeabi_drsub
-                0x0040a4a0                __aeabi_dsub
-                0x0040a4a0                __subdf3
-                0x0040a4a4                __aeabi_dadd
-                0x0040a4a4                __adddf3
-                0x0040a71c                __floatunsidf
-                0x0040a71c                __aeabi_ui2d
-                0x0040a73c                __floatsidf
-                0x0040a73c                __aeabi_i2d
-                0x0040a760                __aeabi_f2d
-                0x0040a760                __extendsfdf2
-                0x0040a79c                __floatundidf
-                0x0040a79c                __aeabi_ul2d
-                0x0040a7ac                __floatdidf
-                0x0040a7ac                __aeabi_l2d
- .text          0x0040a808      0x424 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_arm_muldivdf3.o)
-                0x0040a808                __aeabi_dmul
-                0x0040a808                __muldf3
-                0x0040aa5c                __divdf3
-                0x0040aa5c                __aeabi_ddiv
- .text          0x0040ac2c      0x110 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_arm_cmpdf2.o)
-                0x0040ac2c                __gtdf2
-                0x0040ac2c                __gedf2
-                0x0040ac34                __ltdf2
-                0x0040ac34                __ledf2
-                0x0040ac3c                __nedf2
-                0x0040ac3c                __eqdf2
-                0x0040ac3c                __cmpdf2
-                0x0040acb8                __aeabi_cdrcmple
-                0x0040acc8                __aeabi_cdcmpeq
-                0x0040acc8                __aeabi_cdcmple
-                0x0040acd8                __aeabi_dcmpeq
-                0x0040acec                __aeabi_dcmplt
-                0x0040ad00                __aeabi_dcmple
-                0x0040ad14                __aeabi_dcmpge
-                0x0040ad28                __aeabi_dcmpgt
- .text          0x0040ad3c       0x2c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_arm_unorddf2.o)
-                0x0040ad3c                __unorddf2
-                0x0040ad3c                __aeabi_dcmpun
- .text          0x0040ad68       0x50 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_arm_fixdfsi.o)
-                0x0040ad68                __aeabi_d2iz
-                0x0040ad68                __fixdfsi
- .text          0x0040adb8       0x30 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_aeabi_uldivmod.o)
-                0x0040adb8                __aeabi_uldivmod
- .text          0x0040ade8      0x2dc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_udivmoddi4.o)
-                0x0040ade8                __udivmoddi4
- .text          0x0040b0c4        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_dvmd_tls.o)
-                0x0040b0c4                __aeabi_idiv0
-                0x0040b0c4                __aeabi_ldiv0
+                0x0040a540       0x2c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-lseekr.o)
+                0x0040a540                _lseek_r
+ .text._read_r  0x0040a56c       0x2c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-readr.o)
+                0x0040a56c                _read_r
+ .text          0x0040a598      0x370 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_arm_addsubdf3.o)
+                0x0040a598                __aeabi_drsub
+                0x0040a5a0                __aeabi_dsub
+                0x0040a5a0                __subdf3
+                0x0040a5a4                __aeabi_dadd
+                0x0040a5a4                __adddf3
+                0x0040a81c                __floatunsidf
+                0x0040a81c                __aeabi_ui2d
+                0x0040a83c                __floatsidf
+                0x0040a83c                __aeabi_i2d
+                0x0040a860                __aeabi_f2d
+                0x0040a860                __extendsfdf2
+                0x0040a89c                __floatundidf
+                0x0040a89c                __aeabi_ul2d
+                0x0040a8ac                __floatdidf
+                0x0040a8ac                __aeabi_l2d
+ .text          0x0040a908      0x424 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_arm_muldivdf3.o)
+                0x0040a908                __aeabi_dmul
+                0x0040a908                __muldf3
+                0x0040ab5c                __divdf3
+                0x0040ab5c                __aeabi_ddiv
+ .text          0x0040ad2c      0x110 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_arm_cmpdf2.o)
+                0x0040ad2c                __gtdf2
+                0x0040ad2c                __gedf2
+                0x0040ad34                __ltdf2
+                0x0040ad34                __ledf2
+                0x0040ad3c                __nedf2
+                0x0040ad3c                __eqdf2
+                0x0040ad3c                __cmpdf2
+                0x0040adb8                __aeabi_cdrcmple
+                0x0040adc8                __aeabi_cdcmpeq
+                0x0040adc8                __aeabi_cdcmple
+                0x0040add8                __aeabi_dcmpeq
+                0x0040adec                __aeabi_dcmplt
+                0x0040ae00                __aeabi_dcmple
+                0x0040ae14                __aeabi_dcmpge
+                0x0040ae28                __aeabi_dcmpgt
+ .text          0x0040ae3c       0x2c d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_arm_unorddf2.o)
+                0x0040ae3c                __unorddf2
+                0x0040ae3c                __aeabi_dcmpun
+ .text          0x0040ae68       0x50 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_arm_fixdfsi.o)
+                0x0040ae68                __aeabi_d2iz
+                0x0040ae68                __fixdfsi
+ .text          0x0040aeb8       0x30 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_aeabi_uldivmod.o)
+                0x0040aeb8                __aeabi_uldivmod
+ .text          0x0040aee8      0x2dc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_udivmoddi4.o)
+                0x0040aee8                __udivmoddi4
+ .text          0x0040b1c4        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_dvmd_tls.o)
+                0x0040b1c4                __aeabi_idiv0
+                0x0040b1c4                __aeabi_ldiv0
  *(.glue_7t)
- .glue_7t       0x0040b0c8        0x0 linker stubs
+ .glue_7t       0x0040b1c8        0x0 linker stubs
  *(.glue_7)
- .glue_7        0x0040b0c8        0x0 linker stubs
+ .glue_7        0x0040b1c8        0x0 linker stubs
  *(.rodata .rodata* .gnu.linkonce.r.*)
- .rodata        0x0040b0c8       0x5d src/maxTouch/maxTouch.o
- *fill*         0x0040b125        0x3 
+ .rodata        0x0040b1c8       0x5d src/maxTouch/maxTouch.o
+ *fill*         0x0040b225        0x3 
  .rodata.vTaskStartScheduler.str1.4
-                0x0040b128        0x5 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
- *fill*         0x0040b12d        0x3 
+                0x0040b228        0x5 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
+ *fill*         0x0040b22d        0x3 
  .rodata.prvCheckForValidListAndQueue.str1.4
-                0x0040b130        0x5 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
- *fill*         0x0040b135        0x3 
+                0x0040b230        0x5 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
+ *fill*         0x0040b235        0x3 
  .rodata.xTimerCreateTimerTask.str1.4
-                0x0040b138        0x8 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
- .rodata        0x0040b140       0x1c src/main.o
+                0x0040b238        0x8 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
+ .rodata        0x0040b240       0x1c src/main.o
  .rodata.calibri_36
-                0x0040b15c        0xc src/main.o
-                0x0040b15c                calibri_36
+                0x0040b25c        0xc src/main.o
+                0x0040b25c                calibri_36
  .rodata.calibri_36_0x20
-                0x0040b168       0x10 src/main.o
- .rodata.calibri_36_0x21
-                0x0040b178       0x10 src/main.o
- .rodata.calibri_36_0x22
-                0x0040b188       0x10 src/main.o
- .rodata.calibri_36_0x23
-                0x0040b198       0x10 src/main.o
- .rodata.calibri_36_0x24
-                0x0040b1a8       0x10 src/main.o
- .rodata.calibri_36_0x25
-                0x0040b1b8       0x10 src/main.o
- .rodata.calibri_36_0x26
-                0x0040b1c8       0x10 src/main.o
- .rodata.calibri_36_0x27
-                0x0040b1d8       0x10 src/main.o
- .rodata.calibri_36_0x28
-                0x0040b1e8       0x10 src/main.o
- .rodata.calibri_36_0x29
-                0x0040b1f8       0x10 src/main.o
- .rodata.calibri_36_0x2a
-                0x0040b208       0x10 src/main.o
- .rodata.calibri_36_0x2b
-                0x0040b218       0x10 src/main.o
- .rodata.calibri_36_0x2c
-                0x0040b228       0x10 src/main.o
- .rodata.calibri_36_0x2d
-                0x0040b238       0x10 src/main.o
- .rodata.calibri_36_0x2e
-                0x0040b248       0x10 src/main.o
- .rodata.calibri_36_0x2f
-                0x0040b258       0x10 src/main.o
- .rodata.calibri_36_0x30
                 0x0040b268       0x10 src/main.o
- .rodata.calibri_36_0x31
+ .rodata.calibri_36_0x21
                 0x0040b278       0x10 src/main.o
- .rodata.calibri_36_0x32
+ .rodata.calibri_36_0x22
                 0x0040b288       0x10 src/main.o
- .rodata.calibri_36_0x33
+ .rodata.calibri_36_0x23
                 0x0040b298       0x10 src/main.o
- .rodata.calibri_36_0x34
+ .rodata.calibri_36_0x24
                 0x0040b2a8       0x10 src/main.o
- .rodata.calibri_36_0x35
+ .rodata.calibri_36_0x25
                 0x0040b2b8       0x10 src/main.o
- .rodata.calibri_36_0x36
+ .rodata.calibri_36_0x26
                 0x0040b2c8       0x10 src/main.o
- .rodata.calibri_36_0x37
+ .rodata.calibri_36_0x27
                 0x0040b2d8       0x10 src/main.o
- .rodata.calibri_36_0x38
+ .rodata.calibri_36_0x28
                 0x0040b2e8       0x10 src/main.o
- .rodata.calibri_36_0x39
+ .rodata.calibri_36_0x29
                 0x0040b2f8       0x10 src/main.o
- .rodata.calibri_36_0x3a
+ .rodata.calibri_36_0x2a
                 0x0040b308       0x10 src/main.o
- .rodata.calibri_36_0x3b
+ .rodata.calibri_36_0x2b
                 0x0040b318       0x10 src/main.o
- .rodata.calibri_36_0x3c
+ .rodata.calibri_36_0x2c
                 0x0040b328       0x10 src/main.o
- .rodata.calibri_36_0x3d
+ .rodata.calibri_36_0x2d
                 0x0040b338       0x10 src/main.o
- .rodata.calibri_36_0x3e
+ .rodata.calibri_36_0x2e
                 0x0040b348       0x10 src/main.o
- .rodata.calibri_36_0x3f
+ .rodata.calibri_36_0x2f
                 0x0040b358       0x10 src/main.o
- .rodata.calibri_36_0x40
+ .rodata.calibri_36_0x30
                 0x0040b368       0x10 src/main.o
- .rodata.calibri_36_0x41
+ .rodata.calibri_36_0x31
                 0x0040b378       0x10 src/main.o
- .rodata.calibri_36_0x42
+ .rodata.calibri_36_0x32
                 0x0040b388       0x10 src/main.o
- .rodata.calibri_36_0x43
+ .rodata.calibri_36_0x33
                 0x0040b398       0x10 src/main.o
- .rodata.calibri_36_0x44
+ .rodata.calibri_36_0x34
                 0x0040b3a8       0x10 src/main.o
- .rodata.calibri_36_0x45
+ .rodata.calibri_36_0x35
                 0x0040b3b8       0x10 src/main.o
- .rodata.calibri_36_0x46
+ .rodata.calibri_36_0x36
                 0x0040b3c8       0x10 src/main.o
- .rodata.calibri_36_0x47
+ .rodata.calibri_36_0x37
                 0x0040b3d8       0x10 src/main.o
- .rodata.calibri_36_0x48
+ .rodata.calibri_36_0x38
                 0x0040b3e8       0x10 src/main.o
- .rodata.calibri_36_0x49
+ .rodata.calibri_36_0x39
                 0x0040b3f8       0x10 src/main.o
- .rodata.calibri_36_0x4a
+ .rodata.calibri_36_0x3a
                 0x0040b408       0x10 src/main.o
- .rodata.calibri_36_0x4b
+ .rodata.calibri_36_0x3b
                 0x0040b418       0x10 src/main.o
- .rodata.calibri_36_0x4c
+ .rodata.calibri_36_0x3c
                 0x0040b428       0x10 src/main.o
- .rodata.calibri_36_0x4d
+ .rodata.calibri_36_0x3d
                 0x0040b438       0x10 src/main.o
- .rodata.calibri_36_0x4e
+ .rodata.calibri_36_0x3e
                 0x0040b448       0x10 src/main.o
- .rodata.calibri_36_0x4f
+ .rodata.calibri_36_0x3f
                 0x0040b458       0x10 src/main.o
- .rodata.calibri_36_0x50
+ .rodata.calibri_36_0x40
                 0x0040b468       0x10 src/main.o
- .rodata.calibri_36_0x51
+ .rodata.calibri_36_0x41
                 0x0040b478       0x10 src/main.o
- .rodata.calibri_36_0x52
+ .rodata.calibri_36_0x42
                 0x0040b488       0x10 src/main.o
- .rodata.calibri_36_0x53
+ .rodata.calibri_36_0x43
                 0x0040b498       0x10 src/main.o
- .rodata.calibri_36_0x54
+ .rodata.calibri_36_0x44
                 0x0040b4a8       0x10 src/main.o
- .rodata.calibri_36_0x55
+ .rodata.calibri_36_0x45
                 0x0040b4b8       0x10 src/main.o
- .rodata.calibri_36_0x56
+ .rodata.calibri_36_0x46
                 0x0040b4c8       0x10 src/main.o
- .rodata.calibri_36_0x57
+ .rodata.calibri_36_0x47
                 0x0040b4d8       0x10 src/main.o
- .rodata.calibri_36_0x58
+ .rodata.calibri_36_0x48
                 0x0040b4e8       0x10 src/main.o
- .rodata.calibri_36_0x59
+ .rodata.calibri_36_0x49
                 0x0040b4f8       0x10 src/main.o
- .rodata.calibri_36_0x5a
+ .rodata.calibri_36_0x4a
                 0x0040b508       0x10 src/main.o
- .rodata.calibri_36_0x5b
+ .rodata.calibri_36_0x4b
                 0x0040b518       0x10 src/main.o
- .rodata.calibri_36_0x5c
+ .rodata.calibri_36_0x4c
                 0x0040b528       0x10 src/main.o
- .rodata.calibri_36_0x5d
+ .rodata.calibri_36_0x4d
                 0x0040b538       0x10 src/main.o
- .rodata.calibri_36_0x5e
+ .rodata.calibri_36_0x4e
                 0x0040b548       0x10 src/main.o
- .rodata.calibri_36_0x5f
+ .rodata.calibri_36_0x4f
                 0x0040b558       0x10 src/main.o
- .rodata.calibri_36_0x60
+ .rodata.calibri_36_0x50
                 0x0040b568       0x10 src/main.o
- .rodata.calibri_36_0x61
+ .rodata.calibri_36_0x51
                 0x0040b578       0x10 src/main.o
- .rodata.calibri_36_0x62
+ .rodata.calibri_36_0x52
                 0x0040b588       0x10 src/main.o
- .rodata.calibri_36_0x63
+ .rodata.calibri_36_0x53
                 0x0040b598       0x10 src/main.o
- .rodata.calibri_36_0x64
+ .rodata.calibri_36_0x54
                 0x0040b5a8       0x10 src/main.o
- .rodata.calibri_36_0x65
+ .rodata.calibri_36_0x55
                 0x0040b5b8       0x10 src/main.o
- .rodata.calibri_36_0x66
+ .rodata.calibri_36_0x56
                 0x0040b5c8       0x10 src/main.o
- .rodata.calibri_36_0x67
+ .rodata.calibri_36_0x57
                 0x0040b5d8       0x10 src/main.o
- .rodata.calibri_36_0x68
+ .rodata.calibri_36_0x58
                 0x0040b5e8       0x10 src/main.o
- .rodata.calibri_36_0x69
+ .rodata.calibri_36_0x59
                 0x0040b5f8       0x10 src/main.o
- .rodata.calibri_36_0x6a
+ .rodata.calibri_36_0x5a
                 0x0040b608       0x10 src/main.o
- .rodata.calibri_36_0x6b
+ .rodata.calibri_36_0x5b
                 0x0040b618       0x10 src/main.o
- .rodata.calibri_36_0x6c
+ .rodata.calibri_36_0x5c
                 0x0040b628       0x10 src/main.o
- .rodata.calibri_36_0x6d
+ .rodata.calibri_36_0x5d
                 0x0040b638       0x10 src/main.o
- .rodata.calibri_36_0x6e
+ .rodata.calibri_36_0x5e
                 0x0040b648       0x10 src/main.o
- .rodata.calibri_36_0x6f
+ .rodata.calibri_36_0x5f
                 0x0040b658       0x10 src/main.o
- .rodata.calibri_36_0x70
+ .rodata.calibri_36_0x60
                 0x0040b668       0x10 src/main.o
- .rodata.calibri_36_0x71
+ .rodata.calibri_36_0x61
                 0x0040b678       0x10 src/main.o
- .rodata.calibri_36_0x72
+ .rodata.calibri_36_0x62
                 0x0040b688       0x10 src/main.o
- .rodata.calibri_36_0x73
+ .rodata.calibri_36_0x63
                 0x0040b698       0x10 src/main.o
- .rodata.calibri_36_0x74
+ .rodata.calibri_36_0x64
                 0x0040b6a8       0x10 src/main.o
- .rodata.calibri_36_0x75
+ .rodata.calibri_36_0x65
                 0x0040b6b8       0x10 src/main.o
- .rodata.calibri_36_0x76
+ .rodata.calibri_36_0x66
                 0x0040b6c8       0x10 src/main.o
- .rodata.calibri_36_0x77
+ .rodata.calibri_36_0x67
                 0x0040b6d8       0x10 src/main.o
- .rodata.calibri_36_0x78
+ .rodata.calibri_36_0x68
                 0x0040b6e8       0x10 src/main.o
- .rodata.calibri_36_0x79
+ .rodata.calibri_36_0x69
                 0x0040b6f8       0x10 src/main.o
- .rodata.calibri_36_0x7a
+ .rodata.calibri_36_0x6a
                 0x0040b708       0x10 src/main.o
- .rodata.calibri_36_0x7b
+ .rodata.calibri_36_0x6b
                 0x0040b718       0x10 src/main.o
- .rodata.calibri_36_0x7c
+ .rodata.calibri_36_0x6c
                 0x0040b728       0x10 src/main.o
- .rodata.calibri_36_0x7d
+ .rodata.calibri_36_0x6d
                 0x0040b738       0x10 src/main.o
- .rodata.calibri_36_0x7e
+ .rodata.calibri_36_0x6e
                 0x0040b748       0x10 src/main.o
+ .rodata.calibri_36_0x6f
+                0x0040b758       0x10 src/main.o
+ .rodata.calibri_36_0x70
+                0x0040b768       0x10 src/main.o
+ .rodata.calibri_36_0x71
+                0x0040b778       0x10 src/main.o
+ .rodata.calibri_36_0x72
+                0x0040b788       0x10 src/main.o
+ .rodata.calibri_36_0x73
+                0x0040b798       0x10 src/main.o
+ .rodata.calibri_36_0x74
+                0x0040b7a8       0x10 src/main.o
+ .rodata.calibri_36_0x75
+                0x0040b7b8       0x10 src/main.o
+ .rodata.calibri_36_0x76
+                0x0040b7c8       0x10 src/main.o
+ .rodata.calibri_36_0x77
+                0x0040b7d8       0x10 src/main.o
+ .rodata.calibri_36_0x78
+                0x0040b7e8       0x10 src/main.o
+ .rodata.calibri_36_0x79
+                0x0040b7f8       0x10 src/main.o
+ .rodata.calibri_36_0x7a
+                0x0040b808       0x10 src/main.o
+ .rodata.calibri_36_0x7b
+                0x0040b818       0x10 src/main.o
+ .rodata.calibri_36_0x7c
+                0x0040b828       0x10 src/main.o
+ .rodata.calibri_36_0x7d
+                0x0040b838       0x10 src/main.o
+ .rodata.calibri_36_0x7e
+                0x0040b848       0x10 src/main.o
  .rodata.calibri_36_array
-                0x0040b758      0x2f8 src/main.o
+                0x0040b858      0x2f8 src/main.o
  .rodata.callback.str1.4
-                0x0040ba50        0x8 src/main.o
+                0x0040bb50        0x8 src/main.o
  .rodata.callback_playpause.str1.4
-                0x0040ba58        0xa src/main.o
- *fill*         0x0040ba62        0x2 
+                0x0040bb58        0xa src/main.o
+ *fill*         0x0040bb62        0x2 
  .rodata.callback_reset.str1.4
-                0x0040ba64        0xa src/main.o
- *fill*         0x0040ba6e        0x2 
+                0x0040bb64        0xa src/main.o
+ *fill*         0x0040bb6e        0x2 
  .rodata.callback_seta.str1.4
-                0x0040ba70        0xa src/main.o
- *fill*         0x0040ba7a        0x2 
+                0x0040bb70        0xa src/main.o
+ *fill*         0x0040bb7a        0x2 
  .rodata.image_data_bike
-                0x0040ba7c     0x41eb src/main.o
- *fill*         0x0040fc67        0x1 
+                0x0040bb7c     0x41eb src/main.o
+ *fill*         0x0040fd67        0x1 
  .rodata.image_data_calibri_36_0x20
-                0x0040fc68      0x378 src/main.o
+                0x0040fd68      0x378 src/main.o
  .rodata.image_data_calibri_36_0x21
-                0x0040ffe0      0x534 src/main.o
+                0x004100e0      0x534 src/main.o
  .rodata.image_data_calibri_36_0x22
-                0x00410514      0x612 src/main.o
- *fill*         0x00410b26        0x2 
+                0x00410614      0x612 src/main.o
+ *fill*         0x00410c26        0x2 
  .rodata.image_data_calibri_36_0x23
-                0x00410b28      0x7ce src/main.o
- *fill*         0x004112f6        0x2 
+                0x00410c28      0x7ce src/main.o
+ *fill*         0x004113f6        0x2 
  .rodata.image_data_calibri_36_0x24
-                0x004112f8      0x7ce src/main.o
- *fill*         0x00411ac6        0x2 
+                0x004113f8      0x7ce src/main.o
+ *fill*         0x00411bc6        0x2 
  .rodata.image_data_calibri_36_0x25
-                0x00411ac8      0xb46 src/main.o
- *fill*         0x0041260e        0x2 
+                0x00411bc8      0xb46 src/main.o
+ *fill*         0x0041270e        0x2 
  .rodata.image_data_calibri_36_0x26
-                0x00412610      0xad7 src/main.o
- *fill*         0x004130e7        0x1 
+                0x00412710      0xad7 src/main.o
+ *fill*         0x004131e7        0x1 
  .rodata.image_data_calibri_36_0x27
-                0x004130e8      0x378 src/main.o
+                0x004131e8      0x378 src/main.o
  .rodata.image_data_calibri_36_0x28
-                0x00413460      0x4c5 src/main.o
- *fill*         0x00413925        0x3 
+                0x00413560      0x4c5 src/main.o
+ *fill*         0x00413a25        0x3 
  .rodata.image_data_calibri_36_0x29
-                0x00413928      0x4c5 src/main.o
- *fill*         0x00413ded        0x3 
+                0x00413a28      0x4c5 src/main.o
+ *fill*         0x00413eed        0x3 
  .rodata.image_data_calibri_36_0x2a
-                0x00413df0      0x7ce src/main.o
- *fill*         0x004145be        0x2 
+                0x00413ef0      0x7ce src/main.o
+ *fill*         0x004146be        0x2 
  .rodata.image_data_calibri_36_0x2b
-                0x004145c0      0x7ce src/main.o
- *fill*         0x00414d8e        0x2 
+                0x004146c0      0x7ce src/main.o
+ *fill*         0x00414e8e        0x2 
  .rodata.image_data_calibri_36_0x2c
-                0x00414d90      0x3e7 src/main.o
- *fill*         0x00415177        0x1 
+                0x00414e90      0x3e7 src/main.o
+ *fill*         0x00415277        0x1 
  .rodata.image_data_calibri_36_0x2d
-                0x00415178      0x4c5 src/main.o
- *fill*         0x0041563d        0x3 
+                0x00415278      0x4c5 src/main.o
+ *fill*         0x0041573d        0x3 
  .rodata.image_data_calibri_36_0x2e
-                0x00415640      0x3e7 src/main.o
- *fill*         0x00415a27        0x1 
+                0x00415740      0x3e7 src/main.o
+ *fill*         0x00415b27        0x1 
  .rodata.image_data_calibri_36_0x2f
-                0x00415a28      0x612 src/main.o
- *fill*         0x0041603a        0x2 
+                0x00415b28      0x612 src/main.o
+ *fill*         0x0041613a        0x2 
  .rodata.image_data_calibri_36_0x30
-                0x0041603c      0x7ce src/main.o
- *fill*         0x0041680a        0x2 
+                0x0041613c      0x7ce src/main.o
+ *fill*         0x0041690a        0x2 
  .rodata.image_data_calibri_36_0x31
-                0x0041680c      0x7ce src/main.o
- *fill*         0x00416fda        0x2 
+                0x0041690c      0x7ce src/main.o
+ *fill*         0x004170da        0x2 
  .rodata.image_data_calibri_36_0x32
-                0x00416fdc      0x7ce src/main.o
- *fill*         0x004177aa        0x2 
+                0x004170dc      0x7ce src/main.o
+ *fill*         0x004178aa        0x2 
  .rodata.image_data_calibri_36_0x33
-                0x004177ac      0x7ce src/main.o
- *fill*         0x00417f7a        0x2 
+                0x004178ac      0x7ce src/main.o
+ *fill*         0x0041807a        0x2 
  .rodata.image_data_calibri_36_0x34
-                0x00417f7c      0x7ce src/main.o
- *fill*         0x0041874a        0x2 
+                0x0041807c      0x7ce src/main.o
+ *fill*         0x0041884a        0x2 
  .rodata.image_data_calibri_36_0x35
-                0x0041874c      0x7ce src/main.o
- *fill*         0x00418f1a        0x2 
+                0x0041884c      0x7ce src/main.o
+ *fill*         0x0041901a        0x2 
  .rodata.image_data_calibri_36_0x36
-                0x00418f1c      0x7ce src/main.o
- *fill*         0x004196ea        0x2 
+                0x0041901c      0x7ce src/main.o
+ *fill*         0x004197ea        0x2 
  .rodata.image_data_calibri_36_0x37
-                0x004196ec      0x7ce src/main.o
- *fill*         0x00419eba        0x2 
+                0x004197ec      0x7ce src/main.o
+ *fill*         0x00419fba        0x2 
  .rodata.image_data_calibri_36_0x38
-                0x00419ebc      0x7ce src/main.o
- *fill*         0x0041a68a        0x2 
+                0x00419fbc      0x7ce src/main.o
+ *fill*         0x0041a78a        0x2 
  .rodata.image_data_calibri_36_0x39
-                0x0041a68c      0x7ce src/main.o
- *fill*         0x0041ae5a        0x2 
+                0x0041a78c      0x7ce src/main.o
+ *fill*         0x0041af5a        0x2 
  .rodata.image_data_calibri_36_0x3a
-                0x0041ae5c      0x456 src/main.o
- *fill*         0x0041b2b2        0x2 
+                0x0041af5c      0x456 src/main.o
+ *fill*         0x0041b3b2        0x2 
  .rodata.image_data_calibri_36_0x3b
-                0x0041b2b4      0x456 src/main.o
- *fill*         0x0041b70a        0x2 
+                0x0041b3b4      0x456 src/main.o
+ *fill*         0x0041b80a        0x2 
  .rodata.image_data_calibri_36_0x3c
-                0x0041b70c      0x7ce src/main.o
- *fill*         0x0041beda        0x2 
+                0x0041b80c      0x7ce src/main.o
+ *fill*         0x0041bfda        0x2 
  .rodata.image_data_calibri_36_0x3d
-                0x0041bedc      0x7ce src/main.o
- *fill*         0x0041c6aa        0x2 
+                0x0041bfdc      0x7ce src/main.o
+ *fill*         0x0041c7aa        0x2 
  .rodata.image_data_calibri_36_0x3e
-                0x0041c6ac      0x7ce src/main.o
- *fill*         0x0041ce7a        0x2 
+                0x0041c7ac      0x7ce src/main.o
+ *fill*         0x0041cf7a        0x2 
  .rodata.image_data_calibri_36_0x3f
-                0x0041ce7c      0x75f src/main.o
- *fill*         0x0041d5db        0x1 
+                0x0041cf7c      0x75f src/main.o
+ *fill*         0x0041d6db        0x1 
  .rodata.image_data_calibri_36_0x40
-                0x0041d5dc      0xde0 src/main.o
+                0x0041d6dc      0xde0 src/main.o
  .rodata.image_data_calibri_36_0x41
-                0x0041e3bc      0x91b src/main.o
- *fill*         0x0041ecd7        0x1 
+                0x0041e4bc      0x91b src/main.o
+ *fill*         0x0041edd7        0x1 
  .rodata.image_data_calibri_36_0x42
-                0x0041ecd8      0x8ac src/main.o
+                0x0041edd8      0x8ac src/main.o
  .rodata.image_data_calibri_36_0x43
-                0x0041f584      0x83d src/main.o
- *fill*         0x0041fdc1        0x3 
+                0x0041f684      0x83d src/main.o
+ *fill*         0x0041fec1        0x3 
  .rodata.image_data_calibri_36_0x44
-                0x0041fdc4      0x98a src/main.o
- *fill*         0x0042074e        0x2 
+                0x0041fec4      0x98a src/main.o
+ *fill*         0x0042084e        0x2 
  .rodata.image_data_calibri_36_0x45
-                0x00420750      0x7ce src/main.o
- *fill*         0x00420f1e        0x2 
+                0x00420850      0x7ce src/main.o
+ *fill*         0x0042101e        0x2 
  .rodata.image_data_calibri_36_0x46
-                0x00420f20      0x75f src/main.o
- *fill*         0x0042167f        0x1 
+                0x00421020      0x75f src/main.o
+ *fill*         0x0042177f        0x1 
  .rodata.image_data_calibri_36_0x47
-                0x00421680      0x9f9 src/main.o
- *fill*         0x00422079        0x3 
+                0x00421780      0x9f9 src/main.o
+ *fill*         0x00422179        0x3 
  .rodata.image_data_calibri_36_0x48
-                0x0042207c      0x98a src/main.o
- *fill*         0x00422a06        0x2 
+                0x0042217c      0x98a src/main.o
+ *fill*         0x00422b06        0x2 
  .rodata.image_data_calibri_36_0x49
-                0x00422a08      0x3e7 src/main.o
- *fill*         0x00422def        0x1 
+                0x00422b08      0x3e7 src/main.o
+ *fill*         0x00422eef        0x1 
  .rodata.image_data_calibri_36_0x4a
-                0x00422df0      0x4c5 src/main.o
- *fill*         0x004232b5        0x3 
+                0x00422ef0      0x4c5 src/main.o
+ *fill*         0x004233b5        0x3 
  .rodata.image_data_calibri_36_0x4b
-                0x004232b8      0x83d src/main.o
- *fill*         0x00423af5        0x3 
+                0x004233b8      0x83d src/main.o
+ *fill*         0x00423bf5        0x3 
  .rodata.image_data_calibri_36_0x4c
-                0x00423af8      0x681 src/main.o
- *fill*         0x00424179        0x3 
+                0x00423bf8      0x681 src/main.o
+ *fill*         0x00424279        0x3 
  .rodata.image_data_calibri_36_0x4d
-                0x0042417c      0xd71 src/main.o
- *fill*         0x00424eed        0x3 
+                0x0042427c      0xd71 src/main.o
+ *fill*         0x00424fed        0x3 
  .rodata.image_data_calibri_36_0x4e
-                0x00424ef0      0x9f9 src/main.o
- *fill*         0x004258e9        0x3 
+                0x00424ff0      0x9f9 src/main.o
+ *fill*         0x004259e9        0x3 
  .rodata.image_data_calibri_36_0x4f
-                0x004258ec      0xa68 src/main.o
+                0x004259ec      0xa68 src/main.o
  .rodata.image_data_calibri_36_0x50
-                0x00426354      0x83d src/main.o
- *fill*         0x00426b91        0x3 
+                0x00426454      0x83d src/main.o
+ *fill*         0x00426c91        0x3 
  .rodata.image_data_calibri_36_0x51
-                0x00426b94      0xad7 src/main.o
- *fill*         0x0042766b        0x1 
+                0x00426c94      0xad7 src/main.o
+ *fill*         0x0042776b        0x1 
  .rodata.image_data_calibri_36_0x52
-                0x0042766c      0x8ac src/main.o
+                0x0042776c      0x8ac src/main.o
  .rodata.image_data_calibri_36_0x53
-                0x00427f18      0x75f src/main.o
- *fill*         0x00428677        0x1 
+                0x00428018      0x75f src/main.o
+ *fill*         0x00428777        0x1 
  .rodata.image_data_calibri_36_0x54
-                0x00428678      0x7ce src/main.o
- *fill*         0x00428e46        0x2 
+                0x00428778      0x7ce src/main.o
+ *fill*         0x00428f46        0x2 
  .rodata.image_data_calibri_36_0x55
-                0x00428e48      0x9f9 src/main.o
- *fill*         0x00429841        0x3 
+                0x00428f48      0x9f9 src/main.o
+ *fill*         0x00429941        0x3 
  .rodata.image_data_calibri_36_0x56
-                0x00429844      0x8ac src/main.o
+                0x00429944      0x8ac src/main.o
  .rodata.image_data_calibri_36_0x57
-                0x0042a0f0      0xde0 src/main.o
+                0x0042a1f0      0xde0 src/main.o
  .rodata.image_data_calibri_36_0x58
-                0x0042aed0      0x83d src/main.o
- *fill*         0x0042b70d        0x3 
+                0x0042afd0      0x83d src/main.o
+ *fill*         0x0042b80d        0x3 
  .rodata.image_data_calibri_36_0x59
-                0x0042b710      0x7ce src/main.o
- *fill*         0x0042bede        0x2 
+                0x0042b810      0x7ce src/main.o
+ *fill*         0x0042bfde        0x2 
  .rodata.image_data_calibri_36_0x5a
-                0x0042bee0      0x75f src/main.o
- *fill*         0x0042c63f        0x1 
+                0x0042bfe0      0x75f src/main.o
+ *fill*         0x0042c73f        0x1 
  .rodata.image_data_calibri_36_0x5b
-                0x0042c640      0x4c5 src/main.o
- *fill*         0x0042cb05        0x3 
+                0x0042c740      0x4c5 src/main.o
+ *fill*         0x0042cc05        0x3 
  .rodata.image_data_calibri_36_0x5c
-                0x0042cb08      0x612 src/main.o
- *fill*         0x0042d11a        0x2 
+                0x0042cc08      0x612 src/main.o
+ *fill*         0x0042d21a        0x2 
  .rodata.image_data_calibri_36_0x5d
-                0x0042d11c      0x4c5 src/main.o
- *fill*         0x0042d5e1        0x3 
+                0x0042d21c      0x4c5 src/main.o
+ *fill*         0x0042d6e1        0x3 
  .rodata.image_data_calibri_36_0x5e
-                0x0042d5e4      0x7ce src/main.o
- *fill*         0x0042ddb2        0x2 
+                0x0042d6e4      0x7ce src/main.o
+ *fill*         0x0042deb2        0x2 
  .rodata.image_data_calibri_36_0x5f
-                0x0042ddb4      0x7ce src/main.o
- *fill*         0x0042e582        0x2 
+                0x0042deb4      0x7ce src/main.o
+ *fill*         0x0042e682        0x2 
  .rodata.image_data_calibri_36_0x60
-                0x0042e584      0x456 src/main.o
- *fill*         0x0042e9da        0x2 
+                0x0042e684      0x456 src/main.o
+ *fill*         0x0042eada        0x2 
  .rodata.image_data_calibri_36_0x61
-                0x0042e9dc      0x75f src/main.o
- *fill*         0x0042f13b        0x1 
+                0x0042eadc      0x75f src/main.o
+ *fill*         0x0042f23b        0x1 
  .rodata.image_data_calibri_36_0x62
-                0x0042f13c      0x83d src/main.o
- *fill*         0x0042f979        0x3 
+                0x0042f23c      0x83d src/main.o
+ *fill*         0x0042fa79        0x3 
  .rodata.image_data_calibri_36_0x63
-                0x0042f97c      0x681 src/main.o
- *fill*         0x0042fffd        0x3 
+                0x0042fa7c      0x681 src/main.o
+ *fill*         0x004300fd        0x3 
  .rodata.image_data_calibri_36_0x64
-                0x00430000      0x83d src/main.o
- *fill*         0x0043083d        0x3 
+                0x00430100      0x83d src/main.o
+ *fill*         0x0043093d        0x3 
  .rodata.image_data_calibri_36_0x65
-                0x00430840      0x7ce src/main.o
- *fill*         0x0043100e        0x2 
+                0x00430940      0x7ce src/main.o
+ *fill*         0x0043110e        0x2 
  .rodata.image_data_calibri_36_0x66
-                0x00431010      0x4c5 src/main.o
- *fill*         0x004314d5        0x3 
+                0x00431110      0x4c5 src/main.o
+ *fill*         0x004315d5        0x3 
  .rodata.image_data_calibri_36_0x67
-                0x004314d8      0x75f src/main.o
- *fill*         0x00431c37        0x1 
+                0x004315d8      0x75f src/main.o
+ *fill*         0x00431d37        0x1 
  .rodata.image_data_calibri_36_0x68
-                0x00431c38      0x83d src/main.o
- *fill*         0x00432475        0x3 
+                0x00431d38      0x83d src/main.o
+ *fill*         0x00432575        0x3 
  .rodata.image_data_calibri_36_0x69
-                0x00432478      0x378 src/main.o
+                0x00432578      0x378 src/main.o
  .rodata.image_data_calibri_36_0x6a
-                0x004327f0      0x3e7 src/main.o
- *fill*         0x00432bd7        0x1 
+                0x004328f0      0x3e7 src/main.o
+ *fill*         0x00432cd7        0x1 
  .rodata.image_data_calibri_36_0x6b
-                0x00432bd8      0x6f0 src/main.o
+                0x00432cd8      0x6f0 src/main.o
  .rodata.image_data_calibri_36_0x6c
-                0x004332c8      0x378 src/main.o
+                0x004333c8      0x378 src/main.o
  .rodata.image_data_calibri_36_0x6d
-                0x00433640      0xc93 src/main.o
- *fill*         0x004342d3        0x1 
+                0x00433740      0xc93 src/main.o
+ *fill*         0x004343d3        0x1 
  .rodata.image_data_calibri_36_0x6e
-                0x004342d4      0x83d src/main.o
- *fill*         0x00434b11        0x3 
+                0x004343d4      0x83d src/main.o
+ *fill*         0x00434c11        0x3 
  .rodata.image_data_calibri_36_0x6f
-                0x00434b14      0x83d src/main.o
- *fill*         0x00435351        0x3 
+                0x00434c14      0x83d src/main.o
+ *fill*         0x00435451        0x3 
  .rodata.image_data_calibri_36_0x70
-                0x00435354      0x83d src/main.o
- *fill*         0x00435b91        0x3 
+                0x00435454      0x83d src/main.o
+ *fill*         0x00435c91        0x3 
  .rodata.image_data_calibri_36_0x71
-                0x00435b94      0x83d src/main.o
- *fill*         0x004363d1        0x3 
+                0x00435c94      0x83d src/main.o
+ *fill*         0x004364d1        0x3 
  .rodata.image_data_calibri_36_0x72
-                0x004363d4      0x5a3 src/main.o
- *fill*         0x00436977        0x1 
+                0x004364d4      0x5a3 src/main.o
+ *fill*         0x00436a77        0x1 
  .rodata.image_data_calibri_36_0x73
-                0x00436978      0x612 src/main.o
- *fill*         0x00436f8a        0x2 
+                0x00436a78      0x612 src/main.o
+ *fill*         0x0043708a        0x2 
  .rodata.image_data_calibri_36_0x74
-                0x00436f8c      0x534 src/main.o
+                0x0043708c      0x534 src/main.o
  .rodata.image_data_calibri_36_0x75
-                0x004374c0      0x83d src/main.o
- *fill*         0x00437cfd        0x3 
+                0x004375c0      0x83d src/main.o
+ *fill*         0x00437dfd        0x3 
  .rodata.image_data_calibri_36_0x76
-                0x00437d00      0x6f0 src/main.o
+                0x00437e00      0x6f0 src/main.o
  .rodata.image_data_calibri_36_0x77
-                0x004383f0      0xb46 src/main.o
- *fill*         0x00438f36        0x2 
+                0x004384f0      0xb46 src/main.o
+ *fill*         0x00439036        0x2 
  .rodata.image_data_calibri_36_0x78
-                0x00438f38      0x6f0 src/main.o
+                0x00439038      0x6f0 src/main.o
  .rodata.image_data_calibri_36_0x79
-                0x00439628      0x6f0 src/main.o
+                0x00439728      0x6f0 src/main.o
  .rodata.image_data_calibri_36_0x7a
-                0x00439d18      0x612 src/main.o
- *fill*         0x0043a32a        0x2 
+                0x00439e18      0x612 src/main.o
+ *fill*         0x0043a42a        0x2 
  .rodata.image_data_calibri_36_0x7b
-                0x0043a32c      0x4c5 src/main.o
- *fill*         0x0043a7f1        0x3 
+                0x0043a42c      0x4c5 src/main.o
+ *fill*         0x0043a8f1        0x3 
  .rodata.image_data_calibri_36_0x7c
-                0x0043a7f4      0x75f src/main.o
- *fill*         0x0043af53        0x1 
+                0x0043a8f4      0x75f src/main.o
+ *fill*         0x0043b053        0x1 
  .rodata.image_data_calibri_36_0x7d
-                0x0043af54      0x4c5 src/main.o
- *fill*         0x0043b419        0x3 
+                0x0043b054      0x4c5 src/main.o
+ *fill*         0x0043b519        0x3 
  .rodata.image_data_calibri_36_0x7e
-                0x0043b41c      0x7ce src/main.o
- *fill*         0x0043bbea        0x2 
+                0x0043b51c      0x7ce src/main.o
+ *fill*         0x0043bcea        0x2 
  .rodata.image_data_cronon
-                0x0043bbec     0x41eb src/main.o
- *fill*         0x0043fdd7        0x1 
+                0x0043bcec     0x41eb src/main.o
+ *fill*         0x0043fed7        0x1 
  .rodata.image_data_down_arrow
-                0x0043fdd8     0x41eb src/main.o
- *fill*         0x00443fc3        0x1 
+                0x0043fed8     0x41eb src/main.o
+ *fill*         0x004440c3        0x1 
  .rodata.image_data_pause
-                0x00443fc4     0xa8c0 src/main.o
+                0x004440c4     0xa8c0 src/main.o
  .rodata.image_data_play
-                0x0044e884     0xa8c0 src/main.o
+                0x0044e984     0xa8c0 src/main.o
  .rodata.image_data_reset
-                0x00459144     0xa8c0 src/main.o
+                0x00459244     0xa8c0 src/main.o
  .rodata.image_data_up_arrow
-                0x00463a04     0x41eb src/main.o
- *fill*         0x00467bef        0x1 
+                0x00463b04     0x41eb src/main.o
+ *fill*         0x00467cef        0x1 
  .rodata.main.str1.4
-                0x00467bf0       0x2c src/main.o
+                0x00467cf0       0x2c src/main.o
  .rodata.show_cronon.str1.4
-                0x00467c1c       0x5d src/main.o
- *fill*         0x00467c79        0x3 
+                0x00467d1c       0x5d src/main.o
+ *fill*         0x00467d79        0x3 
  .rodata.task_lcd.str1.4
-                0x00467c7c       0x12 src/main.o
- *fill*         0x00467c8e        0x2 
+                0x00467d7c       0x12 src/main.o
+ *fill*         0x00467d8e        0x2 
  .rodata.vApplicationStackOverflowHook.str1.4
-                0x00467c90       0x17 src/main.o
- *fill*         0x00467ca7        0x1 
+                0x00467d90       0x17 src/main.o
+ *fill*         0x00467da7        0x1 
  .rodata._global_impure_ptr
-                0x00467ca8        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-impure.o)
-                0x00467ca8                _global_impure_ptr
+                0x00467da8        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-impure.o)
+                0x00467da8                _global_impure_ptr
  .rodata._svfprintf_r.str1.4
-                0x00467cac       0x42 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-svfprintf.o)
- *fill*         0x00467cee        0x2 
+                0x00467dac       0x42 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-svfprintf.o)
+ *fill*         0x00467dee        0x2 
  .rodata.blanks.7223
-                0x00467cf0       0x10 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-svfprintf.o)
+                0x00467df0       0x10 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-svfprintf.o)
  .rodata.zeroes.7224
-                0x00467d00       0x10 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-svfprintf.o)
+                0x00467e00       0x10 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-svfprintf.o)
  .rodata._vfiprintf_r.str1.4
-                0x00467d10       0x2f d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-vfiprintf.o)
+                0x00467e10       0x2f d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-vfiprintf.o)
  .rodata.blanks.7217
-                0x00467d10       0x10 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-vfiprintf.o)
+                0x00467e10       0x10 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-vfiprintf.o)
  .rodata.zeroes.7218
-                0x00467d20       0x10 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-vfiprintf.o)
+                0x00467e20       0x10 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-vfiprintf.o)
  .rodata._dtoa_r.str1.4
-                0x00467d30       0x10 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-dtoa.o)
+                0x00467e30       0x10 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-dtoa.o)
                                  0x12 (size before relaxing)
  .rodata._setlocale_r.str1.4
-                0x00467d40        0xa d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-locale.o)
+                0x00467e40        0xa d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-locale.o)
                                   0xd (size before relaxing)
- *fill*         0x00467d4a        0x2 
+ *fill*         0x00467e4a        0x2 
  .rodata.str1.4
-                0x00467d4c        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-locale.o)
+                0x00467e4c        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-locale.o)
                                   0x2 (size before relaxing)
  .rodata.__mprec_bigtens
-                0x00467d50       0x28 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
-                0x00467d50                __mprec_bigtens
+                0x00467e50       0x28 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
+                0x00467e50                __mprec_bigtens
  .rodata.__mprec_tens
-                0x00467d78       0xc8 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
-                0x00467d78                __mprec_tens
+                0x00467e78       0xc8 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
+                0x00467e78                __mprec_tens
  .rodata.p05.6055
-                0x00467e40        0xc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
+                0x00467f40        0xc d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-mprec.o)
  .rodata._ctype_
-                0x00467e4c      0x101 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-ctype_.o)
-                0x00467e4c                _ctype_
+                0x00467f4c      0x101 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-ctype_.o)
+                0x00467f4c                _ctype_
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x00467f50                . = ALIGN (0x4)
- *fill*         0x00467f4d        0x3 
+                0x00468050                . = ALIGN (0x4)
+ *fill*         0x0046804d        0x3 
  *(.init)
- .init          0x00467f50        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crti.o
-                0x00467f50                _init
- .init          0x00467f54        0x8 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtn.o
-                0x00467f5c                . = ALIGN (0x4)
-                0x00467f5c                __preinit_array_start = .
+ .init          0x00468050        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crti.o
+                0x00468050                _init
+ .init          0x00468054        0x8 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtn.o
+                0x0046805c                . = ALIGN (0x4)
+                0x0046805c                __preinit_array_start = .
  *(.preinit_array)
-                0x00467f5c                __preinit_array_end = .
-                0x00467f5c                . = ALIGN (0x4)
-                0x00467f5c                __init_array_start = .
+                0x0046805c                __preinit_array_end = .
+                0x0046805c                . = ALIGN (0x4)
+                0x0046805c                __init_array_start = .
  *(SORT(.init_array.*))
  .init_array.00000
-                0x00467f5c        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-__call_atexit.o)
+                0x0046805c        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-__call_atexit.o)
  *(.init_array)
- .init_array    0x00467f60        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtbegin.o
-                0x00467f64                __init_array_end = .
-                0x00467f64                . = ALIGN (0x4)
+ .init_array    0x00468060        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtbegin.o
+                0x00468064                __init_array_end = .
+                0x00468064                . = ALIGN (0x4)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *crtend.o(.ctors)
-                0x00467f64                . = ALIGN (0x4)
+                0x00468064                . = ALIGN (0x4)
  *(.fini)
- .fini          0x00467f64        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crti.o
-                0x00467f64                _fini
- .fini          0x00467f68        0x8 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtn.o
-                0x00467f70                . = ALIGN (0x4)
-                0x00467f70                __fini_array_start = .
+ .fini          0x00468064        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crti.o
+                0x00468064                _fini
+ .fini          0x00468068        0x8 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtn.o
+                0x00468070                . = ALIGN (0x4)
+                0x00468070                __fini_array_start = .
  *(.fini_array)
- .fini_array    0x00467f70        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtbegin.o
+ .fini_array    0x00468070        0x4 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtbegin.o
  *(SORT(.fini_array.*))
-                0x00467f74                __fini_array_end = .
+                0x00468074                __fini_array_end = .
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *crtend.o(.dtors)
-                0x00467f74                . = ALIGN (0x4)
-                0x00467f74                _efixed = .
+                0x00468074                . = ALIGN (0x4)
+                0x00468074                _efixed = .
                 [!provide]                PROVIDE (__exidx_start, .)
 
-.vfp11_veneer   0x00467f74        0x0
- .vfp11_veneer  0x00467f74        0x0 linker stubs
+.vfp11_veneer   0x00468074        0x0
+ .vfp11_veneer  0x00468074        0x0 linker stubs
 
-.v4_bx          0x00467f74        0x0
- .v4_bx         0x00467f74        0x0 linker stubs
+.v4_bx          0x00468074        0x0
+ .v4_bx         0x00468074        0x0 linker stubs
 
-.iplt           0x00467f74        0x0
- .iplt          0x00467f74        0x0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtbegin.o
+.iplt           0x00468074        0x0
+ .iplt          0x00468074        0x0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtbegin.o
 
-.ARM.exidx      0x00467f74        0x8
+.ARM.exidx      0x00468074        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
- .ARM.exidx     0x00467f74        0x8 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_udivmoddi4.o)
+ .ARM.exidx     0x00468074        0x8 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m\libgcc.a(_udivmoddi4.o)
                 [!provide]                PROVIDE (__exidx_end, .)
 
-.eh_frame       0x00467f7c        0x0
- .eh_frame      0x00467f7c        0x0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtbegin.o
+.eh_frame       0x0046807c        0x0
+ .eh_frame      0x0046807c        0x0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtbegin.o
 
-.rel.dyn        0x00467f7c        0x0
- .rel.iplt      0x00467f7c        0x0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtbegin.o
+.rel.dyn        0x0046807c        0x0
+ .rel.iplt      0x0046807c        0x0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtbegin.o
 
-.jcr            0x00467f7c        0x0
- .jcr           0x00467f7c        0x0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtbegin.o
+.jcr            0x0046807c        0x0
+ .jcr           0x0046807c        0x0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtbegin.o
 
-.igot.plt       0x00467f7c        0x0
- .igot.plt      0x00467f7c        0x0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtbegin.o
-                0x00467f7c                . = ALIGN (0x4)
-                0x00467f7c                _etext = .
+.igot.plt       0x0046807c        0x0
+ .igot.plt      0x0046807c        0x0 d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/crtbegin.o
+                0x0046807c                . = ALIGN (0x4)
+                0x0046807c                _etext = .
 
-.relocate       0x20400000      0x9c0 load address 0x00467f7c
+.relocate       0x20400000      0x9c0 load address 0x0046807c
                 0x20400000                . = ALIGN (0x4)
                 0x20400000                _srelocate = .
  *(.ramfunc .ramfunc.*)
@@ -13610,7 +13611,7 @@ LOAD d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gc
                 0x204009c0                . = ALIGN (0x4)
                 0x204009c0                _erelocate = .
 
-.bss            0x204009c0     0xbef8 load address 0x0046893c
+.bss            0x204009c0     0xbef8 load address 0x00468a3c
                 0x204009c0                . = ALIGN (0x4)
                 0x204009c0                _sbss = .
                 0x204009c0                _szero = .
@@ -13757,7 +13758,7 @@ LOAD d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gc
                 0x2040c8b8                _ebss = .
                 0x2040c8b8                _ezero = .
 
-.stack          0x2040c8b8     0x2000 load address 0x00474834
+.stack          0x2040c8b8     0x2000 load address 0x00474934
                 0x2040c8b8                . = ALIGN (0x8)
                 0x2040c8b8                _sstack = .
                 0x2040e8b8                . = (. + STACK_SIZE)
@@ -13765,7 +13766,7 @@ LOAD d:/insper-stuff/embarcada/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gc
                 0x2040e8b8                . = ALIGN (0x8)
                 0x2040e8b8                _estack = .
 
-.heap           0x2040e8b8      0x200 load address 0x00476834
+.heap           0x2040e8b8      0x200 load address 0x00476934
                 0x2040e8b8                . = ALIGN (0x8)
                 0x2040e8b8                _sheap = .
                 0x2040eab8                . = (. + HEAP_SIZE)
@@ -13994,7 +13995,7 @@ OUTPUT(RTOS-LCD-maxTouch.elf elf32-littlearm)
  .comment       0x00000059       0x5a src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
  .comment       0x00000059       0x5a src/main.o
 
-.debug_info     0x00000000    0x2f0bc
+.debug_info     0x00000000    0x2f135
  .debug_info    0x00000000     0x24c8 src/ASF/sam/drivers/afec/afec.o
  .debug_info    0x000024c8     0x1167 src/ASF/sam/drivers/rtc/rtc.o
  .debug_info    0x0000362f     0x14ea src/maxTouch/maxTouch.o
@@ -14023,7 +14024,7 @@ OUTPUT(RTOS-LCD-maxTouch.elf elf32-littlearm)
  .debug_info    0x000217ae     0x26ec src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
  .debug_info    0x00023e9a     0x34b4 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
  .debug_info    0x0002734e     0x1b3e src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
- .debug_info    0x00028e8c     0x6230 src/main.o
+ .debug_info    0x00028e8c     0x62a9 src/main.o
 
 .debug_abbrev   0x00000000     0x5d6e
  .debug_abbrev  0x00000000      0x4e4 src/ASF/sam/drivers/afec/afec.o
@@ -14144,7 +14145,7 @@ OUTPUT(RTOS-LCD-maxTouch.elf elf32-littlearm)
  .debug_aranges
                 0x000012d0       0xe8 src/main.o
 
-.debug_ranges   0x00000000     0x16c0
+.debug_ranges   0x00000000     0x16b8
  .debug_ranges  0x00000000       0xc0 src/ASF/sam/drivers/afec/afec.o
  .debug_ranges  0x000000c0       0xa8 src/ASF/sam/drivers/rtc/rtc.o
  .debug_ranges  0x00000168       0x10 src/maxTouch/maxTouch.o
@@ -14173,7 +14174,7 @@ OUTPUT(RTOS-LCD-maxTouch.elf elf32-littlearm)
  .debug_ranges  0x00001080      0x110 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
  .debug_ranges  0x00001190      0x2e8 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
  .debug_ranges  0x00001478       0xc0 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
- .debug_ranges  0x00001538      0x188 src/main.o
+ .debug_ranges  0x00001538      0x180 src/main.o
 
 .debug_macro    0x00000000     0xf562
  .debug_macro   0x00000000      0x74f src/ASF/sam/drivers/afec/afec.o
@@ -14274,7 +14275,7 @@ OUTPUT(RTOS-LCD-maxTouch.elf elf32-littlearm)
  .debug_macro   0x0000e3ee      0x727 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
  .debug_macro   0x0000eb15      0xa4d src/main.o
 
-.debug_line     0x00000000    0x17b81
+.debug_line     0x00000000    0x17b89
  .debug_line    0x00000000      0xece src/ASF/sam/drivers/afec/afec.o
  .debug_line    0x00000ece      0xbde src/ASF/sam/drivers/rtc/rtc.o
  .debug_line    0x00001aac     0x121c src/maxTouch/maxTouch.o
@@ -14303,7 +14304,7 @@ OUTPUT(RTOS-LCD-maxTouch.elf elf32-littlearm)
  .debug_line    0x0001301d     0x11e4 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/queue.o
  .debug_line    0x00014201     0x1568 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/tasks.o
  .debug_line    0x00015769      0xda9 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
- .debug_line    0x00016512     0x166f src/main.o
+ .debug_line    0x00016512     0x1677 src/main.o
 
 .debug_str      0x00000000    0x9fc58
  .debug_str     0x00000000    0x8d465 src/ASF/sam/drivers/afec/afec.o
@@ -14363,7 +14364,7 @@ OUTPUT(RTOS-LCD-maxTouch.elf elf32-littlearm)
  .debug_str     0x0009dc41      0x483 src/ASF/thirdparty/freertos/freertos-8.2.3/Source/timers.o
                               0x90d1b (size before relaxing)
  .debug_str     0x0009e0c4     0x1b94 src/main.o
-                              0x99390 (size before relaxing)
+                              0x993ab (size before relaxing)
 
 .debug_frame    0x00000000     0x454c
  .debug_frame   0x00000000      0x1f0 src/ASF/sam/drivers/afec/afec.o
@@ -15013,6 +15014,7 @@ ili9488_display_off                               src/ASF/sam/components/display
 ili9488_display_on                                src/ASF/sam/components/display/ili9488/ili9488.o
 ili9488_draw_circle                               src/ASF/sam/components/display/ili9488/ili9488.o
 ili9488_draw_filled_circle                        src/ASF/sam/components/display/ili9488/ili9488.o
+                                                  src/main.o
 ili9488_draw_filled_rectangle                     src/ASF/sam/components/display/ili9488/ili9488.o
                                                   src/main.o
 ili9488_draw_line                                 src/ASF/sam/components/display/ili9488/ili9488.o
