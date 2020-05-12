@@ -6,6 +6,8 @@ src\ASF\common\services\sleepmgr\sam\sleepmgr.c
 
 src\ASF\sam\drivers\afec\afec.c
 
+src\ASF\sam\drivers\rtc\rtc.c
+
 src\maxTouch\maxTouch.c
 
 src\ASF\common\components\touch\mxt\mxt_device_1.c

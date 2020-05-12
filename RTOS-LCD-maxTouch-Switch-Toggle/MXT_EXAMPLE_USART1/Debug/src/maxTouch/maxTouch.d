@@ -187,7 +187,7 @@ src/maxTouch/maxTouch.d src/maxTouch/maxTouch.o: \
  ../src/ASF/common/services/ioport/ioport.h \
  ../src/ASF/common/services/ioport/sam/ioport_pio.h \
  ../src/ASF/sam/drivers/mpu/mpu.h ../src/ASF/sam/drivers/pmc/sleep.h \
- ../src/ASF/sam/utils/fpu/fpu.h \
+ ../src/ASF/sam/drivers/rtc/rtc.h ../src/ASF/sam/utils/fpu/fpu.h \
  ../src/ASF/sam/boards/same70_xplained/led.h \
  ../src/ASF/common/services/spi/sam_spi/spi_master.h \
  ../src/ASF/sam/drivers/spi/spi.h ../src/config/conf_spi_master.h \
@@ -597,6 +597,8 @@ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\incl
 ../src/ASF/sam/drivers/mpu/mpu.h:
 
 ../src/ASF/sam/drivers/pmc/sleep.h:
+
+../src/ASF/sam/drivers/rtc/rtc.h:
 
 ../src/ASF/sam/utils/fpu/fpu.h:
 

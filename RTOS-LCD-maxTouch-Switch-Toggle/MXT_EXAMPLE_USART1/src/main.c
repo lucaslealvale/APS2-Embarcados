@@ -5,13 +5,19 @@
 #include "conf_board.h"
 #include "conf_uart_serial.h"
 #include "maxTouch/maxTouch.h"
-#include "tfont.h"
-#include "digital521.h"
+
+/************************************************************************/
+/* FONTES                                                               */
+/************************************************************************/
+#include "fonts/tfont.h"
+#include "fonts/digital521.h"
+#include "fonts/arial_72.h"
+#include "fonts/sourcecodepro_28.h"
+#include "fonts/calibri_36.h"
 
 /************************************************************************/
 /* IMAGENS                                                              */
 /************************************************************************/
-
 #include "icones/bike.h"
 #include "icones/cronon.h"
 #include "icones/down_arrow.h"
@@ -20,12 +26,10 @@
 #include "icones/reset.h"
 #include "icones/up_arrow.h"
 
-
 /************************************************************************/
 /* prototypes                                                           */
 /************************************************************************/
 void callback(void);
-
 
 /************************************************************************/
 /* LCD + TOUCH                                                          */
@@ -40,11 +44,6 @@ const uint32_t BUTTON_X = ILI9488_LCD_WIDTH/2;
 const uint32_t BUTTON_Y = ILI9488_LCD_HEIGHT/2;
 
 /************************************************************************/
-/* Botoes lcd                                                           */
-/************************************************************************/
-
-
-/************************************************************************/
 /* RTOS                                                                  */
 /************************************************************************/
 #define TASK_MXT_STACK_SIZE            (2*1024/sizeof(portSTACK_TYPE))
@@ -53,12 +52,17 @@ const uint32_t BUTTON_Y = ILI9488_LCD_HEIGHT/2;
 #define TASK_LCD_STACK_SIZE            (4*1024/sizeof(portSTACK_TYPE))
 #define TASK_LCD_STACK_PRIORITY        (tskIDLE_PRIORITY)
 
-// LED
+/************************************************************************/
+/* LED                                                                  */
+/************************************************************************/
 #define LED_PIO       PIOC
 #define LED_PIO_ID    ID_PIOC
 #define LED_IDX       8
 #define LED_IDX_MASK  (1 << LED_IDX)
 
+/************************************************************************/
+/* OBJETOS                                                              */
+/************************************************************************/
 typedef struct {
   uint x;
   uint y;
@@ -75,94 +79,130 @@ typedef struct {
 	
 } t_but;
 
+typedef struct
+{
+	uint32_t year;
+	uint32_t month;
+	uint32_t day;
+	uint32_t week;
+	uint32_t hour;
+	uint32_t minute;
+	uint32_t seccond;
+} calendar;
+
+/************************************************************************/
+/* FLAGS                                                                */
+/************************************************************************/
+volatile char flag_rtc = 0;
+char flag_led = 0;
+char flag_playpause = 0;
+char flag_seta = 0;
+
+/************************************************************************/
+/* CRONOMETRO                                                           */
+/************************************************************************/
+int h = 0;
+int m = 0;
+int s = 0;
+
+/************************************************************************/
+/* FILAS                                                                */
+/************************************************************************/
 QueueHandle_t xQueueTouch;
+
+/************************************************************************/
+/* SEMAFOROS                                                            */
+/************************************************************************/
 SemaphoreHandle_t xSemaphore = NULL;
 SemaphoreHandle_t xSemaphore_playpause = NULL;
 SemaphoreHandle_t xSemaphore_seta = NULL;
+SemaphoreHandle_t xSemaphore_reset = NULL;
 
 /************************************************************************/
 /* handler/callbacks                                                    */
 /************************************************************************/
-
-
 void callback(void){
   printf("CLICK!\n");
-
   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
   xSemaphoreGiveFromISR(xSemaphore, &xHigherPriorityTaskWoken);
 }
 
 void callback_playpause(void){
   printf("CLICK 2!\n");
-
   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
   xSemaphoreGiveFromISR(xSemaphore_playpause, &xHigherPriorityTaskWoken);
 }
 
 void callback_seta(void){
   printf("CLICK 3!\n");
-
   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
   xSemaphoreGiveFromISR(xSemaphore_seta, &xHigherPriorityTaskWoken);
+}
+
+void callback_reset(void){
+  printf("CLICK 4!\n");
+  BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+  xSemaphoreGiveFromISR(xSemaphore_reset, &xHigherPriorityTaskWoken);
 }
 
 /************************************************************************/
 /* RTOS hooks                                                           */
 /************************************************************************/
-
-/**
-* \brief Called if stack overflow during execution
-*/
 extern void vApplicationStackOverflowHook(xTaskHandle *pxTask,
 signed char *pcTaskName)
 {
   printf("stack overflow %x %s\r\n", pxTask, (portCHAR *)pcTaskName);
-  /* If the parameters have been corrupted then inspect pxCurrentTCB to
-  * identify which task has overflowed its stack.
-  */
   for (;;) {
   }
 }
-
-/**
-* \brief This function is called by FreeRTOS idle task
-*/
 extern void vApplicationIdleHook(void)
 {
   pmc_sleep(SAM_PM_SMODE_SLEEP_WFI);
 }
-
-/**
-* \brief This function is called by FreeRTOS each tick
-*/
 extern void vApplicationTickHook(void)
 {
 }
-
 extern void vApplicationMallocFailedHook(void)
 {
-  /* Called if a call to pvPortMalloc() fails because there is insufficient
-  free memory available in the FreeRTOS heap.  pvPortMalloc() is called
-  internally by FreeRTOS API functions that create tasks, queues, software
-  timers, and semaphores.  The size of the FreeRTOS heap is set by the
-  configTOTAL_HEAP_SIZE configuration constant in FreeRTOSConfig.h. */
-
-  /* Force an assert. */
   configASSERT( ( volatile void * ) NULL );
 }
 
 /************************************************************************/
 /* init                                                                 */
 /************************************************************************/
+void RTC_Handler(void)
+{
+	uint32_t ul_status = rtc_get_status(RTC);
+	if ((ul_status & RTC_SR_SEC) == RTC_SR_SEC)
+	{
+		rtc_clear_status(RTC, RTC_SCCR_SECCLR);
+		flag_rtc = 1;
+	}
+
+	rtc_clear_status(RTC, RTC_SCCR_ACKCLR);
+	rtc_clear_status(RTC, RTC_SCCR_TIMCLR);
+	rtc_clear_status(RTC, RTC_SCCR_CALCLR);
+	rtc_clear_status(RTC, RTC_SCCR_TDERRCLR);
+}
+
+void RTC_init(Rtc *rtc, uint32_t id_rtc, calendar t, uint32_t irq_type)
+{
+	pmc_enable_periph_clk(ID_RTC);
+	rtc_set_hour_mode(rtc, 0);
+	rtc_set_date(rtc, t.year, t.month, t.day, t.week);
+	rtc_set_time(rtc, t.hour, t.minute, t.seccond);
+	NVIC_DisableIRQ(id_rtc);
+	NVIC_ClearPendingIRQ(id_rtc);
+	NVIC_SetPriority(id_rtc, 0);
+	NVIC_EnableIRQ(id_rtc);
+	rtc_enable_interrupt(rtc, irq_type);
+}
 
 static void configure_lcd(void){
-  /* Initialize display parameter */
   g_ili9488_display_opt.ul_width = ILI9488_LCD_WIDTH;
   g_ili9488_display_opt.ul_height = ILI9488_LCD_HEIGHT;
   g_ili9488_display_opt.foreground_color = COLOR_CONVERT(COLOR_WHITE);
   g_ili9488_display_opt.background_color = COLOR_CONVERT(COLOR_WHITE);
-
-  /* Initialize LCD */
   ili9488_init(&g_ili9488_display_opt);
 }
 
@@ -176,14 +216,14 @@ int process_touch(t_but botoes[], touchData touch, uint32_t n){
 
     int x_limit_up   = botoes[i].x;
     int x_limit_down = botoes[i].x + botoes[i].width;
-    
+
     int y_limit_up   = botoes[i].y;
     int y_limit_down = botoes[i].y + botoes[i].height;
   
     if (touch.x > x_limit_up && touch.x < x_limit_down && touch.y > y_limit_up && touch.y < y_limit_down){
       return i;
     }
-  
+
   }
   
   return -1;
@@ -195,7 +235,7 @@ void draw_screen(void) {
 }
 
 void draw_button(uint32_t clicked) {
-  static uint32_t last_state = 255; // undefined
+  static uint32_t last_state = 255;
   if(clicked == last_state) return;
   
   ili9488_set_foreground_color(COLOR_CONVERT(COLOR_BLACK));
@@ -211,14 +251,12 @@ void draw_button(uint32_t clicked) {
 }
 
 uint32_t convert_axis_system_x(uint32_t touch_y) {
-  // entrada: 4096 - 0 (sistema de coordenadas atual)
-  // saida: 0 - 320
+  
   return ILI9488_LCD_WIDTH - ILI9488_LCD_WIDTH*touch_y/4096;
 }
 
 uint32_t convert_axis_system_y(uint32_t touch_x) {
-  // entrada: 0 - 4096 (sistema de coordenadas atual)
-  // saida: 0 - 320
+  
   return ILI9488_LCD_HEIGHT*touch_x/4096;
 }
 
@@ -248,20 +286,14 @@ void font_draw_text(tFont *font, const char *text, int x, int y, int spacing) {
 
 void mxt_handler(struct mxt_device *device, uint *x, uint *y)
 {
-  /* USART tx buffer initialized to 0 */
-  uint8_t i = 0; /* Iterator */
+  uint8_t i = 0; 
 
-  /* Temporary touch event data struct */
   struct mxt_touch_event touch_event;
   
-  /* first touch only */
   uint first = 0;
 
-  /* Collect touch events and put the data in a string,
-  * maximum 2 events at the time */
   do {
 
-    /* Read next next touch event in the queue, discard if read fails */
     if (mxt_read_touch_event(device, &touch_event) != STATUS_OK) {
       continue;
     }
@@ -277,8 +309,6 @@ void mxt_handler(struct mxt_device *device, uint *x, uint *y)
     
     i++;
 
-    /* Check if there is still messages in the queue and
-    * if we have reached the maximum numbers of events */
   } while ((mxt_is_message_pending(device)) & (i < MAX_ENTRIES));
 }
 
@@ -294,22 +324,130 @@ void init(void){
 
 }
 
+void show_cronon(int h, int m, int s){
+
+  char c[200];
+
+  if (s < 10 && m < 10 && h < 10){
+    sprintf(c, "0%d:0%d:0%d", h, m, s);
+    font_draw_text(&calibri_36, c, 90, ILI9488_LCD_HEIGHT/2 + 45, 1);
+  }
+
+  else if (s < 10 && m < 10){
+    sprintf(c, "%d:0%d:0%d", h, m, s);
+    font_draw_text(&calibri_36, c, 90, ILI9488_LCD_HEIGHT/2 + 45, 1);
+  }
+
+  else if (s < 10 && h < 10){
+    sprintf(c, "0%d:%d:0%d", h, m, s);
+    font_draw_text(&calibri_36, c, 90, ILI9488_LCD_HEIGHT/2 + 45, 1);
+  }
+
+  else if (m < 10 && h < 10){
+    sprintf(c, "0%d:0%d:%d", h, m, s);
+    font_draw_text(&calibri_36, c, 90, ILI9488_LCD_HEIGHT/2 + 45, 1);
+  }
+  else if (s < 10){
+    sprintf(c, "%d:%d:0%d", h, m, s);
+    font_draw_text(&calibri_36, c, 90, ILI9488_LCD_HEIGHT/2 + 45, 1);
+  }
+
+  else if (m < 10){
+    sprintf(c, "%d:0%d:%d", h, m, s);
+    font_draw_text(&calibri_36, c, 90, ILI9488_LCD_HEIGHT/2 + 45, 1);
+  }
+
+  else if (h < 10){
+    sprintf(c, "0%d:%d:%d", h, m, s);
+    font_draw_text(&calibri_36, c, 90, ILI9488_LCD_HEIGHT/2 + 45, 1);
+  }
+
+  else{
+    sprintf(c, "%d:%d:%d", h, m, s);
+    font_draw_text(&calibri_36, c, 90, ILI9488_LCD_HEIGHT/2 + 45, 1);
+  }
+
+}
+
+void show_clock(calendar rtc_initial){
+  if (flag_rtc){
+
+    rtc_get_time(RTC, &rtc_initial.hour, &rtc_initial.minute, &rtc_initial.seccond);
+
+    char b[200];
+    
+    if(rtc_initial.seccond < 10 && rtc_initial.minute < 10 && rtc_initial.hour < 10){
+      sprintf(b, "0%d:0%d:0%d", rtc_initial.hour, rtc_initial.minute, rtc_initial.seccond);
+      font_draw_text(&calibri_36, b, 85, 0, 1);
+    }
+
+    else if(rtc_initial.seccond < 10 && rtc_initial.minute < 10){
+      sprintf(b, "%d:0%d:0%d", rtc_initial.hour, rtc_initial.minute, rtc_initial.seccond);
+      font_draw_text(&calibri_36, b, 85, 0, 1);  
+    }
+
+    else if(rtc_initial.hour < 10 && rtc_initial.minute < 10){
+      sprintf(b, "0%d:0%d:%d", rtc_initial.hour, rtc_initial.minute, rtc_initial.seccond);
+      font_draw_text(&calibri_36, b, 85, 0, 1);
+    }
+
+    else if(rtc_initial.hour < 10 && rtc_initial.seccond < 10){
+      sprintf(b, "0%d:0%d:0%d", rtc_initial.hour, rtc_initial.minute, rtc_initial.seccond);
+      font_draw_text(&calibri_36, b, 85, 0, 1);
+    }
+
+    else if(rtc_initial.hour < 10){
+      sprintf(b, "0%d:%d:%d", rtc_initial.hour, rtc_initial.minute, rtc_initial.seccond);
+      font_draw_text(&calibri_36, b, 85, 0, 1);
+    }
+    
+    else if(rtc_initial.seccond < 10){
+      sprintf(b, "%d:%d:0%d", rtc_initial.hour, rtc_initial.minute, rtc_initial.seccond);
+      font_draw_text(&calibri_36, b, 85, 0, 1);
+    }
+
+    else if(rtc_initial.minute < 10){
+      sprintf(b, "%d:0%d:%d", rtc_initial.hour, rtc_initial.minute, rtc_initial.seccond);
+      font_draw_text(&calibri_36, b, 85, 0, 1);
+    }
+
+    else{
+      sprintf(b, "%d:%d:%d", rtc_initial.hour, rtc_initial.minute, rtc_initial.seccond);
+      font_draw_text(&calibri_36, b, 85, 0, 1);
+    }
+    
+    flag_rtc = 0;
+
+    if (flag_playpause){
+      if(s < 59) s++;
+      else{
+        s = 0;
+        if (m < 59) m++;
+        else {
+          h++;
+          m = 0;
+        }
+      }
+    }
+
+  }
+}
+
 /************************************************************************/
 /* tasks                                                                */
 /************************************************************************/
 
 void task_mxt(void){
   
-  struct mxt_device device; /* Device data container */
-  mxt_init(&device);       	/* Initialize the mXT touch device */
-  touchData touch;          /* touch queue data type*/
+  struct mxt_device device; 
+  mxt_init(&device);
+  touchData touch;
   
   while (true) {
-    /* Check for any pending messages and run message handler if any
-    * message is found in the queue */
+    
     if (mxt_is_message_pending(&device)) {
       mxt_handler(&device, &touch.x, &touch.y);
-      xQueueSend( xQueueTouch, &touch, 0);           /* send mesage to queue */
+      xQueueSend( xQueueTouch, &touch, 0);  
       vTaskDelay(200);
       
       // limpa touch
@@ -329,14 +467,16 @@ void task_lcd(void){
   xSemaphore = xSemaphoreCreateBinary();
   xSemaphore_playpause = xSemaphoreCreateBinary();
   xSemaphore_seta = xSemaphoreCreateBinary();
+  xSemaphore_reset = xSemaphoreCreateBinary();
 
 	configure_lcd();
 	draw_screen();
-	// font_draw_text(&digital52, "DEMO - BUT", 0, 0, 1);
+
+	// font_draw_text(&calibri_36, "HORA", 0, 0, 1);
 
 	t_but reset_but = {.width = reset.width, .height = reset.height,
 	  .x = ILI9488_LCD_WIDTH-125, .y = ILI9488_LCD_HEIGHT-125, .data = reset.data, 
-    .status = 1, .func = &callback
+    .status = 1, .func = &callback_reset
   };
 	
   t_but play_but = {.width = play.width, .height = play.height,
@@ -353,7 +493,8 @@ void task_lcd(void){
     .x = ILI9488_LCD_WIDTH - 80, .y =  ILI9488_LCD_HEIGHT/2 - 160, .data = down_arrow.data,
     .status = 1, .func = &callback_seta
   };
-		t_but up_arrow_but = {.width = up_arrow.width, .height = up_arrow.height,
+  
+	t_but up_arrow_but = {.width = up_arrow.width, .height = up_arrow.height,
     .x = ILI9488_LCD_WIDTH - 80, .y =  ILI9488_LCD_HEIGHT/2 - 160, .data = up_arrow.data,
     .status = 1, .func = &callback_seta
   };
@@ -371,39 +512,39 @@ void task_lcd(void){
 	
 	ili9488_set_foreground_color(COLOR_CONVERT(COLOR_BLACK));
 
-  // ILI9488_LCD_WIDTH
-  // ILI9488_LCD_HEIGHT
-
-	// desenha imagem background na posicao X=80 e Y=150
-
   ili9488_draw_pixmap(bike_but.x, bike_but.y, bike.width, bike.height, bike.data);
   ili9488_draw_pixmap(cronometro_but.x, cronometro_but.y, cronon.width, cronon.height, cronon.data);
 	
   ili9488_draw_pixmap(reset_but.x, reset_but.y, reset_but.width, reset_but.height, reset_but.data);
 	
-	t_but botoes[] = {reset_but, play_but, pause_but, down_arrow_but,up_arrow_but, bike_but, cronometro_but};
-
+	t_but botoes[] = {reset_but, play_but, pause_but, down_arrow_but, up_arrow_but, bike_but, cronometro_but};
 
 	// struct local para armazenar msg enviada pela task do mxt
 	touchData touch;
 
-  char flag_led = 0;
-  char flag_playpause = 0;
-  char flag_seta = 0;
-  
+  // RTC RELOGIO + CRONOMETRO 
+  calendar rtc_initial = {2018, 3, 19, 12, 15, 0, 1};
+  RTC_init(RTC, ID_RTC, rtc_initial, RTC_IER_SECEN);
+
+
 	while (true) {
-		if (xQueueReceive( xQueueTouch, &(touch), ( TickType_t )  500 / portTICK_PERIOD_MS)) { //500 ms
+		if (xQueueReceive( xQueueTouch, &(touch), ( TickType_t )  100 / portTICK_PERIOD_MS)) { //500 ms
 			int b = process_touch(botoes, touch, 7);
 			if(b >= 0){
 
         botoes[b].func();
-
 				botoes[b].status = !botoes[b].status;
-			}
+			
+      }
 
 			printf("x:%d y:%d\n", touch.x, touch.y);
 			printf("b:%d\n", b);
 		}
+
+    // RELOGIO + CRONOMETRO
+    show_clock(rtc_initial);
+    show_cronon(h, m, s);
+
 
     if (flag_playpause){
       ili9488_draw_pixmap(pause_but.x, pause_but.y, pause_but.width, pause_but.height, pause_but.data); 
@@ -420,15 +561,22 @@ void task_lcd(void){
     }
 
     if( xSemaphoreTake(xSemaphore, 0) == pdTRUE ){   
-      flag_led = ! flag_led;
+      flag_led = !flag_led;
     }
     
     if( xSemaphoreTake(xSemaphore_playpause, 0) == pdTRUE ){   
-      flag_playpause = ! flag_playpause;
+      flag_playpause = !flag_playpause;
     }
 
     if( xSemaphoreTake(xSemaphore_seta, 0) == pdTRUE ){   
-      flag_seta = ! flag_seta;
+      flag_seta = !flag_seta;
+    }
+
+    if( xSemaphoreTake(xSemaphore_reset, 0) == pdTRUE ){   
+      flag_playpause = 0;
+      h = 0;
+      m = 0;
+      s = 0;
     }
 
     if(flag_led){
@@ -446,7 +594,6 @@ void task_lcd(void){
 /************************************************************************/
 /* main                                                                 */
 /************************************************************************/
-
 int main(void)
 {
   /* Initialize the USART configuration struct */
@@ -474,14 +621,12 @@ int main(void)
     printf("Failed to create test led task\r\n");
   }
   
-  
   /* Start the scheduler. */
   vTaskStartScheduler();
 
   while(1){
 
   }
-
 
   return 0;
 }
