@@ -638,13 +638,13 @@ void task_lcd(void){
       double w = 2*pi*n/dT;
       
       //velocidade instantanea 
+      v_old = v;
       v = w*r;
 
       // aceleracao
       double a = (v - v_old)/dT;
 
       if (flag_playpause){ 
-        v_old = v;
         nTotal += n;
         vMedia = dTotal/(dT*interacoes);
         dTotal = nTotal*2*pi*r*(0.001);
