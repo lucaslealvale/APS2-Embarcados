@@ -1,3 +1,20 @@
+/*------------------------------------------------------------------------/
+/*                  APS-2 DE COMPUTAÇÃO EMBARCADA                                                            
+
+Authors:
+- Pedro Vero Fontes
+- Lucas Leal Vale
+
+Professor:
+- Rafael Corsi
+
+TO FIX:
+- vMedia n funciona
+- lixo no print led
+
+/
+/-------------------------------------------------------------------------*/
+
 #include <asf.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -29,11 +46,14 @@
 /************************************************************************/
 /* prototypes                                                           */
 /************************************************************************/
+
 void callback(void);
 static void RTT_init(uint16_t pllPreScale, uint32_t IrqNPulses);
+
 /************************************************************************/
 /* LCD + TOUCH                                                          */
 /************************************************************************/
+
 #define MAX_ENTRIES        10
 
 struct ili9488_opt_t g_ili9488_display_opt;
@@ -44,8 +64,9 @@ const uint32_t BUTTON_X = ILI9488_LCD_WIDTH/2;
 const uint32_t BUTTON_Y = ILI9488_LCD_HEIGHT/2;
 
 /************************************************************************/
-/* RTOS                                                                  */
+/* RTOS                                                                 */
 /************************************************************************/
+
 #define TASK_MXT_STACK_SIZE            (2*1024/sizeof(portSTACK_TYPE))
 #define TASK_MXT_STACK_PRIORITY        (tskIDLE_PRIORITY)
 
@@ -53,16 +74,25 @@ const uint32_t BUTTON_Y = ILI9488_LCD_HEIGHT/2;
 #define TASK_LCD_STACK_PRIORITY        (tskIDLE_PRIORITY)
 
 /************************************************************************/
-/* LED                                                                  */
+/* LED + BOTÃO                                                          */
 /************************************************************************/
+
+// LED
 #define LED_PIO       PIOC
 #define LED_PIO_ID    ID_PIOC
 #define LED_IDX       8
 #define LED_IDX_MASK  (1 << LED_IDX)
 
+// Botão
+#define BUT_PIO       PIOA
+#define BUT_PIO_ID    ID_PIOA
+#define BUT_IDX       11
+#define BUT_IDX_MASK  (1 << BUT_IDX)
+
 /************************************************************************/
 /* OBJETOS                                                              */
 /************************************************************************/
+
 typedef struct {
   uint x;
   uint y;
@@ -79,8 +109,7 @@ typedef struct {
 	
 } t_but;
 
-typedef struct
-{
+typedef struct {
 	uint32_t year;
 	uint32_t month;
 	uint32_t day;
@@ -93,6 +122,7 @@ typedef struct
 /************************************************************************/
 /* FLAGS                                                                */
 /************************************************************************/
+
 volatile char flag_rtc = 0;
 volatile Bool f_rtt_alarme = false;
 char flag_led = 0;
@@ -103,53 +133,76 @@ char flag_rtt = 0;
 /************************************************************************/
 /* CRONOMETRO                                                           */
 /************************************************************************/
+
 int h = 0;
 int m = 0;
 int s = 0;
 
 /************************************************************************/
+/* RODADAS                                                              */
+/************************************************************************/
+
+int N = 0;
+double pi = 3.141492;
+int dT= 1;
+double r = 0.311;
+double nTotal = 0;
+
+uint interacoes = 0;
+
+double dTotal = 0;
+double vMedia = 0;
+double v = 0;
+
+
+/************************************************************************/
 /* FILAS                                                                */
 /************************************************************************/
+
 QueueHandle_t xQueueTouch;
+QueueHandle_t xQueuePulsos;
 
 /************************************************************************/
 /* SEMAFOROS                                                            */
 /************************************************************************/
+
 SemaphoreHandle_t xSemaphore = NULL;
 SemaphoreHandle_t xSemaphore_playpause = NULL;
-SemaphoreHandle_t xSemaphore_seta = NULL;
 SemaphoreHandle_t xSemaphore_reset = NULL;
+SemaphoreHandle_t xSemaphore_rodadas = NULL;
 
 /************************************************************************/
 /* handler/callbacks                                                    */
 /************************************************************************/
+
 void callback(void){
   printf("CLICK!\n");
-  BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-  xSemaphoreGiveFromISR(xSemaphore, &xHigherPriorityTaskWoken);
+  xSemaphoreGive(xSemaphore);
 }
 
 void callback_playpause(void){
-  printf("CLICK 2!\n");
-  BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-  xSemaphoreGiveFromISR(xSemaphore_playpause, &xHigherPriorityTaskWoken);
+  printf("CLICK playpause!\n");
+  xSemaphoreGive(xSemaphore_playpause);
 }
 
 void callback_seta(void){
-  printf("CLICK 3!\n");
-  BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-  xSemaphoreGiveFromISR(xSemaphore_seta, &xHigherPriorityTaskWoken);
+  printf("CLICK seta!\n");
 }
 
 void callback_reset(void){
-  printf("CLICK 4!\n");
-  BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-  xSemaphoreGiveFromISR(xSemaphore_reset, &xHigherPriorityTaskWoken);
+  printf("CLICK reset!\n");
+  xSemaphoreGive(xSemaphore_reset);
 }
+
+void callback_rodadas(void){
+  N++;
+}
+
 
 /************************************************************************/
 /* RTOS hooks                                                           */
 /************************************************************************/
+
 extern void vApplicationStackOverflowHook(xTaskHandle *pxTask,
 signed char *pcTaskName)
 {
@@ -172,6 +225,7 @@ extern void vApplicationMallocFailedHook(void)
 /************************************************************************/
 /* init                                                                 */
 /************************************************************************/
+
 void RTC_Handler(void)
 {
 	uint32_t ul_status = rtc_get_status(RTC);
@@ -195,7 +249,7 @@ void RTC_init(Rtc *rtc, uint32_t id_rtc, calendar t, uint32_t irq_type)
 	rtc_set_time(rtc, t.hour, t.minute, t.seccond);
 	NVIC_DisableIRQ(id_rtc);
 	NVIC_ClearPendingIRQ(id_rtc);
-	NVIC_SetPriority(id_rtc, 0);
+	NVIC_SetPriority(id_rtc, 4);
 	NVIC_EnableIRQ(id_rtc);
 	rtc_enable_interrupt(rtc, irq_type);
 }
@@ -203,22 +257,13 @@ void RTC_init(Rtc *rtc, uint32_t id_rtc, calendar t, uint32_t irq_type)
 void RTT_Handler(void)
 {
   uint32_t ul_status;
+  
+  BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+  xQueueSendFromISR(xQueuePulsos, &N,  &xHigherPriorityTaskWoken);
+  N = 0;
 
   /* Get RTT status - ACK */
   ul_status = rtt_get_status(RTT);
-
-  /* IRQ due to Time has changed */
-  if ((ul_status & RTT_SR_RTTINC) == RTT_SR_RTTINC) {
-    //f_rtt_alarme = false;  
-     pin_toggle(LED_PIO, LED_IDX_MASK);    // BLINK Led
-  
-    }
-
-  /* IRQ due to Alarm */
-  if ((ul_status & RTT_SR_ALMS) == RTT_SR_ALMS) {
-     // pin_toggle(LED_PIO, LED_IDX_MASK);    // BLINK Led
-      f_rtt_alarme = true;                  // flag RTT alarme
-   }  
 }
 
 static void RTT_init(uint16_t pllPreScale, uint32_t IrqNPulses)
@@ -239,7 +284,7 @@ static void RTT_init(uint16_t pllPreScale, uint32_t IrqNPulses)
   NVIC_ClearPendingIRQ(RTT_IRQn);
   NVIC_SetPriority(RTT_IRQn, 4);
   NVIC_EnableIRQ(RTT_IRQn);
-  rtt_enable_interrupt(RTT, RTT_MR_ALMIEN | RTT_MR_RTTINCIEN);
+  rtt_enable_interrupt(RTT, RTT_MR_ALMIEN);
 }
 
 static void configure_lcd(void){
@@ -342,9 +387,7 @@ void mxt_handler(struct mxt_device *device, uint *x, uint *y)
       continue;
     }
     
-    /************************************************************************/
-    /* Envia dados via fila RTOS                                            */
-    /************************************************************************/
+    // Envia dados via fila RTOS
     if(first == 0 ){
       *x = convert_axis_system_x(touch_event.y);
       *y = convert_axis_system_y(touch_event.x);
@@ -366,50 +409,24 @@ void init(void){
 	pmc_enable_periph_clk(LED_PIO_ID);
 	pio_configure(LED_PIO, PIO_OUTPUT_0, LED_IDX_MASK, PIO_DEFAULT);
 
+  pmc_enable_periph_clk(BUT_PIO_ID);
+  pio_configure(BUT_PIO, PIO_INPUT, BUT_IDX_MASK, PIO_PULLUP | PIO_DEBOUNCE);
+  pio_set_debounce_filter(BUT_PIO, BUT_IDX_MASK, 100);
+  pio_handler_set(BUT_PIO, BUT_PIO_ID, BUT_IDX_MASK, PIO_IT_RISE_EDGE, callback_rodadas);
+  pio_enable_interrupt(BUT_PIO, BUT_IDX_MASK);
+  delay_ms(50);
+  pio_get_interrupt_status(BUT_PIO);
+  NVIC_SetPriority(BUT_PIO_ID, 4);
+  NVIC_EnableIRQ(BUT_PIO_ID);
+
 }
 
 void show_cronon(int h, int m, int s){
 
   char c[200];
 
-  if (s < 10 && m < 10 && h < 10){
-    sprintf(c, "0%d:0%d:0%d", h, m, s);
-    font_draw_text(&calibri_36, c, 100, ILI9488_LCD_HEIGHT/2 + 45, 1);
-  }
-
-  else if (s < 10 && m < 10){
-    sprintf(c, "%d:0%d:0%d", h, m, s);
-    font_draw_text(&calibri_36, c, 100, ILI9488_LCD_HEIGHT/2 + 45, 1);
-  }
-
-  else if (s < 10 && h < 10){
-    sprintf(c, "0%d:%d:0%d", h, m, s);
-    font_draw_text(&calibri_36, c, 100, ILI9488_LCD_HEIGHT/2 + 45, 1);
-  }
-
-  else if (m < 10 && h < 10){
-    sprintf(c, "0%d:0%d:%d", h, m, s);
-    font_draw_text(&calibri_36, c, 100, ILI9488_LCD_HEIGHT/2 + 45, 1);
-  }
-  else if (s < 10){
-    sprintf(c, "%d:%d:0%d", h, m, s);
-    font_draw_text(&calibri_36, c, 100, ILI9488_LCD_HEIGHT/2 + 45, 1);
-  }
-
-  else if (m < 10){
-    sprintf(c, "%d:0%d:%d", h, m, s);
-    font_draw_text(&calibri_36, c, 100, ILI9488_LCD_HEIGHT/2 + 45, 1);
-  }
-
-  else if (h < 10){
-    sprintf(c, "0%d:%d:%d", h, m, s);
-    font_draw_text(&calibri_36, c, 100, ILI9488_LCD_HEIGHT/2 + 45, 1);
-  }
-
-  else{
-    sprintf(c, "%d:%d:%d", h, m, s);
-    font_draw_text(&calibri_36, c, 100, ILI9488_LCD_HEIGHT/2 + 45, 1);
-  }
+  sprintf(c, "%02d:%02d:%02d", h, m, s);
+  font_draw_text(&calibri_36, c, 100, ILI9488_LCD_HEIGHT/2 + 45, 1);
 
 }
 
@@ -419,46 +436,8 @@ void show_clock(calendar rtc_initial){
     rtc_get_time(RTC, &rtc_initial.hour, &rtc_initial.minute, &rtc_initial.seccond);
 
     char b[200];
-    
-    if(rtc_initial.seccond < 10 && rtc_initial.minute < 10 && rtc_initial.hour < 10){
-      sprintf(b, "0%d:0%d:0%d", rtc_initial.hour, rtc_initial.minute, rtc_initial.seccond);
-      font_draw_text(&calibri_36, b, 85, 0, 1);
-    }
-
-    else if(rtc_initial.seccond < 10 && rtc_initial.minute < 10){
-      sprintf(b, "%d:0%d:0%d", rtc_initial.hour, rtc_initial.minute, rtc_initial.seccond);
-      font_draw_text(&calibri_36, b, 85, 0, 1);  
-    }
-
-    else if(rtc_initial.hour < 10 && rtc_initial.minute < 10){
-      sprintf(b, "0%d:0%d:%d", rtc_initial.hour, rtc_initial.minute, rtc_initial.seccond);
-      font_draw_text(&calibri_36, b, 85, 0, 1);
-    }
-
-    else if(rtc_initial.hour < 10 && rtc_initial.seccond < 10){
-      sprintf(b, "0%d:0%d:0%d", rtc_initial.hour, rtc_initial.minute, rtc_initial.seccond);
-      font_draw_text(&calibri_36, b, 85, 0, 1);
-    }
-
-    else if(rtc_initial.hour < 10){
-      sprintf(b, "0%d:%d:%d", rtc_initial.hour, rtc_initial.minute, rtc_initial.seccond);
-      font_draw_text(&calibri_36, b, 85, 0, 1);
-    }
-    
-    else if(rtc_initial.seccond < 10){
-      sprintf(b, "%d:%d:0%d", rtc_initial.hour, rtc_initial.minute, rtc_initial.seccond);
-      font_draw_text(&calibri_36, b, 85, 0, 1);
-    }
-
-    else if(rtc_initial.minute < 10){
-      sprintf(b, "%d:0%d:%d", rtc_initial.hour, rtc_initial.minute, rtc_initial.seccond);
-      font_draw_text(&calibri_36, b, 85, 0, 1);
-    }
-
-    else{
-      sprintf(b, "%d:%d:%d", rtc_initial.hour, rtc_initial.minute, rtc_initial.seccond);
-      font_draw_text(&calibri_36, b, 85, 0, 1);
-    }
+    sprintf(b, "%02d:%02d:%02d", rtc_initial.hour, rtc_initial.minute, rtc_initial.seccond);
+    font_draw_text(&calibri_36, b, 85, 0, 1);
     
     flag_rtc = 0;
 
@@ -507,11 +486,12 @@ void task_mxt(void){
 
 void task_lcd(void){
 	xQueueTouch = xQueueCreate( 10, sizeof( touchData ) );
-  
+  xQueuePulsos = xQueueCreate( 10, sizeof( uint ) );
+
   xSemaphore = xSemaphoreCreateBinary();
   xSemaphore_playpause = xSemaphoreCreateBinary();
-  xSemaphore_seta = xSemaphoreCreateBinary();
   xSemaphore_reset = xSemaphoreCreateBinary();
+  xSemaphore_rodadas = xSemaphoreCreateBinary();
 
 	configure_lcd();
 	draw_screen();
@@ -554,12 +534,13 @@ void task_lcd(void){
   };
 
 	
-	ili9488_set_foreground_color(COLOR_CONVERT(COLOR_BLACK));
+  ili9488_set_foreground_color(COLOR_CONVERT(COLOR_BLACK));
 
   ili9488_draw_pixmap(bike_but.x, bike_but.y, bike.width, bike.height, bike.data);
   ili9488_draw_pixmap(cronometro_but.x, cronometro_but.y, cronon.width, cronon.height, cronon.data);
 
   ili9488_draw_pixmap(reset_but.x, reset_but.y, reset_but.width, reset_but.height, reset_but.data);
+
 	
 	t_but botoes[] = {reset_but, play_but, pause_but, down_arrow_but, up_arrow_but, bike_but, cronometro_but};
 
@@ -570,6 +551,10 @@ void task_lcd(void){
   calendar rtc_initial = {2018, 3, 19, 12, 15, 0, 1};
   RTC_init(RTC, ID_RTC, rtc_initial, RTC_IER_SECEN);
 
+  // força inicializacao do rtt
+  // colocando dado fake na fila
+  uint n = 0;
+  xQueueSend(xQueuePulsos, &n , 0);
 
 	while (true) {
 		if (xQueueReceive( xQueueTouch, &(touch), ( TickType_t )  100 / portTICK_PERIOD_MS)) { //500 ms
@@ -589,22 +574,10 @@ void task_lcd(void){
     show_clock(rtc_initial);
     show_cronon(h, m, s);
     
-    if (f_rtt_alarme){
   
-      //  IRQ apos 4s -> 8*0.5
-      uint16_t pllPreScale = (int) (((float) 32768) / 4.0);
-      uint32_t irqRTTvalue = 8;
-      
-      // reinicia RTT para gerar um novo IRQ
-      RTT_init(pllPreScale, irqRTTvalue);         
-      
-      f_rtt_alarme = false;
-      flag_rtt = 1;
-    }
     // calcular a velocidade com o rtt aqui: todas as vezes que apertar o botao salvar->calcular->printar
-    if(flag_rtt){
+    
 
-    }
     if (flag_playpause){
       ili9488_draw_pixmap(pause_but.x, pause_but.y, pause_but.width, pause_but.height, pause_but.data); 
 
@@ -634,16 +607,66 @@ void task_lcd(void){
       flag_playpause = !flag_playpause;
     }
 
-    if( xSemaphoreTake(xSemaphore_seta, 0) == pdTRUE ){   
-      flag_seta = !flag_seta;
-    }
-
     if( xSemaphoreTake(xSemaphore_reset, 0) == pdTRUE ){   
       flag_playpause = 0;
       h = 0;
       m = 0;
       s = 0;
+
+      dTotal = 0;
+      vMedia = 0;
+      nTotal = 0;
+      
     }
+    double v_old = 0;
+    if( xQueueReceive(xQueuePulsos, &n, 0) == pdTRUE ){ 
+      //-------------------------------------------------
+      // inicializa novo RTT  
+      //  IRQ apos 4s -> 8*0.5
+      uint16_t pllPreScale = (int) (((float) 32768) / 4.0);
+      uint32_t irqRTTvalue = 4*dT;
+      
+      // reinicia RTT para gerar um novo IRQ
+      RTT_init(pllPreScale, irqRTTvalue);         
+      //-------------------------------------------------
+
+      printf("%d\n", n);
+
+      interacoes++;
+
+      // velocidade angular
+      double w = 2*pi*n/dT;
+      
+      //velocidade instantanea 
+      v = w*r;
+
+      // aceleracao
+      double a = (v - v_old)/dT;
+
+      if (flag_playpause){ 
+        v_old = v;
+        nTotal += n;
+        vMedia = dTotal/(dT*interacoes);
+        dTotal = nTotal*2*pi*r*(0.001);
+      }
+
+      printf("%lf\n", dTotal);
+      printf("%lf\n", v);
+      printf("%lf\n", vMedia);
+
+      if (a < 0) flag_seta = 1;
+      if (a > 0) flag_seta = 0;      
+    }
+
+
+    char velo[200];
+    sprintf(velo, " %0.1f Km/h", v*3.6);
+    font_draw_text(&calibri_36, velo, 70, ILI9488_LCD_HEIGHT/2 - 140, 1);
+    
+    char dist[200];
+    sprintf(dist, "%0.1f Km (%0.1f)", dTotal, vMedia);
+    font_draw_text(&calibri_36, dist, 100, ILI9488_LCD_HEIGHT/2 - 45, 1);
+
 
     if(flag_led){
       pio_clear(PIOC, LED_IDX_MASK);  
@@ -659,6 +682,7 @@ void task_lcd(void){
 /************************************************************************/
 /* main                                                                 */
 /************************************************************************/
+
 int main(void)
 {
   /* Initialize the USART configuration struct */

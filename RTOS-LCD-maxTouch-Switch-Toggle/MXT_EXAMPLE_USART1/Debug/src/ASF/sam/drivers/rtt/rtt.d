@@ -1,30 +1,8 @@
-src/ASF/thirdparty/freertos/freertos-8.2.3/Source/event_groups.d \
- src/ASF/thirdparty/freertos/freertos-8.2.3/Source/event_groups.o: \
- ../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/event_groups.c \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\stdlib.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\ieeefp.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\_ansi.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\newlib.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\_newlib_version.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\config.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\features.h \
+src/ASF/sam/drivers/rtt/rtt.d src/ASF/sam/drivers/rtt/rtt.o: \
+ ../src/ASF/sam/drivers/rtt/rtt.c ../src/ASF/sam/drivers/rtt/rtt.h \
+ ../src/ASF/sam/utils/compiler.h \
  d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stddef.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\reent.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\_ansi.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_types.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\_types.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\_default_types.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\lock.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\cdefs.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\stdlib.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\alloca.h \
- ../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/FreeRTOS.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdint.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\stdint.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_intsup.h \
- d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_stdint.h \
- ../src/config/FreeRTOSConfig.h ../src/ASF/common/boards/board.h \
- ../src/ASF/sam/utils/compiler.h ../src/ASF/common/utils/parts.h \
+ ../src/ASF/common/utils/parts.h \
  ../src/ASF/sam/utils/preprocessor/preprocessor.h \
  ../src/ASF/sam/utils/preprocessor/tpaste.h \
  ../src/ASF/sam/utils/preprocessor/stringz.h \
@@ -33,6 +11,13 @@ src/ASF/thirdparty/freertos/freertos-8.2.3/Source/event_groups.d \
  ../src/ASF/sam/utils/header_files/io.h \
  ../src/ASF/sam/utils/cmsis/same70/include/same70.h \
  ../src/ASF/sam/utils/cmsis/same70/include/same70q21b.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdint.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\stdint.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\_default_types.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\features.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\_newlib_version.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_intsup.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_stdint.h \
  ../src/ASF/thirdparty/CMSIS/Include/core_cm7.h \
  ../src/ASF/thirdparty/CMSIS/Include/core_cmInstr.h \
  ../src/ASF/thirdparty/CMSIS/Include/core_cmFunc.h \
@@ -132,7 +117,17 @@ src/ASF/thirdparty/freertos/freertos-8.2.3/Source/event_groups.d \
  ../src/ASF/sam/utils/cmsis/same70/include/instance/uart4.h \
  ../src/ASF/sam/utils/cmsis/same70/include/pio/same70q21b.h \
  d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\stdio.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\_ansi.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\newlib.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\config.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\ieeefp.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\cdefs.h \
  d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdarg.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\reent.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\_ansi.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_types.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\_types.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\lock.h \
  d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\types.h \
  d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\endian.h \
  d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\_endian.h \
@@ -145,70 +140,17 @@ src/ASF/thirdparty/freertos/freertos-8.2.3/Source/event_groups.d \
  d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\types.h \
  d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\stdio.h \
  d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdbool.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\stdlib.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\stdlib.h \
+ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\alloca.h \
  ../src/ASF/common/utils/interrupt.h \
- ../src/ASF/common/utils/interrupt/interrupt_sam_nvic.h \
- ../src/ASF/sam/boards/same70_xplained/same70_xplained.h \
- ../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/projdefs.h \
- ../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/portable.h \
- ../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/deprecated_definitions.h \
- ../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h \
- ../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/mpu_wrappers.h \
- ../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/task.h \
- ../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/list.h \
- ../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/timers.h \
- ../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/task.h \
- ../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/event_groups.h \
- ../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/timers.h
+ ../src/ASF/common/utils/interrupt/interrupt_sam_nvic.h
 
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\stdlib.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\ieeefp.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\_ansi.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\newlib.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\_newlib_version.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\config.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\features.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stddef.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\reent.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\_ansi.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_types.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\_types.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\_default_types.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\lock.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\cdefs.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\stdlib.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\alloca.h:
-
-../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/FreeRTOS.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdint.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\stdint.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_intsup.h:
-
-d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_stdint.h:
-
-../src/config/FreeRTOSConfig.h:
-
-../src/ASF/common/boards/board.h:
+../src/ASF/sam/drivers/rtt/rtt.h:
 
 ../src/ASF/sam/utils/compiler.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stddef.h:
 
 ../src/ASF/common/utils/parts.h:
 
@@ -227,6 +169,20 @@ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\incl
 ../src/ASF/sam/utils/cmsis/same70/include/same70.h:
 
 ../src/ASF/sam/utils/cmsis/same70/include/same70q21b.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdint.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\stdint.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\_default_types.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\features.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\_newlib_version.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_intsup.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_stdint.h:
 
 ../src/ASF/thirdparty/CMSIS/Include/core_cm7.h:
 
@@ -426,7 +382,27 @@ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\incl
 
 d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\stdio.h:
 
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\_ansi.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\newlib.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\config.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\ieeefp.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\cdefs.h:
+
 d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdarg.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\reent.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\_ansi.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_types.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\_types.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\lock.h:
 
 d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\types.h:
 
@@ -452,30 +428,12 @@ d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\incl
 
 d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdbool.h:
 
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\stdlib.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\stdlib.h:
+
+d:\insper-stuff\embarcada\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\alloca.h:
+
 ../src/ASF/common/utils/interrupt.h:
 
 ../src/ASF/common/utils/interrupt/interrupt_sam_nvic.h:
-
-../src/ASF/sam/boards/same70_xplained/same70_xplained.h:
-
-../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/projdefs.h:
-
-../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/portable.h:
-
-../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/deprecated_definitions.h:
-
-../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h:
-
-../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/mpu_wrappers.h:
-
-../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/task.h:
-
-../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/list.h:
-
-../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/timers.h:
-
-../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/task.h:
-
-../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/event_groups.h:
-
-../src/ASF/thirdparty/freertos/freertos-8.2.3/Source/include/timers.h:

@@ -8,6 +8,8 @@ src\ASF\sam\drivers\afec\afec.c
 
 src\ASF\sam\drivers\rtc\rtc.c
 
+src\ASF\sam\drivers\rtt\rtt.c
+
 src\maxTouch\maxTouch.c
 
 src\ASF\common\components\touch\mxt\mxt_device_1.c
