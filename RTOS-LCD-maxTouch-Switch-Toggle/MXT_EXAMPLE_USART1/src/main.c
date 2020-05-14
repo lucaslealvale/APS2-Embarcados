@@ -144,11 +144,11 @@ int s = 0;
 
 int N = 0;
 double pi = 3.141492;
-int dT= 1;
+double dT= 1.0;
 double r = 0.311;
 double nTotal = 0;
 
-uint interacoes = 0;
+double interacoes = 0.0;
 
 double dTotal = 0;
 double vMedia = 0;
@@ -608,7 +608,9 @@ void task_lcd(void){
     }
 
     if( xSemaphoreTake(xSemaphore_reset, 0) == pdTRUE ){   
+      
       flag_playpause = 0;
+
       h = 0;
       m = 0;
       s = 0;
@@ -616,6 +618,7 @@ void task_lcd(void){
       dTotal = 0;
       vMedia = 0;
       nTotal = 0;
+      interacoes = 0;
       
     }
     double v_old = 0;
@@ -632,7 +635,7 @@ void task_lcd(void){
 
       printf("%d\n", n);
 
-      interacoes++;
+      interacoes += 1.0;
 
       // velocidade angular
       double w = 2*pi*n/dT;
@@ -646,27 +649,46 @@ void task_lcd(void){
 
       if (flag_playpause){ 
         nTotal += n;
-        vMedia = dTotal/(dT*interacoes);
         dTotal = nTotal*2*pi*r*(0.001);
+        vMedia = dTotal*3600/(dT*interacoes);
+        
       }
 
       printf("%lf\n", dTotal);
       printf("%lf\n", v);
       printf("%lf\n", vMedia);
+      printf("dT %lf\n", dT);
+      printf("interacoes %lf\n", interacoes);
+      
 
       if (a < 0) flag_seta = 1;
       if (a > 0) flag_seta = 0;      
     }
 
+    // printf("%0k.yf" float_variable_name)
+
+    /* 
+      Here k is the total number of characters you want to get printed. 
+      k = x + 1 + y (+ 1 for the dot) and float_variable_name is the float 
+      variable that you want to get printed.
+    */
 
     char velo[200];
-    sprintf(velo, " %0.1f Km/h", v*3.6);
+    sprintf(velo, "%04.1f", v*3.6);
     font_draw_text(&calibri_36, velo, 70, ILI9488_LCD_HEIGHT/2 - 140, 1);
     
+    char KM[200];
+    sprintf(KM, "Km/h");
+    font_draw_text(&calibri_36, KM,150, ILI9488_LCD_HEIGHT/2 - 140, 1);
+    
+
     char dist[200];
-    sprintf(dist, "%0.1f Km (%0.1f)", dTotal, vMedia);
+    sprintf(dist, "%04.1f Km", dTotal, vMedia);
     font_draw_text(&calibri_36, dist, 100, ILI9488_LCD_HEIGHT/2 - 45, 1);
 
+    char vM[200];
+    sprintf(vM, "(%04.1f)", vMedia);
+    font_draw_text(&calibri_36, vM, 230, ILI9488_LCD_HEIGHT/2 - 45, 1);
 
     if(flag_led){
       pio_clear(PIOC, LED_IDX_MASK);  
