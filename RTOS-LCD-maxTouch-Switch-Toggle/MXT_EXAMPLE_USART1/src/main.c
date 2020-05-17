@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------/
-/*                  APS-2 DE COMPUTAÇÃO EMBARCADA                                                            
+.                   APS-2 DE COMPUTAÇÃO EMBARCADA                         .
 
 Authors:
 - Pedro Vero Fontes
@@ -8,12 +8,13 @@ Authors:
 Professor:
 - Rafael Corsi
 
-TO FIX:
-- vMedia n funciona
-- lixo no print led
-
-/
-/-------------------------------------------------------------------------*/
+TO DO GOING TO A:
+ - SleepMode: se não detectado um pulso em X tempo, desliga o LCD (pode pintar de preto). Toque ou pulsos 'acorda' interface
+ - Possui tema dark/light
+ - Calcula velocidade instantânea por tempo entre dois pulsos e não por acumulo
+ - Possibilita ter mais de um 'percurso'
+ 
+-------------------------------------------------------------------------*/
 
 #include <asf.h>
 #include <stdlib.h>
@@ -130,6 +131,8 @@ char flag_playpause = 0;
 char flag_seta = 0;
 char flag_rtt = 0;
 
+volatile char flag_bolinha = 0;
+
 /************************************************************************/
 /* CRONOMETRO                                                           */
 /************************************************************************/
@@ -154,6 +157,11 @@ double dTotal = 0;
 double vMedia = 0;
 double v = 0;
 
+/************************************************************************/
+/* ANIMACAO                                                             */
+/************************************************************************/
+int Xx=0;
+int nAntigo=0;
 
 /************************************************************************/
 /* FILAS                                                                */
@@ -442,6 +450,9 @@ void show_clock(calendar rtc_initial){
     flag_rtc = 0;
 
     if (flag_playpause){
+
+      flag_bolinha = !flag_bolinha;
+
       if(s < 59) s++;
       else{
         s = 0;
@@ -581,8 +592,15 @@ void task_lcd(void){
     if (flag_playpause){
       ili9488_draw_pixmap(pause_but.x, pause_but.y, pause_but.width, pause_but.height, pause_but.data); 
 
-	    ili9488_set_foreground_color(COLOR_CONVERT(COLOR_TOMATO));
-	    ili9488_draw_filled_circle(cronometro_but.x + 245, cronometro_but.y + 40, 8);
+	    if(flag_bolinha){
+        ili9488_set_foreground_color(COLOR_CONVERT(COLOR_TOMATO));
+        ili9488_draw_filled_circle(cronometro_but.x + 245, cronometro_but.y + 40, 8);
+      } 
+      else{
+        ili9488_set_foreground_color(COLOR_CONVERT(COLOR_BLUE));
+        ili9488_draw_filled_circle(cronometro_but.x + 245, cronometro_but.y + 40, 8);
+      }
+	    
       f_rtt_alarme = true;
     }
     else{
@@ -663,6 +681,7 @@ void task_lcd(void){
 
       if (a < 0) flag_seta = 1;
       if (a > 0) flag_seta = 0;      
+      
     }
 
     // printf("%0k.yf" float_variable_name)
@@ -689,6 +708,45 @@ void task_lcd(void){
     char vM[200];
     sprintf(vM, "(%04.1f)", vMedia);
     font_draw_text(&calibri_36, vM, 230, ILI9488_LCD_HEIGHT/2 - 45, 1);
+
+
+    
+    
+    if(n>nAntigo){
+
+      for(int i=0; i<n; i++){
+
+        ili9488_set_foreground_color(COLOR_CONVERT(COLOR_GREEN));
+	      ili9488_draw_filled_circle(70 + Xx, ILI9488_LCD_HEIGHT/2 - 95, 8);
+        
+        Xx+=20;
+        printf("pintando vermelho %d\n", Xx);
+    }
+      nAntigo=n;
+      Xx=0;  
+    }
+    else{
+      
+      for(int i=0; i<nAntigo; i++){
+
+        ili9488_set_foreground_color(COLOR_CONVERT(COLOR_WHITE));
+	      ili9488_draw_filled_circle(70 + Xx, ILI9488_LCD_HEIGHT/2 - 95, 8);
+        Xx+=20;
+        printf("pintei branco %d\n", Xx);
+
+      }
+      Xx=0;  
+
+    for(int i=0; i< n; i++){
+
+        ili9488_set_foreground_color(COLOR_CONVERT(COLOR_GREEN));
+	      ili9488_draw_filled_circle(70 + Xx, ILI9488_LCD_HEIGHT/2 - 95, 8);
+        Xx+=20;
+        printf("repintando vermelho %d\n", Xx);
+    }
+    nAntigo=n;
+    Xx=0;  
+    }
 
     if(flag_led){
       pio_clear(PIOC, LED_IDX_MASK);  
