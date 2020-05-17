@@ -703,7 +703,7 @@ void task_lcd(void){
 
     char dist[200];
     sprintf(dist, "%04.1f Km", dTotal, vMedia);
-    font_draw_text(&calibri_36, dist, 100, ILI9488_LCD_HEIGHT/2 - 45, 1);
+    font_draw_text(&calibri_36, dist, 100, ILI9488_LCD_HEIGHT/2 - 35, 1);
 
     char vm[200];
     sprintf(vm, "Vm");
