@@ -32,7 +32,7 @@ TO DO GOING TO A:
 #include "fonts/arial_72.h"
 #include "fonts/sourcecodepro_28.h"
 #include "fonts/calibri_36.h"
-
+#include "fonts/calibri_20.h"
 /************************************************************************/
 /* IMAGENS                                                              */
 /************************************************************************/
@@ -597,7 +597,7 @@ void task_lcd(void){
         ili9488_draw_filled_circle(cronometro_but.x + 245, cronometro_but.y + 40, 8);
       } 
       else{
-        ili9488_set_foreground_color(COLOR_CONVERT(COLOR_BLUE));
+        ili9488_set_foreground_color(COLOR_CONVERT(COLOR_WHITE));
         ili9488_draw_filled_circle(cronometro_but.x + 245, cronometro_but.y + 40, 8);
       }
 	    
@@ -694,21 +694,28 @@ void task_lcd(void){
 
     char velo[200];
     sprintf(velo, "%04.1f", v*3.6);
-    font_draw_text(&calibri_36, velo, 70, ILI9488_LCD_HEIGHT/2 - 140, 1);
+    font_draw_text(&calibri_36, velo, 50, ILI9488_LCD_HEIGHT/2 - 160, 1);
     
     char KM[200];
     sprintf(KM, "Km/h");
-    font_draw_text(&calibri_36, KM,150, ILI9488_LCD_HEIGHT/2 - 140, 1);
+    font_draw_text(&calibri_36, KM,130, ILI9488_LCD_HEIGHT/2 - 160, 1);
     
 
     char dist[200];
     sprintf(dist, "%04.1f Km", dTotal, vMedia);
     font_draw_text(&calibri_36, dist, 100, ILI9488_LCD_HEIGHT/2 - 45, 1);
 
-    char vM[200];
-    sprintf(vM, "(%04.1f)", vMedia);
-    font_draw_text(&calibri_36, vM, 230, ILI9488_LCD_HEIGHT/2 - 45, 1);
+    char vm[200];
+    sprintf(vm, "Vm");
+    font_draw_text(&calibri_36, vm,20, ILI9488_LCD_HEIGHT/2 -90, 1);
 
+    char vM[200];
+    sprintf(vM, "%04.1f", vMedia);
+    font_draw_text(&calibri_36, vM,80 , ILI9488_LCD_HEIGHT/2 - 90, 1);
+
+    char KM2[200];
+    sprintf(KM2, "Km/h");
+    font_draw_text(&calibri_36, KM2,150, ILI9488_LCD_HEIGHT/2 - 90, 1);
 
     
     
@@ -717,10 +724,10 @@ void task_lcd(void){
       for(int i=0; i<n; i++){
 
         ili9488_set_foreground_color(COLOR_CONVERT(COLOR_GREEN));
-	      ili9488_draw_filled_circle(70 + Xx, ILI9488_LCD_HEIGHT/2 - 95, 8);
+	      ili9488_draw_filled_circle(50 + Xx, ILI9488_LCD_HEIGHT/2 - 120, 8);
         
         Xx+=20;
-        printf("pintando vermelho %d\n", Xx);
+        
     }
       nAntigo=n;
       Xx=0;  
@@ -730,9 +737,9 @@ void task_lcd(void){
       for(int i=0; i<nAntigo; i++){
 
         ili9488_set_foreground_color(COLOR_CONVERT(COLOR_WHITE));
-	      ili9488_draw_filled_circle(70 + Xx, ILI9488_LCD_HEIGHT/2 - 95, 8);
+	      ili9488_draw_filled_circle(50 + Xx, ILI9488_LCD_HEIGHT/2 - 120, 8);
         Xx+=20;
-        printf("pintei branco %d\n", Xx);
+        
 
       }
       Xx=0;  
@@ -740,9 +747,9 @@ void task_lcd(void){
     for(int i=0; i< n; i++){
 
         ili9488_set_foreground_color(COLOR_CONVERT(COLOR_GREEN));
-	      ili9488_draw_filled_circle(70 + Xx, ILI9488_LCD_HEIGHT/2 - 95, 8);
+	      ili9488_draw_filled_circle(50 + Xx, ILI9488_LCD_HEIGHT/2 - 120, 8);
         Xx+=20;
-        printf("repintando vermelho %d\n", Xx);
+        
     }
     nAntigo=n;
     Xx=0;  
