@@ -36,7 +36,7 @@
 */
 
 #include <stdint.h>
-
+#include "tfont.h"
 
 
 #if (0x0 == 0x0)
@@ -3370,5 +3370,4 @@ static const tChar calibri_20_array[] = {
 };
 
 
-const tFont calibri_20 = { 95, calibri_20_array };
-
+const tFont calibri_20 = { 95, calibri_20_array, ' ', '~'  };

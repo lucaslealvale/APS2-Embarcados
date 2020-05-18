@@ -597,7 +597,7 @@ void task_lcd(void){
         ili9488_draw_filled_circle(cronometro_but.x + 245, cronometro_but.y + 40, 8);
       } 
       else{
-        ili9488_set_foreground_color(COLOR_CONVERT(COLOR_WHITE));
+        ili9488_set_foreground_color(COLOR_CONVERT(COLOR_BLUE));
         ili9488_draw_filled_circle(cronometro_but.x + 245, cronometro_but.y + 40, 8);
       }
 	    
@@ -698,24 +698,28 @@ void task_lcd(void){
     
     char KM[200];
     sprintf(KM, "Km/h");
-    font_draw_text(&calibri_36, KM,130, ILI9488_LCD_HEIGHT/2 - 160, 1);
+    font_draw_text(&calibri_20, KM,125, ILI9488_LCD_HEIGHT/2 - 150, 0);
     
 
     char dist[200];
-    sprintf(dist, "%04.1f Km", dTotal, vMedia);
+    sprintf(dist, "%04.1f", dTotal, vMedia);
     font_draw_text(&calibri_36, dist, 100, ILI9488_LCD_HEIGHT/2 - 35, 1);
+
+    char KM3[200];
+    sprintf(KM3, "Km");
+    font_draw_text(&calibri_20,KM3, 175, ILI9488_LCD_HEIGHT/2 - 25, 0);
 
     char vm[200];
     sprintf(vm, "Vm");
-    font_draw_text(&calibri_36, vm,20, ILI9488_LCD_HEIGHT/2 -90, 1);
+    font_draw_text(&calibri_20, vm,20, ILI9488_LCD_HEIGHT/2 -90, 0);
 
     char vM[200];
     sprintf(vM, "%04.1f", vMedia);
-    font_draw_text(&calibri_36, vM,80 , ILI9488_LCD_HEIGHT/2 - 90, 1);
+    font_draw_text(&calibri_20, vM,80 , ILI9488_LCD_HEIGHT/2 - 90, 0);
 
     char KM2[200];
     sprintf(KM2, "Km/h");
-    font_draw_text(&calibri_36, KM2,150, ILI9488_LCD_HEIGHT/2 - 90, 1);
+    font_draw_text(&calibri_20, KM2,150, ILI9488_LCD_HEIGHT/2 - 90, 0);
 
     
     
