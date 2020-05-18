@@ -214,7 +214,8 @@ src/main.d src/main.o: ../src/main.c ../src/asf.h \
  ../src/config/conf_example.h ../src/fonts/tfont.h \
  ../src/fonts/digital521.h ../src/fonts/arial_72.h ../src/fonts/tfont.h \
  ../src/fonts/sourcecodepro_28.h ../src/fonts/calibri_36.h \
- ../src/fonts/calibri_20.h ../src/icones/bike.h ../src/icones/cronon.h \
+ ../src/fonts/calibri_20.h ../src/fonts/calibri_43.h \
+ ../src/fonts/calibri_50.h ../src/icones/bike.h ../src/icones/cronon.h \
  ../src/icones/down_arrow.h ../src/icones/pause.h ../src/icones/play.h \
  ../src/icones/reset.h ../src/icones/up_arrow.h
 
@@ -679,6 +680,10 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 ../src/fonts/calibri_36.h:
 
 ../src/fonts/calibri_20.h:
+
+../src/fonts/calibri_43.h:
+
+../src/fonts/calibri_50.h:
 
 ../src/icones/bike.h:
 
